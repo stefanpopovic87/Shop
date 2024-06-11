@@ -1,9 +1,13 @@
 using Shop.Infrastructure;
 using Shop.Application;
-using Shop.Presentation;
 using Serilog;
+using Microsoft.EntityFrameworkCore;
+using Shop.Infrastructure.Database;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<ShopDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("ShopConnection")));
 
 
 builder.Services.AddControllers();
@@ -12,8 +16,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services
     .AddApplication()
-    .AddInfrastructure()
-    .AddPresentation();
+    .AddInfrastructure();
 
 builder.Host.UseSerilog((context, configuration) =>
     configuration.ReadFrom.Configuration(context.Configuration));
