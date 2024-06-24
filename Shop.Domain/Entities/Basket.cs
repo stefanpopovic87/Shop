@@ -1,14 +1,16 @@
+using Shop.Domain.Entities.Base;
+
 namespace Shop.Domain.Entities;
 
-public class Basket
+public class Basket : BaseEntity
 {
     public int Id { get; set; }
-    public string BuyerId { get; set; }
+    public int BuyerId { get; set; }
     public List<BasketItem> Items { get; set; } = new List<BasketItem>();
     public string PaymentIntentId { get; set; }
     public string ClientSecret { get; set; }
 
-    public void AddItem(Product product, int quantity)
+    public void AddItem(Product.Product product, int quantity)
     {
         if (Items.All(item => item.ProductId != product.Id))
         {

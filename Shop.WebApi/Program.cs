@@ -1,22 +1,27 @@
-using Shop.Infrastructure;
 using Shop.Application;
 using Serilog;
 using Microsoft.EntityFrameworkCore;
-using Shop.Infrastructure.Database;
+using Shop.Infrastructure;
+using Shop.Persistence;
+using Shop.Presentation;
+using Shop.Persistence.Database;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<ShopDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("ShopConnection")));
 
+System.Reflection.Assembly presentationAssembly = typeof(Shop.Presentation.AssemblyReference).Assembly;
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddApplicationPart(presentationAssembly);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services
     .AddApplication()
-    .AddInfrastructure();
+    .AddInfrastructure()
+    .AddPersistence()
+    .AddPresentation();
 
 builder.Host.UseSerilog((context, configuration) =>
     configuration.ReadFrom.Configuration(context.Configuration));

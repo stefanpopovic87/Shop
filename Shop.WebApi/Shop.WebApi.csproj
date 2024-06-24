@@ -19,11 +19,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Shop.Application\Shop.Application.csproj" />
+    <ProjectReference Include="..\Shop.Domain\Shop.Domain.csproj" />
     <ProjectReference Include="..\Shop.Infrastracture\Shop.Infrastructure.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\Shop.Persistence\Shop.Persistence.csproj" />
+    <ProjectReference Include="..\Shop.Presentation\Shop.Presentation.csproj" />
   </ItemGroup>
 
 </Project>
