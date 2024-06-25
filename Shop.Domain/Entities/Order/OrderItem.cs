@@ -10,4 +10,6 @@ public class OrderItem : BaseEntity
     public int Quantity { get; private set; }
     public int ProductId { get; private set; }
     public string SizeId { get; private set; } = string.Empty;
+    public decimal Price { get; private set; }
+
 }

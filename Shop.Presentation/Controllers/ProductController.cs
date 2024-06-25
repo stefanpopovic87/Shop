@@ -21,48 +21,64 @@ namespace Shop.Presentation.Controllers
         public async Task<IActionResult> GetProducts()
         {
             var query = new GetProductsQuery();
-            var product = await _mediator.Send(query);
+            var result = await _mediator.Send(query);
 
-            if (product == null)
+            if (result is null)
             {
-                return NotFound();
+                return NotFound(new { Message = result.Error });
             }
 
-            return Ok(product);
+            return Ok(result);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetProductById(int id)
         {
             var query = new GetByIdProductQuery(id);
-            var product = await _mediator.Send(query);
+            var result = await _mediator.Send(query);
 
-            if (product == null)
+            if (!result.IsSuccess)
             {
-                return NotFound();
+                return NotFound(new { Message = result.Error });
             }
 
-            return Ok(product);
+            return Ok(result);
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateProduct(CreateProductCommand command)
+        public async Task<IActionResult> CreateProduct([FromBody] CreateProductCommand command)
         {
-            var id = await _mediator.Send(command);
-            return CreatedAtAction(nameof(GetProductById), new { id }, null);
+            var result = await _mediator.Send(command);
+            if (!result.IsSuccess)
+            {
+                return BadRequest(new { Message = result.Error });
+            }
+
+            return CreatedAtAction(nameof(GetProductById), new { id = result.Value }, result.Value);
         }
 
         [HttpDelete]
-        public async Task<IActionResult> DeleteProduct(DeleteProductCommand command)
+        public async Task<IActionResult> DeleteProduct(int id)
         {
-            await _mediator.Send(command);
+            var command = new DeleteProductCommand(id);
+            var result = await _mediator.Send(command);
+
+            if (!result.IsSuccess)
+            {
+                return NotFound(new { Message = result.Error });
+            }
+
             return NoContent();
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateProduct(UpdateProductCommand command)
+        public async Task<IActionResult> UpdateProduct([FromBody] UpdateProductCommand command)
         {
-            await _mediator.Send(command);
+            var result = await _mediator.Send(command);
+            if (!result.IsSuccess)
+            {
+                return NotFound(new { Message = result.Error });
+            }
             return NoContent();
         }
 

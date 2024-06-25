@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Shop.Common;
 
 namespace Shop.Application.Product.Create
 {
@@ -6,5 +7,5 @@ namespace Shop.Application.Product.Create
         string Name, 
         string Description, 
         decimal Price, 
-        string? PictureUrl) : IRequest<int>;
+        string? PictureUrl) : IRequest<Result<int>>;
 }

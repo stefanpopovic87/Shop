@@ -1,10 +1,12 @@
 ﻿using MediatR;
-using Shop.Domain.Entities.Product.Exceptions;
+using Shop.Application.Dtos;
+using Shop.Common;
+using Shop.Domain.Entities.ErrorMessages;
 using Shop.Domain.Interfaces;
 
 namespace Shop.Application.Product.Update
 {
-    internal sealed class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommand>
+    internal sealed class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommand, Result<string>>
     {
         private readonly IProductRepository _productRepository;
         private readonly IUnitOfWork _unitOfWork;
@@ -15,18 +17,21 @@ namespace Shop.Application.Product.Update
             _unitOfWork = unitOfWork;
         }
 
-        public async Task Handle(UpdateProductCommand request, CancellationToken cancellationToken)
+        public async Task<Result<string>> Handle(UpdateProductCommand request, CancellationToken cancellationToken)
         {
             var product = await _productRepository.GetByIdAsync(request.Id);
 
             if (product is null)
             {
-                throw new ProductNotFoundException(request.Id);
+                return Result<string>.Failure(ProductErrorMessages.ProductNotFound(request.Id));
             }
 
             product.Update(request.Name, request.Description, request.Price, request.PictureUrl);
 
             await _unitOfWork.SaveChangesAsync(cancellationToken);
+
+            return Result<string>.Success(string.Empty);
+
         }
     }
 }

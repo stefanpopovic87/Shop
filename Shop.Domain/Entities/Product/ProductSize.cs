@@ -11,6 +11,5 @@ namespace Shop.Domain.Entities.Product
 
         public Product Product { get; private set; }
         public Size Size { get; private set; }
-
     }
 }

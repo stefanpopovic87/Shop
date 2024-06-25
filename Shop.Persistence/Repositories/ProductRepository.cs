@@ -28,10 +28,5 @@ namespace Shop.Persistence.Repositories
         {
             return await _context.Products.FindAsync(id);
         }
-
-        public void Remove(Product product)
-        {
-            _context.Remove(product);
-        }
     }
 }

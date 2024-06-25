@@ -1,11 +1,12 @@
 ﻿using MediatR;
 using Shop.Application.Dtos;
-using Shop.Domain.Entities.Product.Exceptions;
+using Shop.Common;
+using Shop.Domain.Entities.ErrorMessages;
 using Shop.Domain.Interfaces;
 
 namespace Shop.Application.Product.Get
 {
-    internal sealed class GetProductsQueryHandler : IRequestHandler<GetProductsQuery, List<ProductDto>>
+    internal sealed class GetProductsQueryHandler : IRequestHandler<GetProductsQuery, Result<List<ProductDto>>>
     {
         private readonly IProductRepository _productRepository;
 
@@ -14,23 +15,25 @@ namespace Shop.Application.Product.Get
             _productRepository = productRepository;
         }
 
-        public async Task<List<ProductDto>> Handle(GetProductsQuery request, CancellationToken cancellationToken)
+        public async Task<Result<List<ProductDto>>> Handle(GetProductsQuery request, CancellationToken cancellationToken)
         {
             var products = await _productRepository.GetAllAsync();
 
             if (products is null)
             {
-                throw new ProductsNotFoundException();
+                return Result<List<ProductDto>>.Failure(ProductErrorMessages.ProductsNotFound);
             }
 
-            return products.Select( x => new ProductDto
-            (
-               x.Id,
-               x.Name,
-               x.Description,
-               x.Price,
-               x.PictureUrl
-            )).ToList();
+            var productDtos = products.Select(x => new ProductDto
+               (
+                  x.Id,
+                  x.Name,
+                  x.Description,
+                  x.Price,
+                  x.PictureUrl
+               )).ToList();
+
+            return Result<List<ProductDto>>.Success(productDtos);
         }
     }
 }

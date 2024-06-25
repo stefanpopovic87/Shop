@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Shop.Common;
 
 namespace Shop.Application.Product.Update
 {
@@ -7,5 +8,5 @@ namespace Shop.Application.Product.Update
         string Name,
         string Description,
         decimal Price,
-        string? PictureUrl) : IRequest;
+        string? PictureUrl) : IRequest<Result<string>>;
 }

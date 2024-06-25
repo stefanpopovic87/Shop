@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Shop.Persistence.Database;
 
@@ -11,9 +12,11 @@ using Shop.Persistence.Database;
 namespace Shop.Persistence.Migrations
 {
     [DbContext(typeof(ShopDbContext))]
-    partial class ShopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240624125141_AddPriceToOrder")]
+    partial class AddPriceToOrder
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

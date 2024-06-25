@@ -19,6 +19,10 @@ namespace Shop.Persistence.Configurations
             builder.Property(oi => oi.SizeId)
                    .IsRequired();
 
+            builder.Property(p => p.Price)
+                   .IsRequired()
+                   .HasColumnType("decimal(18,2)");
+
             builder.HasOne(oi => oi.Order)
                    .WithMany(o => o.Items)
                    .HasForeignKey(oi => oi.OrderId)
