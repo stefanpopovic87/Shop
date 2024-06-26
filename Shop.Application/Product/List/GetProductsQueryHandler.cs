@@ -4,7 +4,7 @@ using Shop.Common;
 using Shop.Domain.Entities.ErrorMessages;
 using Shop.Domain.Interfaces;
 
-namespace Shop.Application.Product.Get
+namespace Shop.Application.Product.List
 {
     internal sealed class GetProductsQueryHandler : IRequestHandler<GetProductsQuery, Result<List<ProductDto>>>
     {

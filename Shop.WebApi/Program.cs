@@ -14,7 +14,10 @@ internal class Program
 
         builder.Services.AddControllers().AddApplicationPart(presentationAssembly);
         builder.Services.AddEndpointsApiExplorer();
-        builder.Services.AddSwaggerGen();
+        builder.Services.AddSwaggerGen(c =>
+        {
+            c.EnableAnnotations();
+        });
 
         builder.Services
             .AddApplication()

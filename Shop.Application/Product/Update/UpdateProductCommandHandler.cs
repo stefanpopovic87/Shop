@@ -28,6 +28,8 @@ namespace Shop.Application.Product.Update
 
             product.Update(request.Name, request.Description, request.Price, request.PictureUrl);
 
+            _productRepository.Update(product);
+
             await _unitOfWork.SaveChangesAsync(cancellationToken);
 
             return Result<string>.Success(string.Empty);

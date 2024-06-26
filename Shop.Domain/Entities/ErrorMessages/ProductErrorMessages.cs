@@ -4,7 +4,7 @@
     {
         public static string CreationError = $"Problem with product creation.";
         public static string ProductsNotFound = $"Products not found in the database.";
-        public static string ProductNotFound (int id) => $"The product with Id = {id} was tot found.";
+        public static string ProductNotFound (int id) => $"The product with Id = {id} was not found.";
 
     }
 }

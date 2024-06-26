@@ -2,7 +2,7 @@
 {
     public class BaseEntity
     {
-        public bool Inactive { get; private set; }
+        public bool Deleted { get; private set; }
         public DateTimeOffset DateCreated { get; private set; } = DateTimeOffset.Now;
         public DateTimeOffset? DateModified { get; private set; }
         public DateTimeOffset? DateDeleted { get; private set; }
@@ -12,9 +12,31 @@
 
         public void Delete()
         {
-            Inactive = true;
+            Deleted = true;
             DateDeleted = DateTimeOffset.Now;
             DeletedBy = 1;
         }
+
+        public void Update() 
+        {
+            DateModified = DateTimeOffset.Now;
+            ModifiedBy = 1;
+        }
+
+        public void Create()
+        {
+            DateCreated = DateTimeOffset.Now;
+            CreatedBy = 1;
+        }
+
+        public void Activate()
+        {
+            Deleted = false;
+            DateDeleted = null;
+            DeletedBy = null;
+            DateModified = DateTimeOffset.Now;
+            ModifiedBy = 1;
+        }
+
     }
 }

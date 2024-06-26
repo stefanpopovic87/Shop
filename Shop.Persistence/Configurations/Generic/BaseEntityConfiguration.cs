@@ -14,7 +14,7 @@ namespace Shop.Persistence.Configurations
             builder.Property(p => p.CreatedBy).IsRequired();
             builder.Property(p => p.ModifiedBy);
             builder.Property(p => p.DeletedBy);
-            builder.Property(p => p.Inactive).IsRequired().HasDefaultValue(false);
+            builder.Property(p => p.Deleted).IsRequired().HasDefaultValue(false);
 
             ConfigureEntity(builder);
         }

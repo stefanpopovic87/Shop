@@ -10,24 +10,23 @@ public class Product : BaseEntity
     public decimal Price { get; private set; }
     public string? PictureUrl { get; private set; } = string.Empty;
 
-    public static Product Create(string name, string description, decimal price, string? pictureUrl)
+    public Product(string name, string description, decimal price, string? pictureUrl)
     {
-        return new Product
-        {
-            Name = name,
-            Description = description,
-            Price = price,
-            PictureUrl = pictureUrl
-        }; 
+        base.Create();
+
+        Name = name;
+        Description = description;
+        Price = price;
+        PictureUrl = pictureUrl;        
     }
 
-    public Product Update(string name, string description, decimal price, string? pictureUrl)
+    public void Update(string name, string description, decimal price, string? pictureUrl)
     {
+        base.Update();
+
         Name = name;
         Description = description;
         Price = price;
         PictureUrl = pictureUrl;
-
-        return this;
     }
 }

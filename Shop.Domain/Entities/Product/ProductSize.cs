@@ -11,5 +11,21 @@ namespace Shop.Domain.Entities.Product
 
         public Product Product { get; private set; }
         public Size Size { get; private set; }
+
+        public ProductSize(int productId, int sizeId, int quantityInStock)
+        {
+            base.Create();
+
+            ProductId = productId;
+            SizeId = sizeId;
+            QuantityInStock = quantityInStock;
+        }
+
+        public void UpdateQuantity (int quantityInStock)
+        {
+            base.Update();
+
+            QuantityInStock = quantityInStock;
+        }
     }
 }

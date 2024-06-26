@@ -4,5 +4,5 @@ using Shop.Common;
 
 namespace Shop.Application.Product.Get
 {
-    public record GetByIdProductQuery(int Id) : IRequest<Result<ProductDto>>;
+    public record GetProductByIdQuery(int Id) : IRequest<Result<ProductDto>>;
 }

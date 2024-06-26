@@ -19,6 +19,11 @@ namespace Shop.Persistence.Repositories
             _context.Products.Add(product);
         }
 
+        public void Update(Product product)
+        {
+            _context.Products.Add(product);
+        }
+
         public async Task<List<Product>> GetAllAsync()
         {
             return await _context.Products.ToListAsync();      

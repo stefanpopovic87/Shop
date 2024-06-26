@@ -16,6 +16,8 @@ namespace Shop.Persistence
             sqlOptions => sqlOptions.MigrationsAssembly(typeof(ShopDbContext).Assembly.FullName)));
 
             services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IProductSizeRepository, ProductSizeRepository>();
+
             services.AddScoped<IUnitOfWork>(sp =>
             sp.GetRequiredService<ShopDbContext>());
             return services;

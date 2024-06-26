@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Shop.Persistence.Database;
 
@@ -11,9 +12,11 @@ using Shop.Persistence.Database;
 namespace Shop.Persistence.Migrations
 {
     [DbContext(typeof(ShopDbContext))]
-    partial class ShopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240625100432_AddProductSize")]
+    partial class AddProductSize
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -54,11 +57,11 @@ namespace Shop.Persistence.Migrations
                     b.Property<DateTimeOffset?>("DateModified")
                         .HasColumnType("datetimeoffset");
 
-                    b.Property<bool>("Deleted")
-                        .HasColumnType("bit");
-
                     b.Property<int?>("DeletedBy")
                         .HasColumnType("int");
+
+                    b.Property<bool>("Inactive")
+                        .HasColumnType("bit");
 
                     b.Property<int?>("ModifiedBy")
                         .HasColumnType("int");
@@ -106,11 +109,11 @@ namespace Shop.Persistence.Migrations
                     b.Property<DateTimeOffset?>("DateModified")
                         .HasColumnType("datetimeoffset");
 
-                    b.Property<bool>("Deleted")
-                        .HasColumnType("bit");
-
                     b.Property<int?>("DeletedBy")
                         .HasColumnType("int");
+
+                    b.Property<bool>("Inactive")
+                        .HasColumnType("bit");
 
                     b.Property<int?>("ModifiedBy")
                         .HasColumnType("int");
@@ -150,11 +153,11 @@ namespace Shop.Persistence.Migrations
                     b.Property<DateTimeOffset?>("DateModified")
                         .HasColumnType("datetimeoffset");
 
-                    b.Property<bool>("Deleted")
-                        .HasColumnType("bit");
-
                     b.Property<int?>("DeletedBy")
                         .HasColumnType("int");
+
+                    b.Property<bool>("Inactive")
+                        .HasColumnType("bit");
 
                     b.Property<int?>("ModifiedBy")
                         .HasColumnType("int");
@@ -227,15 +230,15 @@ namespace Shop.Persistence.Migrations
                     b.Property<DateTimeOffset?>("DateModified")
                         .HasColumnType("datetimeoffset");
 
-                    b.Property<bool>("Deleted")
-                        .HasColumnType("bit");
-
                     b.Property<int?>("DeletedBy")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Inactive")
+                        .HasColumnType("bit");
 
                     b.Property<int?>("ModifiedBy")
                         .HasColumnType("int");
@@ -275,11 +278,11 @@ namespace Shop.Persistence.Migrations
                     b.Property<DateTimeOffset?>("DateModified")
                         .HasColumnType("datetimeoffset");
 
-                    b.Property<bool>("Deleted")
-                        .HasColumnType("bit");
-
                     b.Property<int?>("DeletedBy")
                         .HasColumnType("int");
+
+                    b.Property<bool>("Inactive")
+                        .HasColumnType("bit");
 
                     b.Property<int?>("ModifiedBy")
                         .HasColumnType("int");
@@ -288,9 +291,6 @@ namespace Shop.Persistence.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("ProductId", "SizeId");
-
-                    b.HasIndex("ProductId")
-                        .HasDatabaseName("IX_ProductSize_ProductId");
 
                     b.HasIndex("SizeId");
 

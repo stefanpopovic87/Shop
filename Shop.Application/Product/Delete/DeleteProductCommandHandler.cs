@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Shop.Common;
+using Shop.Domain.Entities.ErrorMessages;
 using Shop.Domain.Interfaces;
 
 namespace Shop.Application.Product.Delete
@@ -21,10 +22,12 @@ namespace Shop.Application.Product.Delete
 
             if (product is null)
             {
-                return Result<string>.Failure($"Product with ID {request.Id} not found.");
+                return Result<string>.Failure(ProductErrorMessages.ProductNotFound(request.Id));
             }
 
             product.Delete();
+
+            _productRepository.Update(product);
 
             await _unitOfWork.SaveChangesAsync(cancellationToken);
 

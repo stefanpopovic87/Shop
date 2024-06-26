@@ -31,7 +31,7 @@ namespace Shop.Persistence.Configurations
             builder.Property(p => p.CreatedBy).IsRequired();
             builder.Property(p => p.ModifiedBy);
             builder.Property(p => p.DeletedBy);
-            builder.Property(oi => oi.Inactive).IsRequired().HasDefaultValue(false);
+            builder.Property(oi => oi.Deleted).IsRequired().HasDefaultValue(false);
         }
     }
 }

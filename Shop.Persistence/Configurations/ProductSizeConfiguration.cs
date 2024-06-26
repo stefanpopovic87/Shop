@@ -23,6 +23,8 @@ namespace Shop.Persistence.Configurations
                    .HasForeignKey(ps => ps.SizeId)
                    .OnDelete(DeleteBehavior.Cascade);
 
+            builder.HasIndex(ps => ps.ProductId).HasDatabaseName("IX_ProductSize_ProductId");
+
             builder.HasIndex(ps => new { ps.ProductId, ps.SizeId }).IsUnique();
         }
     }
