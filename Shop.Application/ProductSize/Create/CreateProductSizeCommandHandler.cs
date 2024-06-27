@@ -23,7 +23,7 @@ namespace Shop.Application.ProductSize.Create
 
             if (productSizeFromDb is not null)
             {
-                return Result<int>.Failure(ProductSizeErrorMessage.AlreadyExistError);
+                return Result<int>.Failure(ProductSizeErrorMessages.AlreadyExistError);
             }
 
             var productSize = new Domain.Entities.Product.ProductSize(request.ProductId, request.SizeId, request.QuantityInStock);
@@ -32,7 +32,7 @@ namespace Shop.Application.ProductSize.Create
 
             if (await _unitOfWork.SaveChangesAsync(cancellationToken) == 0)
             {
-                return Result<int>.Failure(ProductSizeErrorMessage.CreationError);
+                return Result<int>.Failure(ProductSizeErrorMessages.CreationError);
             }
 
             return Result<int>.Success(productSize.ProductId);

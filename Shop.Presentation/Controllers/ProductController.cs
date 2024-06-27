@@ -10,7 +10,7 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace Shop.Presentation.Controllers
 {
-    public class ProductController : ApiController
+    public sealed class ProductController : BaseApiController
     {
         private readonly IMediator _mediator;
 
@@ -28,7 +28,7 @@ namespace Shop.Presentation.Controllers
             var query = new GetProductsQuery();
             var result = await _mediator.Send(query);
 
-            if (result is null)
+            if (!result.IsSuccess)
             {
                 return NotFound(new { Message = result.Error });
             }

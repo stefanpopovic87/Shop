@@ -10,7 +10,7 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace Shop.Presentation.Controllers
 {
-    public class ProductSizeController : ApiController
+    public sealed class ProductSizeController : BaseApiController
     {
         private readonly IMediator _mediator;
 

@@ -9,7 +9,7 @@ namespace Shop.Presentation.Controllers.Base;
 /// </summary>
 [ApiController]
 [Route("api/[controller]")]
-public abstract class ApiController : ControllerBase
+public abstract class BaseApiController : ControllerBase
 {
     private ISender? _sender;
 

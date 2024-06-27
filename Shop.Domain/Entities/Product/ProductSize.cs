@@ -27,5 +27,19 @@ namespace Shop.Domain.Entities.Product
 
             QuantityInStock = quantityInStock;
         }
+
+        public void IncreaseQuantity(int quantity)
+        {
+            base.Update();
+
+            QuantityInStock += quantity;
+        }
+
+        public void DecreaseQuantity(int quantity)
+        {
+            base.Update();
+
+            QuantityInStock -= quantity;
+        }
     }
 }

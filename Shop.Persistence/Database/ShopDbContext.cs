@@ -5,8 +5,7 @@ using Shop.Domain.Entities.Order;
 using Shop.Domain.Entities.Product;
 using Shop.Domain.Interfaces;
 using Shop.Persistence.Configurations;
-using System.Linq.Expressions;
-
+ 
 namespace Shop.Persistence.Database
 {
     public class ShopDbContext : DbContext, IUnitOfWork

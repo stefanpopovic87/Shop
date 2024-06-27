@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Shop.Domain.Entities.Base;
 
-namespace Shop.Persistence.Configurations
+namespace Shop.Persistence.Configurations.Base
 {
     public abstract class BaseEntityConfiguration<T> : IEntityTypeConfiguration<T> where T : BaseEntity
     {

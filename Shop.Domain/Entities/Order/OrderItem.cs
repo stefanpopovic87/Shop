@@ -6,10 +6,33 @@ public class OrderItem : BaseEntity
 {
     public int Id { get; private set; }
     public int OrderId { get; private set; }
-    public Order Order { get; private set; } = new();
+    public Order Order { get; private set; }
     public int Quantity { get; private set; }
     public int ProductId { get; private set; }
-    public string SizeId { get; private set; } = string.Empty;
+    public Product.Product Product { get; private set; }
+    public int SizeId { get; private set; }
+    public Product.Size Size { get; private set; }
     public decimal Price { get; private set; }
 
+    private OrderItem() { }
+
+    public OrderItem(Product.Product product, Product.Size size, int quantity, decimal price)
+    {
+        Product = product;
+        ProductId = product.Id; 
+        Size = size;
+        SizeId = size.Id;
+        Quantity = quantity;
+        Price = price;
+    }
+
+    public void IncreaseQuantity(int quantity)
+    {
+        Quantity += quantity;
+    }
+
+    public void DecreaseQuantity(int quantity)
+    {
+        Quantity -= quantity;
+    }
 }

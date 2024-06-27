@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Shop.Persistence.Database;
 
@@ -11,9 +12,11 @@ using Shop.Persistence.Database;
 namespace Shop.Persistence.Migrations
 {
     [DbContext(typeof(ShopDbContext))]
-    partial class ShopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240626162231_UpdateOrderAndOrderItem")]
+    partial class UpdateOrderAndOrderItem
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -115,7 +118,7 @@ namespace Shop.Persistence.Migrations
                     b.Property<int?>("ModifiedBy")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ShippingAddressId")
+                    b.Property<int>("ShippingAddressId")
                         .HasColumnType("int");
 
                     b.Property<int>("StatusId")
@@ -361,7 +364,9 @@ namespace Shop.Persistence.Migrations
                 {
                     b.HasOne("Shop.Domain.Entities.Address", "ShippingAddress")
                         .WithMany()
-                        .HasForeignKey("ShippingAddressId");
+                        .HasForeignKey("ShippingAddressId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Shop.Domain.Entities.Order.OrderStatus", "Status")
                         .WithMany()

@@ -1,7 +1,7 @@
 ﻿namespace Shop.Application.Dtos
 {
     public record ProductSizeDto(
-        int ProductId, 
+        int Id, 
         string Name, 
         string Description, 
         decimal Price, 

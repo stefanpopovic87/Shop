@@ -17,6 +17,9 @@ namespace Shop.Persistence
 
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IProductSizeRepository, ProductSizeRepository>();
+            services.AddScoped<IOrderRepository, OrderRepository>();
+            services.AddScoped<ISizeRepository, SizeRepository>();
+            services.AddScoped<IOrderStatusRepository, OrderStatusRepository>();
 
             services.AddScoped<IUnitOfWork>(sp =>
             sp.GetRequiredService<ShopDbContext>());

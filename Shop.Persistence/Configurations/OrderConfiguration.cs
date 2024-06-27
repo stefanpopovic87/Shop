@@ -1,6 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Shop.Domain.Entities.Order;
+using Shop.Persistence.Configurations.Base;
 
 namespace Shop.Persistence.Configurations
 {
@@ -26,7 +26,8 @@ namespace Shop.Persistence.Configurations
 
             builder.HasOne(o => o.ShippingAddress)
                    .WithMany()
-                   .HasForeignKey(o => o.ShippingAddressId);
+                   .HasForeignKey(o => o.ShippingAddressId)
+                   .IsRequired(false);
         }
     }
 }

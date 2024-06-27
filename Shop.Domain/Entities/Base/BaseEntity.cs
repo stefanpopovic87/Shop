@@ -14,19 +14,19 @@
         {
             Deleted = true;
             DateDeleted = DateTimeOffset.Now;
-            DeletedBy = 1;
+            DeletedBy = 1; // TODO - chage to current user ID
         }
 
         public void Update() 
         {
             DateModified = DateTimeOffset.Now;
-            ModifiedBy = 1;
+            ModifiedBy = 1; // TODO - chage to current user ID
         }
 
         public void Create()
         {
             DateCreated = DateTimeOffset.Now;
-            CreatedBy = 1;
+            CreatedBy = 1; // TODO - chage to current user ID
         }
 
         public void Activate()
@@ -35,7 +35,7 @@
             DateDeleted = null;
             DeletedBy = null;
             DateModified = DateTimeOffset.Now;
-            ModifiedBy = 1;
+            ModifiedBy = 1; // TODO - chage to current user ID
         }
 
     }

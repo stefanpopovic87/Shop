@@ -34,6 +34,14 @@ namespace Shop.Persistence.Repositories
                 .FirstOrDefaultAsync();
         }
 
+        public async Task<ProductSize?> GetByUniqueIdAsync(int productId, int sizeId)
+        {
+            return await _context.ProductSizes
+               .Where(x => x.ProductId == productId && x.SizeId == sizeId)
+               .Include(x => x.Size)
+               .FirstOrDefaultAsync();
+        }
+
         public async Task<List<ProductSize>> GetByProductIdAsync(int productId)
         {
             return await _context.ProductSizes
@@ -42,6 +50,6 @@ namespace Shop.Persistence.Repositories
                 .Include(x => x.Size)
                 .AsNoTracking()
                 .ToListAsync();
-        }
+        }        
     }
 }

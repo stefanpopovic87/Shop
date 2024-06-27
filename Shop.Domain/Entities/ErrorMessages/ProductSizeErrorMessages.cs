@@ -1,6 +1,6 @@
 ﻿namespace Shop.Domain.Entities.ErrorMessages
 {
-    public static class ProductSizeErrorMessage
+    public static class ProductSizeErrorMessages
     {
         public static string CreationError = $"Problem with product size creation.";
         public static string AlreadyExistError = $"Product with same size already exist.";

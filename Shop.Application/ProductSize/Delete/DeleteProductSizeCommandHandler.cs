@@ -24,7 +24,7 @@ namespace Shop.Application.ProductSize.Delete
 
             if (productSize is null)
             {
-                return Result<string>.Failure(ProductSizeErrorMessage.ProductSizeNotFound);
+                return Result<string>.Failure(ProductSizeErrorMessages.ProductSizeNotFound);
             }
 
             productSize.Delete();

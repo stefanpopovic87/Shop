@@ -8,5 +8,6 @@ namespace Shop.Domain.Interfaces
         void Update(ProductSize productSize);
         Task<List<ProductSize>> GetByProductIdAsync(int id);
         Task<ProductSize?> GetByProductIdAndSizeIdAsync(int productId, int sizeId);
+        Task<ProductSize?> GetByUniqueIdAsync(int productId, int sizeId);
     }
 }

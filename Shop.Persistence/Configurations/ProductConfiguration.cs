@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Shop.Domain.Entities.Product;
+using Shop.Persistence.Configurations.Base;
 
 namespace Shop.Persistence.Configurations
 {

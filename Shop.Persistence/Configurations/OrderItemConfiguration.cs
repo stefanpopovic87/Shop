@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Shop.Domain.Entities.Order;
+using Shop.Persistence.Configurations.Base;
 
 namespace Shop.Persistence.Configurations
 {
@@ -22,6 +23,14 @@ namespace Shop.Persistence.Configurations
             builder.Property(p => p.Price)
                    .IsRequired()
                    .HasColumnType("decimal(18,2)");
+
+            builder.HasOne(e => e.Product)
+                 .WithMany()
+                 .HasForeignKey(e => e.ProductId);
+
+            builder.HasOne(e => e.Size)
+                  .WithMany()
+                  .HasForeignKey(e => e.SizeId);
 
             builder.HasOne(oi => oi.Order)
                    .WithMany(o => o.Items)
