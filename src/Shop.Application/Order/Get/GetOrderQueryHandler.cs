@@ -17,7 +17,7 @@ namespace Shop.Application.Order.Get
 
         public async Task<Result<OrderDto>> Handle(GetOrderQuery request, CancellationToken cancellationToken)
         {
-            var order = await _orderRepository.GetAsync();
+            var order = await _orderRepository.GetAsync(cancellationToken);
 
             if (order is null) 
             {

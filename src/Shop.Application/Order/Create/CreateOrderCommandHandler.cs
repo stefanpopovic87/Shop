@@ -33,7 +33,7 @@ namespace Shop.Application.Order.Create
 
         public async Task<Result<int>> Handle(CreateOrderCommand request, CancellationToken cancellationToken)
         {
-            var product = await _productRepository.GetByIdAsync(request.ProductId);
+            var product = await _productRepository.GetByIdAsync(request.ProductId,cancellationToken);
 
             if (product is null) 
             {
@@ -41,14 +41,14 @@ namespace Shop.Application.Order.Create
 
             }
 
-            var size = await _sizeRepository.GetByIdAsync(request.SizeId);
+            var size = await _sizeRepository.GetByIdAsync(request.SizeId, cancellationToken);
 
             if (size is null)
             {
                 return Result<int>.Failure(SizeErrorMessages.SizeNotFound(request.SizeId));
             }
 
-            var productSize = await _productSizeRepository.GetByUniqueIdAsync(request.ProductId, request.SizeId);
+            var productSize = await _productSizeRepository.GetByUniqueIdAsync(request.ProductId, request.SizeId,cancellationToken);
 
             if (productSize is null)                 
             {
@@ -63,18 +63,18 @@ namespace Shop.Application.Order.Create
 
             productSize.DecreaseQuantity(request.Quantity);
 
-            var order = await _orderRepository.GetAsync();
+            var order = await _orderRepository.GetAsync(cancellationToken);
 
             if (order is null) 
             {
-                var status = await _orderStatusRepository.GetByIdAsync((int)OrderStatusEnum.Pending);
+                var status = await _orderStatusRepository.GetByIdAsync((int)OrderStatusEnum.Pending, cancellationToken);
 
                 if (status is null)
                 {
                     return Result<int>.Failure(OrderStatusErrorMessages.OrderStatusNotFound((int)OrderStatusEnum.Pending));
                 }
 
-                order = new Domain.Entities.Order.Order(1); // TODO change to cuurentUserId
+                order = new Domain.Entities.Order.Order(1); // TODO - chage to current user ID
                 order.SetOrderStatus(status);
                 _orderRepository.Add(order);
             }

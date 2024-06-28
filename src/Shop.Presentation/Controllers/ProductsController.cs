@@ -10,11 +10,11 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace Shop.Presentation.Controllers
 {
-    public sealed class ProductController : BaseApiController
+    public sealed class ProductsController : BaseApiController
     {
         private readonly IMediator _mediator;
 
-        public ProductController(IMediator mediator)
+        public ProductsController(IMediator mediator)
         {
             _mediator = mediator;
         }
@@ -26,7 +26,7 @@ namespace Shop.Presentation.Controllers
         public async Task<IActionResult> GetProducts()
         {
             var query = new GetProductsQuery();
-            var result = await _mediator.Send(query);
+            var result = await _mediator.Send(query, CancellationToken);
 
             if (!result.IsSuccess)
             {
@@ -43,7 +43,7 @@ namespace Shop.Presentation.Controllers
         public async Task<IActionResult> GetProductById(int id)
         {
             var query = new GetProductByIdQuery(id);
-            var result = await _mediator.Send(query);
+            var result = await _mediator.Send(query, CancellationToken);
 
             if (!result.IsSuccess)
             {
@@ -59,7 +59,7 @@ namespace Shop.Presentation.Controllers
             Description = "Creates a new product.")]
         public async Task<IActionResult> CreateProduct([FromBody] CreateProductCommand command)
         {
-            var result = await _mediator.Send(command);
+            var result = await _mediator.Send(command, CancellationToken);
             if (!result.IsSuccess)
             {
                 return BadRequest(new { Message = result.Error });
@@ -74,7 +74,7 @@ namespace Shop.Presentation.Controllers
             Description = "Updates an existing product.")]
         public async Task<IActionResult> UpdateProduct([FromBody] UpdateProductCommand command)
         {
-            var result = await _mediator.Send(command);
+            var result = await _mediator.Send(command, CancellationToken);
             if (!result.IsSuccess)
             {
                 return NotFound(new { Message = result.Error });
@@ -89,7 +89,7 @@ namespace Shop.Presentation.Controllers
         public async Task<IActionResult> DeleteProduct(int id)
         {
             var command = new DeleteProductCommand(id);
-            var result = await _mediator.Send(command);
+            var result = await _mediator.Send(command, CancellationToken);
 
             if (!result.IsSuccess)
             {

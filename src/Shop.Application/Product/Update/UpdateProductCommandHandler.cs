@@ -19,7 +19,7 @@ namespace Shop.Application.Product.Update
 
         public async Task<Result<string>> Handle(UpdateProductCommand request, CancellationToken cancellationToken)
         {
-            var product = await _productRepository.GetByIdAsync(request.Id);
+            var product = await _productRepository.GetByIdAsync(request.Id, cancellationToken);
 
             if (product is null)
             {

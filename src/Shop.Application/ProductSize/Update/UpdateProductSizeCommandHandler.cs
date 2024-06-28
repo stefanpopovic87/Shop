@@ -19,7 +19,7 @@ namespace Shop.Application.ProductSize.Update
 
         public async Task<Result<string>> Handle(UpdateProductSizeCommand request, CancellationToken cancellationToken)
         {
-            var productSize = await _productSizeRepository.GetByProductIdAndSizeIdAsync(request.ProductId, request.SizeId);
+            var productSize = await _productSizeRepository.GetByProductIdAndSizeIdAsync(request.ProductId, request.SizeId, cancellationToken);
 
             if (productSize is null)
             {

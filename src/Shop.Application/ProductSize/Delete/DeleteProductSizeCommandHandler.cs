@@ -20,7 +20,7 @@ namespace Shop.Application.ProductSize.Delete
 
         public async Task<Result<string>> Handle(DeleteProductSizeCommand request, CancellationToken cancellationToken)
         {
-            var productSize = await _productSizeRepository.GetByProductIdAndSizeIdAsync(request.ProductId, request.SizeId);
+            var productSize = await _productSizeRepository.GetByProductIdAndSizeIdAsync(request.ProductId, request.SizeId,cancellationToken);
 
             if (productSize is null)
             {

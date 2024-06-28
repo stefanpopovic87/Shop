@@ -8,11 +8,11 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace Shop.Presentation.Controllers
 {
-    public sealed class OrderController : BaseApiController
+    public sealed class OrdersController : BaseApiController
     {
         private readonly IMediator _mediator;
 
-        public OrderController(IMediator mediator)
+        public OrdersController(IMediator mediator)
         {
             _mediator = mediator;
         }
@@ -24,7 +24,7 @@ namespace Shop.Presentation.Controllers
         public async Task<IActionResult> GetOrders()
         {
             var query = new GetOrderQuery();
-            var result = await _mediator.Send(query);
+            var result = await _mediator.Send(query, CancellationToken);
 
             if (!result.IsSuccess)
             {
@@ -40,7 +40,7 @@ namespace Shop.Presentation.Controllers
             Description = "Adding item to current order.")]
         public async Task<IActionResult> AddItemToOrder([FromBody] CreateOrderCommand command)
         {
-            var result = await _mediator.Send(command);
+            var result = await _mediator.Send(command, CancellationToken);
             if (!result.IsSuccess)
             {
                 return BadRequest(new { Message = result.Error });
@@ -55,7 +55,7 @@ namespace Shop.Presentation.Controllers
             Description = "Deleting item from order list.")]
         public async Task<IActionResult> RemovetemToOrder([FromBody] DeleteOrderCommand command)
         {
-            var result = await _mediator.Send(command);
+            var result = await _mediator.Send(command, CancellationToken);
             if (!result.IsSuccess)
             {
                 return NotFound(new { Message = result.Error });

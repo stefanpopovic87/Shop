@@ -24,7 +24,7 @@ namespace Shop.Application.Order.Delete
 
         public async Task<Result<string>> Handle(DeleteOrderCommand request, CancellationToken cancellationToken)
         {
-            var order = await _orderRepository.GetAsync();
+            var order = await _orderRepository.GetAsync(cancellationToken);
 
             if (order == null) 
             {
@@ -33,7 +33,7 @@ namespace Shop.Application.Order.Delete
 
             order.RemoveItem(request.ProductId, request.SizeId, request.Quantity);
 
-            var productSize = await _productSizeRepository.GetByUniqueIdAsync(request.ProductId, request.SizeId);
+            var productSize = await _productSizeRepository.GetByUniqueIdAsync(request.ProductId, request.SizeId, cancellationToken);
 
             if (productSize is null)
             {

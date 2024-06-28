@@ -16,5 +16,6 @@ public abstract class BaseApiController : ControllerBase
     /// <summary>
     /// Gets the sender.
     /// </summary>
-    protected ISender Sender => _sender ??= HttpContext.RequestServices.GetService<ISender>();
+    protected ISender? Sender => _sender ??= HttpContext.RequestServices.GetService<ISender>();
+    protected CancellationToken CancellationToken => HttpContext.RequestAborted;
 }

@@ -10,11 +10,11 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace Shop.Presentation.Controllers
 {
-    public sealed class ProductSizeController : BaseApiController
+    public sealed class ProductSizesController : BaseApiController
     {
         private readonly IMediator _mediator;
 
-        public ProductSizeController(IMediator mediator)
+        public ProductSizesController(IMediator mediator)
         {
             _mediator = mediator;
         }
@@ -26,7 +26,7 @@ namespace Shop.Presentation.Controllers
         public async Task<IActionResult> GetProductSizeById(int productId, int sizeId)
         {
             var query = new GetProductSizeByIdQuery(productId, sizeId);
-            var result = await _mediator.Send(query);
+            var result = await _mediator.Send(query, CancellationToken);
 
             if (!result.IsSuccess)
             {
@@ -43,7 +43,7 @@ namespace Shop.Presentation.Controllers
         public async Task<IActionResult> GetAllByProductId(int productId)
         {
             var query = new GetByIdProductSizeQuery(productId);
-            var result = await _mediator.Send(query);
+            var result = await _mediator.Send(query, CancellationToken);
 
             if (!result.IsSuccess)
             {
@@ -59,13 +59,13 @@ namespace Shop.Presentation.Controllers
             Description = "Creates a new size for a product")]
         public async Task<IActionResult> CreateProductSize([FromBody] CreateProductSizeCommand command)
         {
-            var result = await _mediator.Send(command);
+            var result = await _mediator.Send(command, CancellationToken);
             if (!result.IsSuccess)
             {
                 return BadRequest(new { Message = result.Error });
             }
 
-            return CreatedAtAction(nameof(GetAllByProductId), new { id = result.Value }, result.Value);
+            return CreatedAtAction(nameof(GetProductSizeById), new { productId = result.Value.ProductId, sizeId = result.Value.SizeId }, result.Value);
         }
 
         [HttpPut]
@@ -74,7 +74,7 @@ namespace Shop.Presentation.Controllers
             Description = "Update product size quantity in stock")]
         public async Task<IActionResult> UpdateProductSize([FromBody] UpdateProductSizeCommand command)
         {
-            var result = await _mediator.Send(command);
+            var result = await _mediator.Send(command, CancellationToken);
             if (!result.IsSuccess)
             {
                 return NotFound(new { Message = result.Error });
@@ -89,7 +89,7 @@ namespace Shop.Presentation.Controllers
         public async Task<IActionResult> DeleteProductSize(int productId, int sizeId)
         {
             var command = new DeleteProductSizeCommand(productId, sizeId);
-            var result = await _mediator.Send(command);
+            var result = await _mediator.Send(command, CancellationToken);
 
             if (!result.IsSuccess)
             {

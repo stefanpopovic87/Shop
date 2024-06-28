@@ -1,26 +1,16 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Shop.Domain.Entities.Order;
+﻿using Shop.Domain.Entities.Order;
 using Shop.Domain.Interfaces;
 using Shop.Persistence.Database;
+using Shop.Persistence.Repositories.Base;
 
 namespace Shop.Persistence.Repositories
 {
-    public sealed class OrderStatusRepository : IOrderStatusRepository
+    public sealed class OrderStatusRepository : BaseRepository<OrderStatus>, IOrderStatusRepository
     {
-        private readonly ShopDbContext _context;
 
         public OrderStatusRepository(ShopDbContext context)
+            : base(context) 
         {
-            _context = context;
-        }
-        public async Task<List<OrderStatus>> GetAllAsync()
-        {
-            return await _context.OrderStatuses.ToListAsync();
-        }
-
-        public async Task<OrderStatus?> GetByIdAsync(int id)
-        {
-            return await _context.OrderStatuses.FindAsync(id);
-        }
+        }        
     }
 }

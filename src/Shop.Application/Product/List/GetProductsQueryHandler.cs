@@ -17,9 +17,9 @@ namespace Shop.Application.Product.List
 
         public async Task<Result<List<ProductDto>>> Handle(GetProductsQuery request, CancellationToken cancellationToken)
         {
-            var products = await _productRepository.GetAllAsync();
+            var products = await _productRepository.GetAllAsync(cancellationToken);
 
-            if (products is null)
+            if (products is null || products.Count == 0)
             {
                 return Result<List<ProductDto>>.Failure(ProductErrorMessages.ProductsNotFound);
             }

@@ -1,12 +1,10 @@
 ﻿using Shop.Domain.Entities.Order;
-using Shop.Domain.Entities.Product;
+using Shop.Domain.Interfaces.Base;
 
 namespace Shop.Domain.Interfaces
 {
-    public interface IOrderRepository
+    public interface IOrderRepository : IBaseRepository<Order>
     {
-        Task<Order?> GetAsync();
-        void Add(Order order);
-
+        Task<Order?> GetAsync(CancellationToken cancellationToken);
     }
 }

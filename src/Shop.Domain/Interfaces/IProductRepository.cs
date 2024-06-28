@@ -1,12 +1,10 @@
 ﻿using Shop.Domain.Entities.Product;
+using Shop.Domain.Interfaces.Base;
 
 namespace Shop.Domain.Interfaces
 {
-    public interface IProductRepository
+    public interface IProductRepository : IBaseRepository<Product>
     {
-        void Add(Product product);
-        void Update(Product product);
-        Task<Product?> GetByIdAsync(int id);
-        Task<List<Product>> GetAllAsync();       
+              
     }
 }

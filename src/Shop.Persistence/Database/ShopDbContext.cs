@@ -1,11 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Shop.Domain.Entities;
-using Shop.Domain.Entities.Base;
 using Shop.Domain.Entities.Order;
 using Shop.Domain.Entities.Product;
 using Shop.Domain.Interfaces;
 using Shop.Persistence.Configurations;
- 
+
 namespace Shop.Persistence.Database
 {
     public class ShopDbContext : DbContext, IUnitOfWork
@@ -23,23 +22,26 @@ namespace Shop.Persistence.Database
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.ApplyConfiguration(new SizeConfiguration());
+            modelBuilder.ApplyConfiguration(new OrderConfiguration());
+            modelBuilder.ApplyConfiguration(new OrderItemConfiguration());
             modelBuilder.ApplyConfiguration(new OrderStatusConfiguration());
+            modelBuilder.ApplyConfiguration(new ProductConfiguration());
             modelBuilder.ApplyConfiguration(new ProductSizeConfiguration());
+            modelBuilder.ApplyConfiguration(new SizeConfiguration());
 
-            // Add global filter for all entities that inherit from BaseEntity
-            foreach (var entityType in modelBuilder.Model.GetEntityTypes()
-                .Where(e => typeof(BaseEntity).IsAssignableFrom(e.ClrType)))
-            {
-                var method = typeof(ShopDbContext).GetMethod(nameof(SetGlobalQueryFilter), System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static)
-                    ?.MakeGenericMethod(entityType.ClrType);
-                method?.Invoke(null, new object[] { modelBuilder });
-            }
+            // TODO Add global filter for all entities that inherit from BaseEntity
+            //foreach (var entityType in modelBuilder.Model.GetEntityTypes()
+            //    .Where(e => typeof(BaseEntity).IsAssignableFrom(e.ClrType)))
+            //{
+            //    var method = typeof(ShopDbContext).GetMethod(nameof(SetGlobalQueryFilter), System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static)
+            //        ?.MakeGenericMethod(entityType.ClrType);
+            //    method?.Invoke(null, new object[] { modelBuilder });
+            //}
         }
 
-        private static void SetGlobalQueryFilter<T>(ModelBuilder modelBuilder) where T : BaseEntity
-        {
-            modelBuilder.Entity<T>().HasQueryFilter(e => !e.Deleted);
-        }
+        //private static void SetGlobalQueryFilter<T>(ModelBuilder modelBuilder) where T : BaseEntity
+        //{
+        //    modelBuilder.Entity<T>().HasQueryFilter(e => !e.Deleted);
+        //}
     }
 }

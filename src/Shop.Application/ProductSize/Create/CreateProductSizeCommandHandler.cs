@@ -1,41 +1,63 @@
 ﻿using MediatR;
 using Shop.Common;
 using Shop.Domain.Entities.ErrorMessages;
-using Shop.Domain.Entities.Product;
 using Shop.Domain.Interfaces;
 
 namespace Shop.Application.ProductSize.Create
 {
-    internal sealed class CreateProductSizeCommandHandler : IRequestHandler<CreateProductSizeCommand, Result<int>>
+    internal sealed class CreateProductSizeCommandHandler : IRequestHandler<CreateProductSizeCommand, Result<(int ProductId, int SizeId)>>
     {
         private readonly IProductSizeRepository _productSizeRepository;
+        private readonly IProductRepository _productRepository;
+        private readonly ISizeRepository _sizeRepository;
         private readonly IUnitOfWork _unitOfWork;
 
-        public CreateProductSizeCommandHandler(IProductSizeRepository productSizeRepository, IUnitOfWork unitOfWork)
+        public CreateProductSizeCommandHandler(
+            IProductSizeRepository productSizeRepository, 
+            IUnitOfWork unitOfWork, 
+            IProductRepository productRepository, 
+            ISizeRepository sizeRepository)
         {
             _productSizeRepository = productSizeRepository;
             _unitOfWork = unitOfWork;
+            _productRepository = productRepository;
+            _sizeRepository = sizeRepository;
         }
 
-        public async Task<Result<int>> Handle(CreateProductSizeCommand request, CancellationToken cancellationToken)
+        public async Task<Result<(int ProductId, int SizeId)>> Handle(CreateProductSizeCommand request, CancellationToken cancellationToken)
         {
-            var productSizeFromDb = await _productSizeRepository.GetByProductIdAndSizeIdAsync(request.ProductId, request.SizeId);
+            var productSizeFromDb = await _productSizeRepository.GetByProductIdAndSizeIdAsync(request.ProductId, request.SizeId, cancellationToken);
 
             if (productSizeFromDb is not null)
             {
-                return Result<int>.Failure(ProductSizeErrorMessages.AlreadyExistError);
+                return Result<(int ProductId, int SizeId)>.Failure(ProductSizeErrorMessages.AlreadyExistError);
+            }
+
+            var productExists = await _productRepository.ExistsAsync(request.ProductId, cancellationToken);
+
+            if (!productExists) 
+            {
+                return Result<(int ProductId, int SizeId)>.Failure(ProductErrorMessages.ProductNotFound(request.ProductId));
+            }
+
+            var sizeExists = await _sizeRepository.ExistsAsync(request.SizeId, cancellationToken);
+
+            if (!sizeExists) 
+            {
+                return Result<(int ProductId, int SizeId)>.Failure(SizeErrorMessages.SizeNotFound(request.SizeId));
             }
 
             var productSize = new Domain.Entities.Product.ProductSize(request.ProductId, request.SizeId, request.QuantityInStock);
 
             _productSizeRepository.Add(productSize);
 
+           
             if (await _unitOfWork.SaveChangesAsync(cancellationToken) == 0)
             {
-                return Result<int>.Failure(ProductSizeErrorMessages.CreationError);
-            }
+                return Result<(int ProductId, int SizeId)>.Failure(ProductSizeErrorMessages.CreationError);
+            }           
 
-            return Result<int>.Success(productSize.ProductId);
+            return Result<(int ProductId, int SizeId)>.Success((productSize.ProductId, productSize.SizeId));
         }
     }
 }

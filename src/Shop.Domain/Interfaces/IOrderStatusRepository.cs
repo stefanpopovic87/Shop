@@ -1,10 +1,9 @@
 ﻿using Shop.Domain.Entities.Order;
+using Shop.Domain.Interfaces.Base;
 
 namespace Shop.Domain.Interfaces
 {
-    public interface IOrderStatusRepository
+    public interface IOrderStatusRepository : IBaseRepository<OrderStatus>
     {
-        Task<OrderStatus?> GetByIdAsync(int id);
-        Task<List<OrderStatus>> GetAllAsync();
     }
 }

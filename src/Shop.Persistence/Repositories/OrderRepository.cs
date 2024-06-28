@@ -1,21 +1,20 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Shop.Domain.Entities.Order;
-using Shop.Domain.Entities.Product;
 using Shop.Domain.Interfaces;
 using Shop.Persistence.Database;
+using Shop.Persistence.Repositories.Base;
 
 namespace Shop.Persistence.Repositories
 {
-    public sealed class OrderRepository : IOrderRepository
+    public sealed class OrderRepository : BaseRepository<Order>, IOrderRepository
     {
-        private readonly ShopDbContext _context;
 
         public OrderRepository(ShopDbContext context)
+            : base(context)
         {
-            _context = context;
         }
 
-        public async Task<Order?> GetAsync()
+        public async Task<Order?> GetAsync(CancellationToken cancellationToken)
         {
             return await _context.Orders
                  .Where(o => o.BuyerId == 1)  // TODO - chage to current user ID
@@ -23,12 +22,7 @@ namespace Shop.Persistence.Repositories
                  .ThenInclude(oip => oip.Product)
                  .Include(o => o.Items)
                  .ThenInclude(ois => ois.Size)
-                 .FirstOrDefaultAsync();
-        }
-
-        public void Add(Order order)
-        {
-            _context.Orders.Add(order);
-        }
+                 .FirstOrDefaultAsync(cancellationToken);
+        }        
     }
 }

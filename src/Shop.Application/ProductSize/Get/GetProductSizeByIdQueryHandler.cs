@@ -17,7 +17,7 @@ namespace Shop.Application.ProductSize.Get
 
         public async Task<Result<ProductSizeDto>> Handle(GetProductSizeByIdQuery request, CancellationToken cancellationToken)
         {
-            var productSize = await _productSizeRepository.GetByProductIdAndSizeIdAsync(request.ProductId, request.SizeId);
+            var productSize = await _productSizeRepository.GetByProductIdAndSizeIdAsync(request.ProductId, request.SizeId,cancellationToken);
             if (productSize is null)
             {
                 return Result<ProductSizeDto>.Failure(ProductSizeErrorMessages.ProductSizeNotFound);

@@ -1,4 +1,5 @@
 ﻿using Shop.Domain.Entities.Base;
+using System.Drawing;
 
 namespace Shop.Domain.Entities.Product
 {

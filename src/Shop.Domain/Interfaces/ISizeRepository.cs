@@ -1,9 +1,9 @@
 ﻿using Shop.Domain.Entities.Product;
+using Shop.Domain.Interfaces.Base;
 
 namespace Shop.Domain.Interfaces
 {
-    public interface ISizeRepository
+    public interface ISizeRepository : IBaseRepository<Size>
     {
-        Task<Size?> GetByIdAsync(int id);
     }
 }

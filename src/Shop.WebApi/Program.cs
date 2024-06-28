@@ -13,6 +13,17 @@ internal class Program
         System.Reflection.Assembly presentationAssembly = typeof(Shop.Presentation.AssemblyReference).Assembly;
 
         builder.Services.AddControllers().AddApplicationPart(presentationAssembly);
+
+        builder.Services.AddCors(options =>
+        {
+            options.AddPolicy("AllowLocalhost3000",
+                builder =>
+                {
+                    builder.WithOrigins("http://localhost:3000")
+                           .AllowAnyHeader()
+                           .AllowAnyMethod();
+                });
+        });
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen(c =>
         {
@@ -22,7 +33,7 @@ internal class Program
         builder.Services
             .AddApplication()
             .AddInfrastructure()
-            .AddPersistence(builder.Configuration)
+            .AddPersistence(builder.Configuration, builder.Environment)
             .AddPresentation();
 
         builder.Host.UseSerilog((context, configuration) =>
@@ -38,11 +49,13 @@ internal class Program
             app.UseSwaggerUI();
         }
 
+        app.UseCors("AllowLocalhost3000");
+
         app.MapHealthChecks("health");
 
         app.UseSerilogRequestLogging();
 
-        app.UseHttpsRedirection();
+        //app.UseHttpsRedirection();
 
         //app.UseAuthorization();
 
