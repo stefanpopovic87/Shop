@@ -14,7 +14,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ isEdit }) => {
     const { id } = useParams<{ id: string }>();
     const dispatch = useDispatch<AppDispatch>();
     const navigate = useNavigate();
-    const { product, status } = useSelector((state: RootState) => state.products);
+    const { product } = useSelector((state: RootState) => state.products);
 
     const [formData, setFormData] = useState<Omit<Product, 'id'>>({
         name: '',

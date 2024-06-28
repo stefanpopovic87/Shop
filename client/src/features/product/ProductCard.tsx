@@ -1,3 +1,4 @@
+import React from 'react';
 import { Card, CardActions, CardContent, CardMedia, Button, Typography } from '@mui/material';
 import { Product } from '../../app/models/product';
 import { Link } from 'react-router-dom';
