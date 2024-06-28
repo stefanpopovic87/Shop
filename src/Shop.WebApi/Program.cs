@@ -14,16 +14,19 @@ internal class Program
 
         builder.Services.AddControllers().AddApplicationPart(presentationAssembly);
 
+        var allowedOrigin = builder.Configuration.GetSection("AllowedOrigins:Client").Value
+            ?? throw new ArgumentNullException("AllowedOrigins:Client", "The CORS allowed origin is not configured.");
+
         builder.Services.AddCors(options =>
         {
-            options.AddPolicy("AllowLocalhost3000",
-                builder =>
-                {
-                    builder.WithOrigins("http://localhost:3000")
-                           .AllowAnyHeader()
-                           .AllowAnyMethod();
-                });
+            options.AddPolicy("AllowClient", builder =>
+            {
+                builder.WithOrigins(allowedOrigin)
+                       .AllowAnyHeader()
+                       .AllowAnyMethod();
+            });
         });
+
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen(c =>
         {
@@ -49,7 +52,7 @@ internal class Program
             app.UseSwaggerUI();
         }
 
-        app.UseCors("AllowLocalhost3000");
+        app.UseCors("AllowClient");
 
         app.MapHealthChecks("health");
 
