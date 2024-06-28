@@ -8,7 +8,7 @@ public class Product : BaseEntity
     public string Name { get; private set; } = string.Empty;
     public string Description { get; private set; } = string.Empty;
     public decimal Price { get; private set; }
-    public string? PictureUrl { get; private set; } = string.Empty;
+    public string? PictureUrl { get; private set; } = string.Empty; // TODO Add logic for storing picture
 
     public Product(string name, string description, decimal price, string? pictureUrl)
     {

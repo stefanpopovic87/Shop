@@ -1,0 +1,32 @@
+.skeleton-card {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+
+    .skeleton-image {
+        width: 100%;
+        height: 140px;
+        background-color: #e0e0e0;
+    }
+
+    .skeleton-content {
+        padding: 16px;
+
+        .skeleton-title {
+            width: 80%;
+            height: 30px;
+            background-color: #e0e0e0;
+            margin-bottom: 8px;
+        }
+
+        .skeleton-subtitle {
+            width: 60%;
+            height: 20px;
+            background-color: #e0e0e0;
+        }
+    }
+}
