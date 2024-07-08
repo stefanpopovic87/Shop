@@ -22,7 +22,7 @@ namespace Shop.Application.Product.Delete
 
             if (product is null)
             {
-                return Result<string>.Failure(ProductErrorMessages.ProductNotFound(request.Id));
+                return Result<string>.Failure(ProductErrorMessages.NotFound);
             }
 
             product.Delete();

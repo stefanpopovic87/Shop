@@ -20,7 +20,7 @@ namespace Shop.Application.ProductSize.Get
             var productSize = await _productSizeRepository.GetByProductIdAndSizeIdAsync(request.ProductId, request.SizeId,cancellationToken);
             if (productSize is null)
             {
-                return Result<ProductSizeDto>.Failure(ProductSizeErrorMessages.ProductSizeNotFound);
+                return Result<ProductSizeDto>.Failure(ProductSizeErrorMessages.NotFound);
 
             }
 

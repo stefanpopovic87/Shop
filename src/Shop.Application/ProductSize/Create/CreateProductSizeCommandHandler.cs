@@ -30,21 +30,21 @@ namespace Shop.Application.ProductSize.Create
 
             if (productSizeFromDb is not null)
             {
-                return Result<(int ProductId, int SizeId)>.Failure(ProductSizeErrorMessages.AlreadyExistError);
+                return Result<(int ProductId, int SizeId)>.Failure(ProductSizeErrorMessages.AlreadyExist);
             }
 
             var productExists = await _productRepository.ExistsAsync(request.ProductId, cancellationToken);
 
             if (!productExists) 
             {
-                return Result<(int ProductId, int SizeId)>.Failure(ProductErrorMessages.ProductNotFound(request.ProductId));
+                return Result<(int ProductId, int SizeId)>.Failure(ProductErrorMessages.NotFound);
             }
 
             var sizeExists = await _sizeRepository.ExistsAsync(request.SizeId, cancellationToken);
 
             if (!sizeExists) 
             {
-                return Result<(int ProductId, int SizeId)>.Failure(SizeErrorMessages.SizeNotFound(request.SizeId));
+                return Result<(int ProductId, int SizeId)>.Failure(SizeErrorMessages.NotFound);
             }
 
             var productSize = new Domain.Entities.Product.ProductSize(request.ProductId, request.SizeId, request.QuantityInStock);
@@ -54,7 +54,7 @@ namespace Shop.Application.ProductSize.Create
            
             if (await _unitOfWork.SaveChangesAsync(cancellationToken) == 0)
             {
-                return Result<(int ProductId, int SizeId)>.Failure(ProductSizeErrorMessages.CreationError);
+                return Result<(int ProductId, int SizeId)>.Failure(ProductSizeErrorMessages.Creation);
             }           
 
             return Result<(int ProductId, int SizeId)>.Success((productSize.ProductId, productSize.SizeId));

@@ -26,11 +26,6 @@ namespace Shop.Presentation.Controllers
             var query = new GetOrderQuery();
             var result = await _mediator.Send(query, CancellationToken);
 
-            if (!result.IsSuccess)
-            {
-                return NotFound(new { Message = result.Error });
-            }
-
             return Ok(result);
         }
 
@@ -55,15 +50,9 @@ namespace Shop.Presentation.Controllers
             Description = "Deleting item from order list.")]
         public async Task<IActionResult> RemovetemToOrder([FromBody] DeleteOrderCommand command)
         {
-            var result = await _mediator.Send(command, CancellationToken);
-            if (!result.IsSuccess)
-            {
-                return NotFound(new { Message = result.Error });
-            }
+            var result = await _mediator.Send(command, CancellationToken);            
 
             return NoContent();
         }
-
-
     }
 }

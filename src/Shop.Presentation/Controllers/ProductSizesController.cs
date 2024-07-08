@@ -26,12 +26,7 @@ namespace Shop.Presentation.Controllers
         public async Task<IActionResult> GetProductSizeById(int productId, int sizeId)
         {
             var query = new GetProductSizeByIdQuery(productId, sizeId);
-            var result = await _mediator.Send(query, CancellationToken);
-
-            if (!result.IsSuccess)
-            {
-                return NotFound(new { Message = result.Error });
-            }
+            var result = await _mediator.Send(query, CancellationToken);           
 
             return Ok(result);
         }
@@ -43,12 +38,7 @@ namespace Shop.Presentation.Controllers
         public async Task<IActionResult> GetAllByProductId(int productId)
         {
             var query = new GetByIdProductSizeQuery(productId);
-            var result = await _mediator.Send(query, CancellationToken);
-
-            if (!result.IsSuccess)
-            {
-                return NotFound(new { Message = result.Error });
-            }
+            var result = await _mediator.Send(query, CancellationToken);           
 
             return Ok(result);
         }
@@ -75,10 +65,7 @@ namespace Shop.Presentation.Controllers
         public async Task<IActionResult> UpdateProductSize([FromBody] UpdateProductSizeCommand command)
         {
             var result = await _mediator.Send(command, CancellationToken);
-            if (!result.IsSuccess)
-            {
-                return NotFound(new { Message = result.Error });
-            }
+            
             return NoContent();
         }
 
@@ -89,12 +76,7 @@ namespace Shop.Presentation.Controllers
         public async Task<IActionResult> DeleteProductSize(int productId, int sizeId)
         {
             var command = new DeleteProductSizeCommand(productId, sizeId);
-            var result = await _mediator.Send(command, CancellationToken);
-
-            if (!result.IsSuccess)
-            {
-                return NotFound(new { Message = result.Error });
-            }
+            var result = await _mediator.Send(command, CancellationToken);            
 
             return NoContent();
         }

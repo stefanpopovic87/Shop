@@ -21,7 +21,7 @@ namespace Shop.Application.ProductSize.List
 
             if (productSizes is null || productSizes.Count == 0)
             {
-                return Result<List<ProductSizeDto>>.Failure(ProductSizeErrorMessages.ProductsNotFound(request.productId));
+                return Result<List<ProductSizeDto>>.Failure(ProductSizeErrorMessages.ProductsNotFound);
 
             }
 

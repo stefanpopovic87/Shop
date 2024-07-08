@@ -23,7 +23,7 @@ namespace Shop.Application.ProductSize.Update
 
             if (productSize is null)
             {
-                return Result<string>.Failure(ProductSizeErrorMessages.ProductSizeNotFound);
+                return Result<string>.Failure(ProductSizeErrorMessages.NotFound);
             }
 
             productSize.UpdateQuantity(request.QuantityInStock);

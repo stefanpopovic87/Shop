@@ -1,8 +1,9 @@
-﻿namespace Shop.Domain.Entities.ErrorMessages
+﻿using Shop.Common;
+
+namespace Shop.Domain.Entities.ErrorMessages
 {
     public static class SizeErrorMessages
     {
-        public static string SizeNotFound(int sizeId) => $"The size with Id = {sizeId} was not found.";
-
+        public static readonly Error NotFound = new("SizeNotFound.NotFound", $"The size was not found.");
     }
 }

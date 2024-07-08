@@ -2,7 +2,7 @@
 {
     public class BaseEntity
     {
-        public bool Deleted { get; private set; }
+        public bool Deleted { get; private set; } = false;
         public DateTimeOffset DateCreated { get; private set; } = DateTimeOffset.Now;
         public DateTimeOffset? DateModified { get; private set; }
         public DateTimeOffset? DateDeleted { get; private set; }

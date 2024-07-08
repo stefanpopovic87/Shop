@@ -37,7 +37,7 @@ namespace Shop.Application.Order.Create
 
             if (product is null) 
             {
-                return Result<int>.Failure(ProductErrorMessages.ProductNotFound(request.ProductId));
+                return Result<int>.Failure(ProductErrorMessages.NotFound);
 
             }
 
@@ -45,20 +45,20 @@ namespace Shop.Application.Order.Create
 
             if (size is null)
             {
-                return Result<int>.Failure(SizeErrorMessages.SizeNotFound(request.SizeId));
+                return Result<int>.Failure(SizeErrorMessages.NotFound);
             }
 
             var productSize = await _productSizeRepository.GetByUniqueIdAsync(request.ProductId, request.SizeId,cancellationToken);
 
             if (productSize is null)                 
             {
-                return Result<int>.Failure(ProductSizeErrorMessages.ProductSizeNotFound);
+                return Result<int>.Failure(ProductSizeErrorMessages.NotFound);
 
             }
 
             if (productSize.QuantityInStock < request.Quantity)
             {
-                return Result<int>.Failure(OrderErrorMessages.CreationQuantityError);
+                return Result<int>.Failure(OrderErrorMessages.CreationQuantity);
             }
 
             productSize.DecreaseQuantity(request.Quantity);
@@ -71,7 +71,7 @@ namespace Shop.Application.Order.Create
 
                 if (status is null)
                 {
-                    return Result<int>.Failure(OrderStatusErrorMessages.OrderStatusNotFound((int)OrderStatusEnum.Pending));
+                    return Result<int>.Failure(OrderStatusErrorMessages.NotFound);
                 }
 
                 order = new Domain.Entities.Order.Order(1); // TODO - chage to current user ID
@@ -83,7 +83,7 @@ namespace Shop.Application.Order.Create
 
             if (await _unitOfWork.SaveChangesAsync(cancellationToken) == 0)
             {
-                return Result<int>.Failure(OrderErrorMessages.CreationError);
+                return Result<int>.Failure(OrderErrorMessages.Creation);
             }
 
             return Result<int>.Success(order.Id);

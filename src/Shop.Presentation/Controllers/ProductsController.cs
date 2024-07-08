@@ -30,7 +30,7 @@ namespace Shop.Presentation.Controllers
 
             if (!result.IsSuccess)
             {
-                return NotFound(new { Message = result.Error });
+                return NotFound(new { Message = result });
             }
 
             return Ok(result);
@@ -47,7 +47,7 @@ namespace Shop.Presentation.Controllers
 
             if (!result.IsSuccess)
             {
-                return NotFound(new { Message = result.Error });
+                return NotFound(new { Message = result });
             }
 
             return Ok(result);
@@ -62,23 +62,25 @@ namespace Shop.Presentation.Controllers
             var result = await _mediator.Send(command, CancellationToken);
             if (!result.IsSuccess)
             {
-                return BadRequest(new { Message = result.Error });
+                return BadRequest(new { Message = result });
             }
 
             return CreatedAtAction(nameof(GetProductById), new { id = result.Value }, result.Value);
         }
 
-        [HttpPut]
+        [HttpPut("{id}")]
         [SwaggerOperation(
             Summary = "Update a product", 
             Description = "Updates an existing product.")]
         public async Task<IActionResult> UpdateProduct([FromBody] UpdateProductCommand command)
         {
             var result = await _mediator.Send(command, CancellationToken);
+
             if (!result.IsSuccess)
             {
-                return NotFound(new { Message = result.Error });
+                return BadRequest(new { Message = result });
             }
+
             return NoContent();
         }
 
@@ -93,7 +95,7 @@ namespace Shop.Presentation.Controllers
 
             if (!result.IsSuccess)
             {
-                return NotFound(new { Message = result.Error });
+                return NotFound(new { Message = result });
             }
 
             return NoContent();

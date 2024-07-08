@@ -20,7 +20,7 @@ namespace Shop.Application.Product.Get
             var product = await _productRepository.GetByIdAsync(request.Id, cancellationToken);
             if (product is null)
             {
-                return Result<ProductDto>.Failure(ProductErrorMessages.ProductNotFound(request.Id));
+                return Result<ProductDto>.Failure(ProductErrorMessages.NotFound);
 
             }
 

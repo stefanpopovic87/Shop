@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
+using Shop.Application.Behaviors;
 
 namespace Shop.Application
 {
@@ -10,7 +11,11 @@ namespace Shop.Application
             var assembly = typeof(DependencyInjection).Assembly;
 
             services.AddMediatR(configuration =>
-            configuration.RegisterServicesFromAssemblies(assembly));
+            {
+                configuration.AddOpenBehavior(typeof(RequestLoggingPipelineBehavior<,>));
+                configuration.RegisterServicesFromAssemblies(assembly);
+            });
+
 
             services.AddValidatorsFromAssembly(assembly);
 

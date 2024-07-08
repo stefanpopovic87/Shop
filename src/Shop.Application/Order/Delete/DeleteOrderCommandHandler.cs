@@ -28,7 +28,7 @@ namespace Shop.Application.Order.Delete
 
             if (order == null) 
             {
-                return Result<string>.Failure(OrderErrorMessages.OrderNotFound);
+                return Result<string>.Failure(OrderErrorMessages.NotFound);
             }
 
             order.RemoveItem(request.ProductId, request.SizeId, request.Quantity);
@@ -37,7 +37,7 @@ namespace Shop.Application.Order.Delete
 
             if (productSize is null)
             {
-                return Result<string>.Failure(ProductSizeErrorMessages.ProductSizeNotFound);
+                return Result<string>.Failure(ProductSizeErrorMessages.NotFound);
 
             }
 
@@ -46,7 +46,7 @@ namespace Shop.Application.Order.Delete
 
             if (await _unitOfWork.SaveChangesAsync(cancellationToken) == 0)
             {
-                return Result<string>.Failure(OrderErrorMessages.DeletionError);
+                return Result<string>.Failure(OrderErrorMessages.Deletion);
             }
 
             return Result<string>.Success(string.Empty);

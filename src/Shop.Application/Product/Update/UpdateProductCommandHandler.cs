@@ -22,14 +22,17 @@ namespace Shop.Application.Product.Update
 
             if (product is null)
             {
-                return Result<string>.Failure(ProductErrorMessages.ProductNotFound(request.Id));
+                return Result<string>.Failure(ProductErrorMessages.NotFound);
             }
 
             product.Update(request.Name, request.Description, request.Price, request.PictureUrl);
 
             _productRepository.Update(product);
 
-            await _unitOfWork.SaveChangesAsync(cancellationToken);
+            if (await _unitOfWork.SaveChangesAsync(cancellationToken) == 0)
+            {
+                return Result<string>.Failure(ProductErrorMessages.Creation);
+            }
 
             return Result<string>.Success(string.Empty);
 

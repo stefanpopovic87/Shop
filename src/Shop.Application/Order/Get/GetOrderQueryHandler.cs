@@ -21,7 +21,7 @@ namespace Shop.Application.Order.Get
 
             if (order is null) 
             {
-                return Result<OrderDto>.Failure(OrderErrorMessages.OrderNotFound);
+                return Result<OrderDto>.Failure(OrderErrorMessages.NotFound);
 
             }
 

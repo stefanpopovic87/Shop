@@ -1,8 +1,9 @@
-﻿namespace Shop.Domain.Entities.ErrorMessages
+﻿using Shop.Common;
+
+namespace Shop.Domain.Entities.ErrorMessages
 {
     public static class OrderStatusErrorMessages
     {
-        public static string OrderStatusNotFound(int statusId) => $"The order status with Id = {statusId} was not found.";
-
+        public static readonly Error NotFound = new ("OrderStatus.NotFound", $"The order status was not found.");
     }
 }

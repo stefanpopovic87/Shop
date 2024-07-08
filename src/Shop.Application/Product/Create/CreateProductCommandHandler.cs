@@ -25,7 +25,7 @@ namespace Shop.Application.Product.Create
 
             if (await _unitOfWork.SaveChangesAsync(cancellationToken) == 0)
             {
-                return Result<int>.Failure(ProductErrorMessages.CreationError);
+                return Result<int>.Failure(ProductErrorMessages.Creation);
             }
 
             return Result<int>.Success(product.Id);
