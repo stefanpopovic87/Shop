@@ -13,11 +13,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shop.Infrastructure", "Shop
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shop.WebApi", "Shop.WebApi\Shop.WebApi.csproj", "{11DD8B8D-C04A-42A2-8313-D08F8662F74C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.Presentation", "Shop.Presentation\Shop.Presentation.csproj", "{181202CF-580A-4AF5-8077-6DF062FED25B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shop.Presentation", "Shop.Presentation\Shop.Presentation.csproj", "{181202CF-580A-4AF5-8077-6DF062FED25B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.Persistence", "Shop.Persistence\Shop.Persistence.csproj", "{A9D2E8AD-EAE7-4D8D-B925-D4AEAD08624A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shop.Persistence", "Shop.Persistence\Shop.Persistence.csproj", "{A9D2E8AD-EAE7-4D8D-B925-D4AEAD08624A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.Common", "Shop.Common\Shop.Common.csproj", "{BF587B3E-628C-4743-9FE9-1A64E50DA71B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shop.Common", "Shop.Common\Shop.Common.csproj", "{BF587B3E-628C-4743-9FE9-1A64E50DA71B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
