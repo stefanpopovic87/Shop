@@ -35,8 +35,7 @@ namespace Shop.Application.Order.Get
                         item.Product.Id, 
                         item.Product.Name, 
                         item.Product.Description, 
-                        item.Product.Price, 
-                        item.Product.PictureUrl),
+                        item.Product.Price),
                     new SizeDto(
                         item.Size.Id, 
                         item.Size.Name)

@@ -11,13 +11,18 @@ namespace Shop.Persistence.Database
     {
         public ShopDbContext(DbContextOptions<ShopDbContext> options) : base(options) { }
 
-        public DbSet<Product> Products { get; set; }
-        public DbSet<Address> Addresses { get; set; }
-        public DbSet<OrderStatus> OrderStatuses { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
+        public DbSet<OrderStatus> OrderStatuses { get; set; }
+        public DbSet<Product> Products { get; set; }
         public DbSet<Size> Sizes { get; set; }
-        public DbSet<ProductSize> ProductSizes { get; set; }
+        public DbSet<Brand> Brands { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Subcategory> Subcategories { get; set; }
+        public DbSet<Gender> Genders { get; set; }
+        public DbSet<ProductQuantity> ProductQuantities { get; set; }
+
+        public DbSet<Address> Addresses { get; set; }        
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -26,8 +31,12 @@ namespace Shop.Persistence.Database
             modelBuilder.ApplyConfiguration(new OrderItemConfiguration());
             modelBuilder.ApplyConfiguration(new OrderStatusConfiguration());
             modelBuilder.ApplyConfiguration(new ProductConfiguration());
-            modelBuilder.ApplyConfiguration(new ProductSizeConfiguration());
             modelBuilder.ApplyConfiguration(new SizeConfiguration());
+            modelBuilder.ApplyConfiguration(new BrandConfiguration());
+            modelBuilder.ApplyConfiguration(new CategoryConfiguration());
+            modelBuilder.ApplyConfiguration(new SubcategoryConfiguration());
+            modelBuilder.ApplyConfiguration(new GenderConfiguration());
+            modelBuilder.ApplyConfiguration(new ProductQuantityConfiguration());
 
             // TODO Add global filter for all entities that inherit from BaseEntity
             //foreach (var entityType in modelBuilder.Model.GetEntityTypes()

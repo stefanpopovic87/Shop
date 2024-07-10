@@ -22,8 +22,24 @@ namespace Shop.Persistence.Configurations
                    .IsRequired()
                    .HasColumnType("decimal(18,2)");
 
-            builder.Property(p => p.PictureUrl)
-                .HasMaxLength(2000);
+            builder.Property(p => p.Code)
+                   .IsRequired()
+                   .HasMaxLength(50);
+
+            builder.HasOne(p => p.Brand)
+                   .WithMany(b => b.Products)
+                   .HasForeignKey(p => p.BrandId)
+                   .OnDelete(DeleteBehavior.NoAction);
+
+            builder.HasOne(p => p.Subcategory)
+                   .WithMany(sc => sc.Products)
+                   .HasForeignKey(p => p.SubcategoryId)
+                   .OnDelete(DeleteBehavior.NoAction);
+
+            builder.HasOne(p => p.Gender)
+                   .WithMany(g => g.Products)
+                   .HasForeignKey(p => p.GenderId)
+                   .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

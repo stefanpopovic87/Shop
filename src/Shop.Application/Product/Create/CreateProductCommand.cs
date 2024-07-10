@@ -6,6 +6,9 @@ namespace Shop.Application.Product.Create
     public record CreateProductCommand(
         string Name, 
         string Description, 
-        decimal Price, 
-        string? PictureUrl) : IRequest<Result<int>>;
+        string Code, 
+        decimal Price,
+        int BrandId,
+        int SubcategoryId, 
+        int GenderId) : IRequest<Result<int>>;
 }

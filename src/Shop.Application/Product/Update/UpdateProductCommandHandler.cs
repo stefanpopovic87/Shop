@@ -25,7 +25,7 @@ namespace Shop.Application.Product.Update
                 return Result<string>.Failure(ProductErrorMessages.NotFound);
             }
 
-            product.Update(request.Name, request.Description, request.Price, request.PictureUrl);
+            product.Update(request.Name, request.Description, request.Price, request.Code, request.BrandId, request.SubcategoryId, request.GenderId);
 
             _productRepository.Update(product);
 

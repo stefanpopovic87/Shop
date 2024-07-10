@@ -12,8 +12,8 @@ using Shop.Persistence.Database;
 namespace Shop.Persistence.Migrations
 {
     [DbContext(typeof(ShopDbContext))]
-    [Migration("20240702085643_SettingDefaultValueForDeletedToFalse")]
-    partial class SettingDefaultValueForDeletedToFalse
+    [Migration("20240710224202_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -200,6 +200,29 @@ namespace Shop.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTimeOffset>("DateCreated")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<DateTimeOffset?>("DateDeleted")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<DateTimeOffset?>("DateModified")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<bool>("Deleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<int?>("DeletedBy")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -208,16 +231,9 @@ namespace Shop.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("OrderStatuses");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Pending"
-                        });
                 });
 
-            modelBuilder.Entity("Shop.Domain.Entities.Product.Product", b =>
+            modelBuilder.Entity("Shop.Domain.Entities.Product.Brand", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -245,10 +261,46 @@ namespace Shop.Persistence.Migrations
                     b.Property<int?>("DeletedBy")
                         .HasColumnType("int");
 
-                    b.Property<string>("Description")
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Brands");
+                });
+
+            modelBuilder.Entity("Shop.Domain.Entities.Product.Category", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTimeOffset>("DateCreated")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<DateTimeOffset?>("DateDeleted")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<DateTimeOffset?>("DateModified")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<bool>("Deleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<int?>("DeletedBy")
+                        .HasColumnType("int");
 
                     b.Property<int?>("ModifiedBy")
                         .HasColumnType("int");
@@ -258,19 +310,122 @@ namespace Shop.Persistence.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
-                    b.Property<string>("PictureUrl")
-                        .HasMaxLength(2000)
-                        .HasColumnType("nvarchar(2000)");
+                    b.HasKey("Id");
+
+                    b.ToTable("Categories");
+                });
+
+            modelBuilder.Entity("Shop.Domain.Entities.Product.Gender", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTimeOffset>("DateCreated")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<DateTimeOffset?>("DateDeleted")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<DateTimeOffset?>("DateModified")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<bool>("Deleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<int?>("DeletedBy")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Genders");
+                });
+
+            modelBuilder.Entity("Shop.Domain.Entities.Product.Product", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("BrandId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTimeOffset>("DateCreated")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<DateTimeOffset?>("DateDeleted")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<DateTimeOffset?>("DateModified")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<bool>("Deleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<int?>("DeletedBy")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<int>("GenderId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<int>("SubcategoryId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("BrandId");
+
+                    b.HasIndex("GenderId");
+
+                    b.HasIndex("SubcategoryId");
 
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("Shop.Domain.Entities.Product.ProductSize", b =>
+            modelBuilder.Entity("Shop.Domain.Entities.Product.ProductQuantity", b =>
                 {
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
@@ -291,7 +446,9 @@ namespace Shop.Persistence.Migrations
                         .HasColumnType("datetimeoffset");
 
                     b.Property<bool>("Deleted")
-                        .HasColumnType("bit");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
 
                     b.Property<int?>("DeletedBy")
                         .HasColumnType("int");
@@ -304,15 +461,12 @@ namespace Shop.Persistence.Migrations
 
                     b.HasKey("ProductId", "SizeId");
 
-                    b.HasIndex("ProductId")
-                        .HasDatabaseName("IX_ProductSize_ProductId");
-
                     b.HasIndex("SizeId");
 
                     b.HasIndex("ProductId", "SizeId")
                         .IsUnique();
 
-                    b.ToTable("ProductSizes");
+                    b.ToTable("ProductQuantities");
                 });
 
             modelBuilder.Entity("Shop.Domain.Entities.Product.Size", b =>
@@ -323,50 +477,88 @@ namespace Shop.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTimeOffset>("DateCreated")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<DateTimeOffset?>("DateDeleted")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<DateTimeOffset?>("DateModified")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<bool>("Deleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<int?>("DeletedBy")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Sizes");
+                    b.HasIndex("CategoryId");
 
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "XS"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "S"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "M"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "L"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Name = "XL"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Name = "XXL"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Name = "XXXL"
-                        });
+                    b.ToTable("Sizes");
+                });
+
+            modelBuilder.Entity("Shop.Domain.Entities.Product.Subcategory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTimeOffset>("DateCreated")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<DateTimeOffset?>("DateDeleted")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<DateTimeOffset?>("DateModified")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<bool>("Deleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<int?>("DeletedBy")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("Subcategories");
                 });
 
             modelBuilder.Entity("Shop.Domain.Entities.Order.Order", b =>
@@ -413,18 +605,45 @@ namespace Shop.Persistence.Migrations
                     b.Navigation("Size");
                 });
 
-            modelBuilder.Entity("Shop.Domain.Entities.Product.ProductSize", b =>
+            modelBuilder.Entity("Shop.Domain.Entities.Product.Product", b =>
+                {
+                    b.HasOne("Shop.Domain.Entities.Product.Brand", "Brand")
+                        .WithMany("Products")
+                        .HasForeignKey("BrandId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("Shop.Domain.Entities.Product.Gender", "Gender")
+                        .WithMany("Products")
+                        .HasForeignKey("GenderId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("Shop.Domain.Entities.Product.Subcategory", "Subcategory")
+                        .WithMany("Products")
+                        .HasForeignKey("SubcategoryId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Brand");
+
+                    b.Navigation("Gender");
+
+                    b.Navigation("Subcategory");
+                });
+
+            modelBuilder.Entity("Shop.Domain.Entities.Product.ProductQuantity", b =>
                 {
                     b.HasOne("Shop.Domain.Entities.Product.Product", "Product")
-                        .WithMany()
+                        .WithMany("ProductQuantities")
                         .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Shop.Domain.Entities.Product.Size", "Size")
-                        .WithMany()
+                        .WithMany("ProductQuantities")
                         .HasForeignKey("SizeId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Product");
@@ -432,9 +651,63 @@ namespace Shop.Persistence.Migrations
                     b.Navigation("Size");
                 });
 
+            modelBuilder.Entity("Shop.Domain.Entities.Product.Size", b =>
+                {
+                    b.HasOne("Shop.Domain.Entities.Product.Category", "Category")
+                        .WithMany("Sizes")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("Shop.Domain.Entities.Product.Subcategory", b =>
+                {
+                    b.HasOne("Shop.Domain.Entities.Product.Category", "Category")
+                        .WithMany("Subcategories")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+                });
+
             modelBuilder.Entity("Shop.Domain.Entities.Order.Order", b =>
                 {
                     b.Navigation("Items");
+                });
+
+            modelBuilder.Entity("Shop.Domain.Entities.Product.Brand", b =>
+                {
+                    b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("Shop.Domain.Entities.Product.Category", b =>
+                {
+                    b.Navigation("Sizes");
+
+                    b.Navigation("Subcategories");
+                });
+
+            modelBuilder.Entity("Shop.Domain.Entities.Product.Gender", b =>
+                {
+                    b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("Shop.Domain.Entities.Product.Product", b =>
+                {
+                    b.Navigation("ProductQuantities");
+                });
+
+            modelBuilder.Entity("Shop.Domain.Entities.Product.Size", b =>
+                {
+                    b.Navigation("ProductQuantities");
+                });
+
+            modelBuilder.Entity("Shop.Domain.Entities.Product.Subcategory", b =>
+                {
+                    b.Navigation("Products");
                 });
 #pragma warning restore 612, 618
         }

@@ -7,6 +7,9 @@ namespace Shop.Application.Product.Update
         int Id,
         string Name,
         string Description,
+        string Code,
         decimal Price,
-        string? PictureUrl) : IRequest<Result<string>>;
+        int BrandId,
+        int SubcategoryId, 
+        int GenderId) : IRequest<Result<string>>;
 }

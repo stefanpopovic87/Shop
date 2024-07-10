@@ -3,7 +3,7 @@ using Serilog;
 using Shop.Infrastructure;
 using Shop.Persistence;
 using Shop.Presentation;
-using Shop.Presentation.Middlewere;
+using Shop.Presentation.Middleware;
 
 internal class Program
 {
@@ -34,18 +34,20 @@ internal class Program
             c.EnableAnnotations();
         });
 
-        builder.Services
-            .AddApplication()
-            .AddInfrastructure()
-            .AddPersistence(builder.Configuration, builder.Environment)
-            .AddPresentation();
-
         builder.Host.UseSerilog((context, configuration) =>
             configuration.ReadFrom.Configuration(context.Configuration)
-                        .WriteTo.Console()
-                        .WriteTo.File("logs/shoplog.txt", rollingInterval: RollingInterval.Day));
+                .WriteTo.Console()
+                .WriteTo.File("logs/shoplog.txt", rollingInterval: RollingInterval.Day));
 
         builder.Services.AddHealthChecks();
+
+        builder.Services
+            .AddApplication()
+            .AddPersistence(builder.Configuration, builder.Environment)
+            .AddPresentation()
+            .AddInfrastructure();
+
+        builder.Services.AddTransient<ExceptionHandlingMiddleware>();
 
         var app = builder.Build();
 
@@ -65,7 +67,7 @@ internal class Program
 
         //app.UseAuthorization();
 
-        app.UseMiddleware<ExeptionHandlingMiddlewere>();
+        app.UseMiddleware<ExceptionHandlingMiddleware>();
 
         app.MapControllers();
 

@@ -28,8 +28,7 @@ namespace Shop.Application.Product.Get
                product.Id,
                product.Name,
                product.Description,
-               product.Price,
-               product.PictureUrl
+               product.Price
             );
 
             return Result<ProductDto>.Success(productDto);

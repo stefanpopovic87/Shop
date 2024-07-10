@@ -5,18 +5,18 @@ using Shop.Persistence.Configurations.Base;
 
 namespace Shop.Persistence.Configurations
 {
-    public class SizeConfiguration : BaseEntityConfiguration<Size>
+    public class CategoryConfiguration : BaseEntityConfiguration<Category>
     {
-        protected override void ConfigureEntity(EntityTypeBuilder<Size> builder)
+        protected override void ConfigureEntity(EntityTypeBuilder<Category> builder)
         {
-            builder.HasKey(s => s.Id);
+            builder.HasKey(c => c.Id);
 
-            builder.Property(s => s.Name)
+            builder.Property(c => c.Name)
                 .IsRequired()
-                .HasMaxLength(50);
+                .HasMaxLength(200);
 
-            builder.HasOne(s => s.Category)
-                   .WithMany(c => c.Sizes)
+            builder.HasMany(c => c.Sizes)
+                   .WithOne(s => s.Category)
                    .HasForeignKey(s => s.CategoryId)
                    .OnDelete(DeleteBehavior.NoAction);
         }

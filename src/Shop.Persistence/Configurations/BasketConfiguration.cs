@@ -21,8 +21,7 @@ namespace Shop.Persistence.Configurations
 
             builder.HasMany(b => b.Items)
                    .WithOne(bi => bi.Basket)
-                   .HasForeignKey(bi => bi.BasketId)
-                   .OnDelete(DeleteBehavior.Cascade);
+                   .HasForeignKey(bi => bi.BasketId);
 
             // BaseEntity properties configuration
             builder.Property(p => p.DateCreated).IsRequired();

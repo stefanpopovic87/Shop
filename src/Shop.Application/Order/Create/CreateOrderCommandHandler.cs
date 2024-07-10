@@ -12,7 +12,6 @@ namespace Shop.Application.Order.Create
         private readonly IProductRepository _productRepository;
         private readonly ISizeRepository _sizeRepository;
         private readonly IOrderStatusRepository _orderStatusRepository;
-        private readonly IProductSizeRepository _productSizeRepository;
         private readonly IUnitOfWork _unitOfWork;
 
         public CreateOrderCommandHandler(
@@ -20,15 +19,13 @@ namespace Shop.Application.Order.Create
             IUnitOfWork unitOfWork,
             IProductRepository productRepository,
             ISizeRepository sizeRepository,
-            IOrderStatusRepository orderStatusRepository,
-            IProductSizeRepository productSizeRepository)
+            IOrderStatusRepository orderStatusRepository)
         {
             _orderRepository = orderRepository;
             _unitOfWork = unitOfWork;
             _productRepository = productRepository;
             _sizeRepository = sizeRepository;
             _orderStatusRepository = orderStatusRepository;
-            _productSizeRepository = productSizeRepository;
         }
 
         public async Task<Result<int>> Handle(CreateOrderCommand request, CancellationToken cancellationToken)
@@ -46,22 +43,7 @@ namespace Shop.Application.Order.Create
             if (size is null)
             {
                 return Result<int>.Failure(SizeErrorMessages.NotFound);
-            }
-
-            var productSize = await _productSizeRepository.GetByUniqueIdAsync(request.ProductId, request.SizeId,cancellationToken);
-
-            if (productSize is null)                 
-            {
-                return Result<int>.Failure(ProductSizeErrorMessages.NotFound);
-
-            }
-
-            if (productSize.QuantityInStock < request.Quantity)
-            {
-                return Result<int>.Failure(OrderErrorMessages.CreationQuantity);
-            }
-
-            productSize.DecreaseQuantity(request.Quantity);
+            }            
 
             var order = await _orderRepository.GetAsync(cancellationToken);
 
@@ -74,7 +56,7 @@ namespace Shop.Application.Order.Create
                     return Result<int>.Failure(OrderStatusErrorMessages.NotFound);
                 }
 
-                order = new Domain.Entities.Order.Order(1); // TODO - chage to current user ID
+                order = new Domain.Entities.Order.Order(1); // TODO - change to current user ID
                 order.SetOrderStatus(status);
                 _orderRepository.Add(order);
             }

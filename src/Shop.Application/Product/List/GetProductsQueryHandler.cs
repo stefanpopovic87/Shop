@@ -29,8 +29,7 @@ namespace Shop.Application.Product.List
                   x.Id,
                   x.Name,
                   x.Description,
-                  x.Price,
-                  x.PictureUrl
+                  x.Price
                )).ToList();
 
             return Result<List<ProductDto>>.Success(productDtos);

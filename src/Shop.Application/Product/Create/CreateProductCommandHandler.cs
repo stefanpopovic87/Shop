@@ -19,7 +19,7 @@ namespace Shop.Application.Product.Create
 
         public async Task<Result<int>> Handle(CreateProductCommand request, CancellationToken cancellationToken)
         {
-            var product = new Domain.Entities.Product.Product(request.Name, request.Description, request.Price, request.PictureUrl);
+            var product = new Domain.Entities.Product.Product(request.Name, request.Description, request.Price, request.Code, request.BrandId, request.SubcategoryId, request.GenderId);
 
             _productRepository.Add(product);
 

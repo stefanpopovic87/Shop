@@ -26,6 +26,7 @@ namespace Shop.Presentation.Controllers
         public async Task<IActionResult> GetProducts()
         {
             var query = new GetProductsQuery();
+
             var result = await _mediator.Send(query, CancellationToken);
 
             if (!result.IsSuccess)

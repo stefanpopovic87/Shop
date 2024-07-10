@@ -34,8 +34,7 @@ namespace Shop.Persistence.Configurations
 
             builder.HasOne(oi => oi.Order)
                    .WithMany(o => o.Items)
-                   .HasForeignKey(oi => oi.OrderId)
-                   .OnDelete(DeleteBehavior.Cascade);
+                   .HasForeignKey(oi => oi.OrderId);
         }
     }
 }

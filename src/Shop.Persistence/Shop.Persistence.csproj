@@ -29,9 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="appsettings.Persistence.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>
