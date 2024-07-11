@@ -20,7 +20,7 @@ public class Product : BaseEntity
     public int GenderId { get; private set; }
     public Gender Gender { get; private set; }
 
-    public ICollection<ProductQuantity> ProductQuantities { get; private set; } = new List<ProductQuantity>();
+    public ICollection<ProductSizeQuantity> SizeQuantities { get; private set; } = new List<ProductSizeQuantity>();
 
     public Product(string name, string description, decimal price, string code, int brandId, int subcategoryId, int genderId)
     {

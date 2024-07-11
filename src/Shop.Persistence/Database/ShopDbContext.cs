@@ -20,7 +20,7 @@ namespace Shop.Persistence.Database
         public DbSet<Category> Categories { get; set; }
         public DbSet<Subcategory> Subcategories { get; set; }
         public DbSet<Gender> Genders { get; set; }
-        public DbSet<ProductQuantity> ProductQuantities { get; set; }
+        public DbSet<ProductSizeQuantity> ProductSizeQuantities { get; set; }
 
         public DbSet<Address> Addresses { get; set; }        
 
@@ -36,7 +36,7 @@ namespace Shop.Persistence.Database
             modelBuilder.ApplyConfiguration(new CategoryConfiguration());
             modelBuilder.ApplyConfiguration(new SubcategoryConfiguration());
             modelBuilder.ApplyConfiguration(new GenderConfiguration());
-            modelBuilder.ApplyConfiguration(new ProductQuantityConfiguration());
+            modelBuilder.ApplyConfiguration(new ProductSizeQuantityConfiguration());
 
             // TODO Add global filter for all entities that inherit from BaseEntity
             //foreach (var entityType in modelBuilder.Model.GetEntityTypes()

@@ -2,7 +2,7 @@
 
 namespace Shop.Domain.Entities.Product
 {
-    public class ProductQuantity : BaseEntity
+    public class ProductSizeQuantity : BaseEntity
     {
         public int ProductId { get; private set; }
         public Product Product { get; private set; }
@@ -12,7 +12,7 @@ namespace Shop.Domain.Entities.Product
 
         public int QuantityInStock { get; private set; }
 
-        public ProductQuantity(int productId, int sizeId, int quantityInStock)
+        public ProductSizeQuantity(int productId, int sizeId, int quantityInStock)
         {
             ProductId = productId;
             SizeId = sizeId;

@@ -5,9 +5,9 @@ using Shop.Persistence.Configurations.Base;
 
 namespace Shop.Persistence.Configurations
 {
-    public class ProductQuantityConfiguration : BaseEntityConfiguration<ProductQuantity>
+    public class ProductSizeQuantityConfiguration : BaseEntityConfiguration<ProductSizeQuantity>
     {
-        protected override void ConfigureEntity(EntityTypeBuilder<ProductQuantity> builder)
+        protected override void ConfigureEntity(EntityTypeBuilder<ProductSizeQuantity> builder)
         {
             builder.HasKey(pq => new { pq.ProductId, pq.SizeId });
 
@@ -18,12 +18,12 @@ namespace Shop.Persistence.Configurations
                    .IsRequired();
 
             builder.HasOne(pq => pq.Product)
-                   .WithMany(p => p.ProductQuantities)
+                   .WithMany(p => p.SizeQuantities)
                    .HasForeignKey(pq => pq.ProductId)
                    .OnDelete(DeleteBehavior.NoAction);
 
             builder.HasOne(pq => pq.Size)
-                   .WithMany(s => s.ProductQuantities)
+                   .WithMany(s => s.SizeQuantities)
                    .HasForeignKey(pq => pq.SizeId)
                    .OnDelete(DeleteBehavior.NoAction);
 

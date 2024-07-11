@@ -9,7 +9,7 @@ namespace Shop.Domain.Entities.Product
         public int CategoryId { get; private set; }
         public Category Category { get; private set; }
 
-        public ICollection<ProductQuantity> ProductQuantities { get; private set; } = new List<ProductQuantity>();
+        public ICollection<ProductSizeQuantity> SizeQuantities { get; private set; } = new List<ProductSizeQuantity>();
 
 
 
