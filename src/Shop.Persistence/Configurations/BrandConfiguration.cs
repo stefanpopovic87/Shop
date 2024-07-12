@@ -13,11 +13,13 @@ namespace Shop.Persistence.Configurations
 
             builder.Property(b => b.Name)
                 .IsRequired()
-                .HasMaxLength(200);
+                .HasMaxLength(100);
 
             builder.HasMany(b => b.Products)
                    .WithOne(p => p.Brand)
                    .HasForeignKey(p => p.BrandId);
+
+            builder.HasIndex(p => p.Name).IsUnique();
 
 
             //IEnumerable<Brand> brands = Enum.GetValues<BrandEnum>()

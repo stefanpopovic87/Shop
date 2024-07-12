@@ -30,11 +30,20 @@ namespace Shop.Persistence
             services.AddScoped<IUnitOfWork>(sp =>
                sp.GetRequiredService<ShopDbContext>());
 
+            AddRepositories(services);
+
+            return services;
+
+        }
+
+        public static IServiceCollection AddRepositories(this IServiceCollection services)
+        {
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<ISizeRepository, SizeRepository>();
             services.AddScoped<IOrderStatusRepository, OrderStatusRepository>();
-           
+            services.AddScoped<IBrandRepository, BrandRepository>();
+
             return services;
         }
     }

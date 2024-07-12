@@ -4,6 +4,8 @@ using Shop.Infrastructure;
 using Shop.Persistence;
 using Shop.Presentation;
 using Shop.Presentation.Middleware;
+using Shop.Configurations;
+using Shop.WebApi.Configurations;
 
 internal class Program
 {
@@ -13,7 +15,7 @@ internal class Program
 
         System.Reflection.Assembly presentationAssembly = typeof(Shop.Presentation.AssemblyReference).Assembly;
 
-        builder.Services.AddControllers().AddApplicationPart(presentationAssembly);
+        builder.Services.AddControllerConfiguration(presentationAssembly);
 
         var allowedOrigin = builder.Configuration.GetSection("AllowedOrigins:Client").Value
             ?? throw new ArgumentNullException("AllowedOrigins:Client", "The CORS allowed origin is not configured.");
@@ -29,10 +31,9 @@ internal class Program
         });
 
         builder.Services.AddEndpointsApiExplorer();
-        builder.Services.AddSwaggerGen(c =>
-        {
-            c.EnableAnnotations();
-        });
+
+        builder.Services.AddSwaggerConfiguration();
+
 
         builder.Host.UseSerilog((context, configuration) =>
             configuration.ReadFrom.Configuration(context.Configuration)
@@ -54,7 +55,10 @@ internal class Program
         if (app.Environment.IsDevelopment())
         {
             app.UseSwagger();
-            app.UseSwaggerUI();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "SHOP API v1");
+            });
         }
 
         app.UseCors("AllowClient");

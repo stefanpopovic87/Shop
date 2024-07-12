@@ -8,10 +8,17 @@ namespace Shop.Domain.Entities.Product
         public string Name { get; private set; } = string.Empty;
         public ICollection<Product> Products { get; private set; } = new List<Product>();
 
-        public Brand(int id, string name)
+        public Brand(string name)
         {
-            Id = id;
+            base.Create();
             Name = name;
         }
+
+        public void Update(string name) 
+        {
+            base.Update();
+            Name = name; 
+        }
+
     }
 }

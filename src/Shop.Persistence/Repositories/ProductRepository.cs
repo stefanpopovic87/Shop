@@ -12,13 +12,5 @@ namespace Shop.Persistence.Repositories
             : base(context)
         {
         }
-
-        public async override Task<List<Product>> GetAllAsync(CancellationToken cancellationToken)
-        {
-            return await _context.Products
-                .Where(p => !p.Deleted)
-                .AsNoTracking()
-                .ToListAsync(cancellationToken);                
-        }
     }
 }

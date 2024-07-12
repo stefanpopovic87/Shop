@@ -73,7 +73,7 @@ namespace Shop.Presentation.Controllers
         [SwaggerOperation(
             Summary = "Update a product", 
             Description = "Updates an existing product.")]
-        public async Task<IActionResult> UpdateProduct([FromBody] UpdateProductCommand command)
+        public async Task<IActionResult> UpdateProduct(int id, [FromBody] UpdateProductCommand command)
         {
             var result = await _mediator.Send(command, CancellationToken);
 

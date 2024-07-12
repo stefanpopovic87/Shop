@@ -31,7 +31,7 @@ namespace Shop.Application.Product.Update
 
             if (await _unitOfWork.SaveChangesAsync(cancellationToken) == 0)
             {
-                return Result<string>.Failure(ProductErrorMessages.Creation);
+                return Result<string>.Failure(ProductErrorMessages.Update);
             }
 
             return Result<string>.Success(string.Empty);

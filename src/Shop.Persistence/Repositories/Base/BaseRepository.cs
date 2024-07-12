@@ -30,7 +30,7 @@ namespace Shop.Persistence.Repositories.Base
 
         public virtual async Task<List<T>> GetAllAsync(CancellationToken cancellationToken)
         {
-            return await _context.Set<T>().ToListAsync(cancellationToken);
+            return await _context.Set<T>().AsNoTracking().ToListAsync(cancellationToken);
         }
 
          public virtual async Task<bool> ExistsAsync(int id, CancellationToken cancellationToken)
