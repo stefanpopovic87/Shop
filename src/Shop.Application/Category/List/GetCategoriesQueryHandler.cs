@@ -23,13 +23,13 @@ namespace Shop.Application.Category.List
                 return Result<List<CodeBookDto>>.Failure(CategoryErrorMessages.CategoriesNotFound);
             }
 
-            var categoryDtos = categories.Select(x => new CodeBookDto
+            var categoriesDto = categories.Select(x => new CodeBookDto
             (
                 x.Id,
                 x.Name
             )).ToList();
 
-            return Result<List<CodeBookDto>>.Success(categoryDtos);
+            return Result<List<CodeBookDto>>.Success(categoriesDto);
         }
     }
 }

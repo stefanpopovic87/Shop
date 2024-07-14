@@ -19,6 +19,9 @@ namespace Shop.Persistence.Configurations
                    .WithOne(s => s.Category)
                    .HasForeignKey(s => s.CategoryId)
                    .OnDelete(DeleteBehavior.NoAction);
+
+            builder.HasIndex(c => c.Name).IsUnique();
+
         }
     }
 }

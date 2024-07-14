@@ -10,8 +10,8 @@ namespace Shop.Application.Category
 
         #region Validation error messages
         public static readonly Error NameIsRequired = new("Category.NameIsRequired", $"Name is required", ErrorTypeEnum.Validation);
-        public static Error NameTooLong = new("Category.NameTooLong", $"The category name must not exceed {MaxNameLength } characters.", ErrorTypeEnum.Validation);
-        public static readonly Error NotUnique = new("Category.NotUnique", $"The category name should be unique", ErrorTypeEnum.Validation);
+        public static readonly Error NameTooLong = new("Category.NameTooLong", $"The category name must not exceed {MaxNameLength } characters.", ErrorTypeEnum.Validation);
+        public static readonly Error NameNotUnique = new("Category.NameNotUnique", $"The category name should be unique", ErrorTypeEnum.Validation);
         #endregion
 
         #region Operational error messages

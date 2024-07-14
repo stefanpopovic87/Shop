@@ -22,8 +22,8 @@ namespace Shop.Application.Brand.Create
 
             RuleFor(x => x.Name)
                 .MustAsync(async (name, cancellationToken) => !await brandRepository.UniqueNameAsync(name, cancellationToken))
-                .WithErrorCode(BrandErrorMessages.NotUnique.Code)
-                .WithMessage(BrandErrorMessages.NotUnique.Description);
+                .WithErrorCode(BrandErrorMessages.NameNotUnique.Code)
+                .WithMessage(BrandErrorMessages.NameNotUnique.Description);
         }
     }
 }

@@ -10,8 +10,8 @@ namespace Shop.Application.Gender
 
         #region Validation error messages
         public static readonly Error NameIsRequired = new("Gender.NameIsRequired", $"Name is required", ErrorTypeEnum.Validation);
-        public static Error NameTooLong = new("Gender.NameTooLong", $"The gender name must not exceed {MaxNameLength} characters.", ErrorTypeEnum.Validation);
-        public static readonly Error NotUnique = new("Gender.NotUnique", $"The gender name should be unique", ErrorTypeEnum.Validation);
+        public static readonly Error NameTooLong = new("Gender.NameTooLong", $"The gender name must not exceed {MaxNameLength} characters.", ErrorTypeEnum.Validation);
+        public static readonly Error NameNotUnique = new("Gender.NameNotUnique", $"The gender name should be unique", ErrorTypeEnum.Validation);
         #endregion
 
         #region Operational error messages

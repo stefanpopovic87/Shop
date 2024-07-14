@@ -23,8 +23,8 @@ namespace Shop.Application.Category.Create
 
             RuleFor(x => x.Name)
                 .MustAsync(async (name, cancellationToken) => !await categoryRepository.UniqueNameAsync(name, cancellationToken))
-                .WithErrorCode(CategoryErrorMessages.NotUnique.Code)
-                .WithMessage(CategoryErrorMessages.NotUnique.Description);
+                .WithErrorCode(CategoryErrorMessages.NameNotUnique.Code)
+                .WithMessage(CategoryErrorMessages.NameNotUnique.Description);
         }
     }
 }

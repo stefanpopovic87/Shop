@@ -24,7 +24,7 @@ namespace Shop.Application.Product.List
                 return Result<List<ProductDto>>.Failure(ProductErrorMessages.ProductsNotFound);
             }
 
-            var productDtos = products.Select(x => new ProductDto
+            var productsDto = products.Select(x => new ProductDto
                (
                   x.Id,
                   x.Name,
@@ -32,7 +32,7 @@ namespace Shop.Application.Product.List
                   x.Price
                )).ToList();
 
-            return Result<List<ProductDto>>.Success(productDtos);
+            return Result<List<ProductDto>>.Success(productsDto);
         }
     }
 }

@@ -10,8 +10,8 @@ namespace Shop.Application.Brand
 
         #region Validation error messages
         public static readonly Error NameIsRequired = new("Brand.NameIsRequired", $"Name is required", ErrorTypeEnum.Validation);
-        public static Error NameTooLong = new("Brand.NameTooLong", $"The brand name must not exceed {MaxNameLength} characters.", ErrorTypeEnum.Validation);
-        public static readonly Error NotUnique = new("Brand.NotUnique", $"The brand name should be unique", ErrorTypeEnum.Validation);
+        public static readonly Error NameTooLong = new("Brand.NameTooLong", $"The brand name must not exceed {MaxNameLength} characters.", ErrorTypeEnum.Validation);
+        public static readonly Error NameNotUnique = new("Brand.NameNotUnique", $"The brand name should be unique", ErrorTypeEnum.Validation);
         #endregion
 
         #region Operational error messages

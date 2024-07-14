@@ -23,13 +23,13 @@ namespace Shop.Application.Brand.List
                 return Result<List<CodeBookDto>>.Failure(BrandErrorMessages.BrandsNotFound);
             }
 
-            var brandsDtos = brands.Select(x => new CodeBookDto
+            var brandsDto = brands.Select(x => new CodeBookDto
             (
                 x.Id,
                 x.Name
             )).ToList();
 
-            return Result<List<CodeBookDto>>.Success(brandsDtos);
+            return Result<List<CodeBookDto>>.Success(brandsDto);
         }
     }
 }

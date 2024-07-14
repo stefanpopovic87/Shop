@@ -14,6 +14,14 @@ namespace Shop.Domain.Entities.Product
 
         public Subcategory(string name, int categoryId)
         {
+            base.Create();
+            Name = name;
+            CategoryId = categoryId;
+        }
+
+        public void Update(string name, int categoryId)
+        {
+            base.Update();
             Name = name;
             CategoryId = categoryId;
         }

@@ -23,8 +23,8 @@ namespace Shop.Application.Gender.Update
 
             RuleFor(x => x.Name)
                 .MustAsync(async (name, cancellationToken) => !await genderRepository.UniqueNameAsync(name, cancellationToken))
-                .WithErrorCode(GenderErrorMessages.NotUnique.Code)
-                .WithMessage(GenderErrorMessages.NotUnique.Description);
+                .WithErrorCode(GenderErrorMessages.NameNotUnique.Code)
+                .WithMessage(GenderErrorMessages.NameNotUnique.Description);
         }
     }
 }

@@ -23,13 +23,13 @@ namespace Shop.Application.Gender.List
                 return Result<List<CodeBookDto>>.Failure(GenderErrorMessages.GendersNotFound);
             }
 
-            var genderDtos = genders.Select(x => new CodeBookDto
+            var gendersDto = genders.Select(x => new CodeBookDto
             (
                 x.Id,
                 x.Name
             )).ToList();
 
-            return Result<List<CodeBookDto>>.Success(genderDtos);
+            return Result<List<CodeBookDto>>.Success(gendersDto);
         }
     }
 }

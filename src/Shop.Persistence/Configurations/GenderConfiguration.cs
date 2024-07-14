@@ -13,6 +13,8 @@ namespace Shop.Persistence.Configurations
             builder.Property(g => g.Name)
                 .IsRequired()
                 .HasMaxLength(50);
+
+            builder.HasIndex(g => g.Name).IsUnique();
         }
     }
 }
