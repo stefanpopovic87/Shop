@@ -7,7 +7,6 @@ namespace Shop.Application.Brand.Create
     public sealed class UpdateBrandCommandValidator : AbstractValidator<UpdateBrandCommand>
     {
         private readonly IBrandRepository _brandRepository;
-        private const int MaxNameLength = 100;
 
         public UpdateBrandCommandValidator(IBrandRepository brandRepository)
         {
@@ -19,9 +18,9 @@ namespace Shop.Application.Brand.Create
                 .WithMessage(BrandErrorMessages.NameIsRequired.Description);
 
             RuleFor(x => x.Name)
-                .MaximumLength(100)
-                .WithErrorCode(BrandErrorMessages.NameTooLong(MaxNameLength).Code)
-                .WithMessage(BrandErrorMessages.NameTooLong(MaxNameLength).Description);
+                .MaximumLength(BrandErrorMessages.MaxNameLength)
+                .WithErrorCode(BrandErrorMessages.NameTooLong.Code)
+                .WithMessage(BrandErrorMessages.NameTooLong.Description);
 
             RuleFor(x => x.Name)
                 .MustAsync(async (name, cancellationToken) => !await brandRepository.UniqueNameAsync(name, cancellationToken))

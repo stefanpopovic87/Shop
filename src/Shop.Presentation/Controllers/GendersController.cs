@@ -1,36 +1,37 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Shop.Application.Brand.Create;
-using Shop.Application.Brand.Get;
-using Shop.Application.Brand.List;
+using Shop.Application.Gender.Create;
+using Shop.Application.Gender.Get;
+using Shop.Application.Gender.List;
 using Shop.Presentation.Controllers.Base;
 using Swashbuckle.AspNetCore.Annotations;
 using Mapster;
-using Shop.Application.Brand.Update;
-using Shop.Application.Brand.Delete;
+using Shop.Application.Gender.Update;
+using Shop.Application.Gender.Delete;
 using Microsoft.AspNetCore.Http;
 using Shop.Common;
+using Shop.Application.Dtos.Base;
 
 namespace Shop.Presentation.Controllers
 {
-    [Route("api/brands")]
-    public sealed class BrandsController : BaseApiController
+    [Route("api/genders")]
+    public sealed class GendersController : BaseApiController
     {
         private readonly IMediator _mediator;
 
-        public BrandsController(IMediator mediator)
+        public GendersController(IMediator mediator)
         {
             _mediator = mediator;
         }
 
         [HttpGet]
         [SwaggerOperation(
-            Summary = "Get all brands",
-            Description = "Retrieves a list of all brands")]
+            Summary = "Get all genders",
+            Description = "Retrieves a list of all genders.")]
         [Produces("application/json")]
-        public async Task<IActionResult> GetBrands()
+        public async Task<IActionResult> GetGenders()
         {
-            var query = new GetBrandsQuery();
+            var query = new GetGendersQuery();
 
             var result = await _mediator.Send(query, CancellationToken);
 
@@ -44,11 +45,11 @@ namespace Shop.Presentation.Controllers
 
         [HttpGet("{id}")]
         [SwaggerOperation(
-            Summary = "Get brand by ID",
-            Description = "Retrieves a brand by its Id")]
-        public async Task<IActionResult> GetBrandById(int id)
+            Summary = "Get gender by ID",
+            Description = "Retrieves a gender by its Id.")]
+        public async Task<IActionResult> GetGenderById(int id)
         {
-            var query = new GetBrandByIdQuery(id);
+            var query = new GetGenderByIdQuery(id);
             var result = await _mediator.Send(query, CancellationToken);
 
             if (!result.IsSuccess)
@@ -61,29 +62,29 @@ namespace Shop.Presentation.Controllers
 
         [HttpPost]
         [SwaggerOperation(
-            Summary = "Create a new brand",
-            Description = "Creates a new brand")]
+            Summary = "Create a new gender",
+            Description = "Creates a new gender.")]
         [ProducesResponseType(typeof(int), StatusCodes.Status201Created)]
         [ProducesResponseType(typeof(ErrorResult), StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> CreateBrand([FromBody] CreateBrandRequest request)
+        public async Task<IActionResult> CreateGender([FromBody] CreateGenderRequest request)
         {
-            var command = request.Adapt<CreateBrandCommand>();
+            var command = request.Adapt<CreateGenderCommand>();
             var result = await _mediator.Send(command, CancellationToken);
             if (!result.IsSuccess)
             {
                 return BadRequest(new { Message = result });
             }
 
-            return CreatedAtAction(nameof(GetBrandById), new { id = result.Value }, result.Value);
+            return CreatedAtAction(nameof(GetGenderById), new { id = result.Value }, result.Value);
         }
 
         [HttpPut("{id}")]
         [SwaggerOperation(
-            Summary = "Update a brand",
-            Description = "Updates an existing brand")]
-        public async Task<IActionResult> UpdateBrand(int id, [FromBody] UpdateBrandRequest request)
+            Summary = "Update a gender",
+            Description = "Updates an existing gender.")]
+        public async Task<IActionResult> UpdateGender(int id, [FromBody] UpdateGenderRequest request)
         {
-            var command = request.Adapt<UpdateBrandCommand>() with { Id = id };
+            var command = request.Adapt<UpdateGenderCommand>() with { Id = id };
 
             var result = await _mediator.Send(command, CancellationToken);
 
@@ -94,17 +95,16 @@ namespace Shop.Presentation.Controllers
 
             return NoContent();
         }
-
 
         [HttpPut("{id}/activate")]
         [SwaggerOperation(
-            Summary = "Activate a brand",
-            Description = "Activates a deleted brand by its Id")]
+            Summary = "Activate a gender",
+            Description = "Activate a deleted gender.")]
         [ProducesResponseType(typeof(Result<int>), StatusCodes.Status201Created)]
         [ProducesResponseType(typeof(Result<int>), StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> ActivateBrand(int id)
+        public async Task<IActionResult> ActivateGender(int id)
         {
-            var command = new ActivateBrandCommand(id);
+            var command = new ActivateGenderCommand(id);
 
             var result = await _mediator.Send(command, CancellationToken);
 
@@ -116,14 +116,13 @@ namespace Shop.Presentation.Controllers
             return NoContent();
         }
 
-
         [HttpDelete("{id}")]
         [SwaggerOperation(
-            Summary = "Delete a brand",
-            Description = "Deletes an existing brand by its Id")]
-        public async Task<IActionResult> DeleteBrand(int id)
+            Summary = "Delete a gender",
+            Description = "Deletes an existing gender by its ID.")]
+        public async Task<IActionResult> DeleteGender(int id)
         {
-            var command = new DeleteBrandCommand(id);
+            var command = new DeleteGenderCommand(id);
             var result = await _mediator.Send(command, CancellationToken);
 
             if (!result.IsSuccess)

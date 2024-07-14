@@ -11,6 +11,13 @@ namespace Shop.Domain.Entities.Product
 
         public Gender(string name)
         {
+            base.Create();
+            Name = name;
+        }
+
+        public void Update(string name)
+        {
+            base.Update();
             Name = name;
         }
     }

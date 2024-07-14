@@ -43,6 +43,8 @@ namespace Shop.Persistence
             services.AddScoped<ISizeRepository, SizeRepository>();
             services.AddScoped<IOrderStatusRepository, OrderStatusRepository>();
             services.AddScoped<IBrandRepository, BrandRepository>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<IGenderRepository, GenderRepository>();
 
             return services;
         }
