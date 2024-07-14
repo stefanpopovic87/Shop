@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using Shop.Common;
-using Shop.Domain.Entities.ErrorMessages;
+using Shop.Domain.ErrorMessages;
 using Shop.Domain.Interfaces;
 using ProductEntities = Shop.Domain.Entities.Product;
 

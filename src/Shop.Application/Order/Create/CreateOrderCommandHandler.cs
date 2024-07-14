@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Shop.Common;
 using Shop.Domain.Entities.Enums;
-using Shop.Domain.Entities.ErrorMessages;
+using Shop.Domain.ErrorMessages;
 using Shop.Domain.Interfaces;
 
 namespace Shop.Application.Order.Create

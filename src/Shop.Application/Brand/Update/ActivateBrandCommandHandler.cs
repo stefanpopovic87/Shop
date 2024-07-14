@@ -1,6 +1,5 @@
 ﻿using Shop.Application.Abstractions;
 using Shop.Common;
-using Shop.Domain.Entities.ErrorMessages;
 using Shop.Domain.Interfaces;
 
 namespace Shop.Application.Brand.Update
@@ -23,6 +22,11 @@ namespace Shop.Application.Brand.Update
             if (brand is null)
             {
                 return Result<string>.Failure(BrandErrorMessages.NotFound);
+            }
+
+            if (!brand.Deleted)
+            {
+                return Result<string>.Failure(BrandErrorMessages.AlreadyActive);
             }
 
             brand.Activate();

@@ -2,6 +2,5 @@
 using Shop.Common;
 
 namespace Shop.Application.Brand.Create
-{
-    public sealed record CreateBrandCommand(string Name) : ICommand<Result<int>>;
+{    public sealed record CreateBrandCommand(string Name) : ICommand<Result<int>>;
 }

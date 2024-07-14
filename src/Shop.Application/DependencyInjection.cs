@@ -16,7 +16,6 @@ namespace Shop.Application
                 configuration.RegisterServicesFromAssemblies(assembly);
             });
 
-
             services.AddValidatorsFromAssembly(assembly);
 
             return services;

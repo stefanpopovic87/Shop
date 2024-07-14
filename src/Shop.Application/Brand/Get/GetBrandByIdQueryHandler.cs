@@ -2,7 +2,6 @@
 using Shop.Application.Abstractions;
 using Shop.Application.Dtos.Base;
 using Shop.Common;
-using Shop.Domain.Entities.ErrorMessages;
 using Shop.Domain.Interfaces;
 
 namespace Shop.Application.Brand.Get

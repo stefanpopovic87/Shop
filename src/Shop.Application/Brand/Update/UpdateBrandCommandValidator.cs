@@ -1,14 +1,15 @@
 ﻿using FluentValidation;
+using Shop.Application.Brand.Update;
 using Shop.Domain.Interfaces;
 
 namespace Shop.Application.Brand.Create
 {
-    public sealed class CreateBrandCommandValidator : AbstractValidator<CreateBrandCommand>
+    public sealed class UpdateBrandCommandValidator : AbstractValidator<UpdateBrandCommand>
     {
         private readonly IBrandRepository _brandRepository;
         private const int MaxNameLength = 100;
 
-        public CreateBrandCommandValidator(IBrandRepository brandRepository)
+        public UpdateBrandCommandValidator(IBrandRepository brandRepository)
         {
             _brandRepository = brandRepository;
 

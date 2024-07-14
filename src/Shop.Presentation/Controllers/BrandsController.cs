@@ -29,8 +29,6 @@ namespace Shop.Presentation.Controllers
             Summary = "Get all brands",
             Description = "Retrieves a list of all brands.")]
         [Produces("application/json")]
-        [ProducesResponseType(typeof(Result<List<CodeBookDto>>), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(ErrorResult), StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetBrands()
         {
             var query = new GetBrandsQuery();
@@ -67,7 +65,7 @@ namespace Shop.Presentation.Controllers
             Summary = "Create a new brand",
             Description = "Creates a new brand.")]
         [ProducesResponseType(typeof(int), StatusCodes.Status201Created)]
-        [ProducesResponseType(typeof(Result<int>), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ErrorResult), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> CreateBrand([FromBody] CreateBrandRequest request)
         {
             var command = request.Adapt<CreateBrandCommand>();
@@ -103,6 +101,8 @@ namespace Shop.Presentation.Controllers
         [SwaggerOperation(
             Summary = "Activate a brand",
             Description = "Activate a deleted brand.")]
+        [ProducesResponseType(typeof(Result<int>), StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(Result<int>), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> ActivateBrand(int id)
         {
             var command = new ActivateBrandCommand(id);

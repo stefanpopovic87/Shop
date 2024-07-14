@@ -2,6 +2,6 @@
 
 namespace Shop.Application.Brand.Update
 {
-    public sealed record UpdateBrandRequest([property: Required] string Name);
+    public sealed record UpdateBrandRequest(string Name);
 
 }

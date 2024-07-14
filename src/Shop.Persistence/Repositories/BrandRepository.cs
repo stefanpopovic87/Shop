@@ -12,10 +12,5 @@ namespace Shop.Persistence.Repositories
             : base(context)
         {
         }
-
-        public async Task<bool> IsNameUnique(string name, CancellationToken cancellationToken)
-        {
-            return await _context.Brands.AnyAsync(x => x.Name == name, cancellationToken);
-        }
     }
 }

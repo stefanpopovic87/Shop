@@ -1,6 +1,7 @@
-﻿using Shop.Application.Abstractions;
+﻿using FluentValidation;
+using Shop.Application.Abstractions;
+using Shop.Application.Helpers;
 using Shop.Common;
-using Shop.Domain.Entities.ErrorMessages;
 using Shop.Domain.Interfaces;
 
 namespace Shop.Application.Brand.Update
@@ -9,15 +10,27 @@ namespace Shop.Application.Brand.Update
     {
         private readonly IBrandRepository _brandRepository;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IValidator<UpdateBrandCommand> _validator;
 
-        public UpdateBrandCommandHandler(IBrandRepository brandRepository, IUnitOfWork unitOfWork)
+
+        public UpdateBrandCommandHandler(
+            IBrandRepository brandRepository, 
+            IUnitOfWork unitOfWork, 
+            IValidator<UpdateBrandCommand> validator)
         {
             _brandRepository = brandRepository;
             _unitOfWork = unitOfWork;
+            _validator = validator;
         }
 
         public async Task<Result<string>> Handle(UpdateBrandCommand request, CancellationToken cancellationToken)
         {
+            var validationResult = await _validator.ValidateAsync(request, cancellationToken);
+            if (!validationResult.IsValid)
+            {
+                return ValidationErrorHelper.CreateValidationErrorResult<string>(validationResult);
+            }
+
             var brand = await _brandRepository.GetByIdAsync(request.Id, cancellationToken);
 
             if (brand is null)

@@ -19,17 +19,17 @@ namespace Shop.Configurations
 
                 c.EnableAnnotations();
 
-                c.MapType<Result<object>>(() => new OpenApiSchema
-                {
-                    Type = "object",
-                    Properties = new Dictionary<string, OpenApiSchema>
-                    {
-                        ["isSuccess"] = new OpenApiSchema { Type = "boolean" },
-                        ["value"] = new OpenApiSchema { Type = "object", Nullable = true },
-                        ["error"] = new OpenApiSchema { Type = "object", Nullable = true }
-                    },
-                    Required = new HashSet<string> { "isSuccess" }
-                });
+                //c.MapType<Result<object>>(() => new OpenApiSchema
+                //{
+                //    Type = "object",
+                //    Properties = new Dictionary<string, OpenApiSchema>
+                //    {
+                //        ["isSuccess"] = new OpenApiSchema { Type = "boolean" },
+                //        ["value"] = new OpenApiSchema { Type = "object", Nullable = true },
+                //        ["error"] = new OpenApiSchema { Type = "object", Nullable = true }
+                //    },
+                //    Required = new HashSet<string> { "isSuccess" }
+                //});
 
                 c.MapType<ErrorResult>(() => new OpenApiSchema
                 {

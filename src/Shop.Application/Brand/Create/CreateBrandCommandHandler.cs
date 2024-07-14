@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using Shop.Application.Abstractions;
+using Shop.Application.Helpers;
 using Shop.Common;
-using Shop.Domain.Entities.ErrorMessages;
 using Shop.Domain.Interfaces;
 using ProductEntities = Shop.Domain.Entities.Product;
 
@@ -11,18 +11,26 @@ namespace Shop.Application.Brand.Create
     {
         private readonly IBrandRepository _brandRepository;
         private readonly IUnitOfWork _unitOfWork;
-
+        private readonly IValidator<CreateBrandCommand> _validator;
 
         public CreateBrandCommandHandler(
-            IBrandRepository brandRepository, 
-            IUnitOfWork unitOfWork)
+            IBrandRepository brandRepository,
+            IUnitOfWork unitOfWork,
+            IValidator<CreateBrandCommand> validator)
         {
             _brandRepository = brandRepository;
             _unitOfWork = unitOfWork;
+            _validator = validator;
         }
 
         public async Task<Result<int>> Handle(CreateBrandCommand request, CancellationToken cancellationToken)
         {
+            var validationResult = await _validator.ValidateAsync(request, cancellationToken);
+            if (!validationResult.IsValid)
+            {
+                return ValidationErrorHelper.CreateValidationErrorResult<int>(validationResult);
+            }
+
             var brand = new ProductEntities.Brand(request.Name);
 
             _brandRepository.Add(brand);

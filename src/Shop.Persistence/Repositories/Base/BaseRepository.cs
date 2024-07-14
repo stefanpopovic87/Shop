@@ -37,5 +37,10 @@ namespace Shop.Persistence.Repositories.Base
         {
             return await _context.Set<T>().AnyAsync(e => EF.Property<int>(e, "Id") == id, cancellationToken);
         }
+
+        public async Task<bool> UniqueNameAsync(string name, CancellationToken cancellationToken)
+        {
+            return await _context.Set<T>().AnyAsync(e => EF.Property<string>(e, "Name") == name, cancellationToken);
+        }
     }
 }

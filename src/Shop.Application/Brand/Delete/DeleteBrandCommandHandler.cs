@@ -1,6 +1,5 @@
 ﻿using Shop.Application.Abstractions;
 using Shop.Common;
-using Shop.Domain.Entities.ErrorMessages;
 using Shop.Domain.Interfaces;
 
 namespace Shop.Application.Brand.Delete
