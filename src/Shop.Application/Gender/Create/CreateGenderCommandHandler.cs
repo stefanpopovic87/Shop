@@ -3,7 +3,7 @@ using Shop.Application.Abstractions;
 using Shop.Application.Helpers;
 using Shop.Common;
 using Shop.Domain.Interfaces;
-using ProductEntities = Shop.Domain.Entities.Product;
+using DomainEntities = Shop.Domain.Entities;
 
 namespace Shop.Application.Gender.Create
 {
@@ -31,7 +31,7 @@ namespace Shop.Application.Gender.Create
                 return ValidationErrorHelper.CreateValidationErrorResult<int>(validationResult);
             }
 
-            var gender = new ProductEntities.Gender(request.Name);
+            var gender = new DomainEntities.Gender(request.Name);
 
             _genderRepository.Add(gender);
 

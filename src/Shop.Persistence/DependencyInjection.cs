@@ -13,6 +13,16 @@ namespace Shop.Persistence
     {
         public static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration configuration, IHostEnvironment environment)
         {
+            AddContext(services, configuration, environment);
+
+            AddRepositories(services);
+
+            return services;
+
+        }
+
+        private static IServiceCollection AddContext(this IServiceCollection services, IConfiguration configuration, IHostEnvironment environment)
+        {
             services.AddDbContext<ShopDbContext>(options =>
             {
                 var connectionString = configuration.GetConnectionString("ShopConnection");
@@ -30,13 +40,12 @@ namespace Shop.Persistence
             services.AddScoped<IUnitOfWork>(sp =>
                sp.GetRequiredService<ShopDbContext>());
 
-            AddRepositories(services);
-
             return services;
 
         }
 
-        public static IServiceCollection AddRepositories(this IServiceCollection services)
+
+        private static IServiceCollection AddRepositories(this IServiceCollection services)
         {
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IOrderRepository, OrderRepository>();
@@ -46,6 +55,7 @@ namespace Shop.Persistence
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IGenderRepository, GenderRepository>();
             services.AddScoped<ISubcategoryRepository, SubcategoryRepository>();
+            services.AddScoped<IProductSizeQuantityRepository, ProductSizeQuantityRepository>();
 
             return services;
         }

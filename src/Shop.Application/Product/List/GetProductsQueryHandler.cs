@@ -1,7 +1,6 @@
 ﻿using MediatR;
 using Shop.Application.Dtos;
 using Shop.Common;
-using Shop.Domain.ErrorMessages;
 using Shop.Domain.Interfaces;
 
 namespace Shop.Application.Product.List
@@ -17,11 +16,11 @@ namespace Shop.Application.Product.List
 
         public async Task<Result<List<ProductDto>>> Handle(GetProductsQuery request, CancellationToken cancellationToken)
         {
-            var products = await _productRepository.GetAllAsync(cancellationToken);
+            var products = await _productRepository.GetAllIdIncludeSizeQuantitiesAsync(cancellationToken);
 
             if (products is null || products.Count == 0)
             {
-                return Result<List<ProductDto>>.Failure(ProductErrorMessages.ProductsNotFound);
+                return Result<List<ProductDto>>.Failure(ProductErrorMessages.NotFound);
             }
 
             var productsDto = products.Select(x => new ProductDto
@@ -29,7 +28,14 @@ namespace Shop.Application.Product.List
                   x.Id,
                   x.Name,
                   x.Description,
-                  x.Price
+                  x.Price,
+                  x.Code,
+                  x.BrandId,
+                  x.SubcategoryId,
+                  x.GenderId,
+                  x.SizeQuantities
+                  .Select(x => new SizeQuantityDto(x.SizeId, x.QuantityInStock))
+                  .ToList()
                )).ToList();
 
             return Result<List<ProductDto>>.Success(productsDto);

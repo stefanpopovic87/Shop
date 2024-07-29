@@ -1,0 +1,28 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Shop.Domain.Entities.Product;
+using Shop.Domain.Interfaces;
+using Shop.Persistence.Database;
+using Shop.Persistence.Repositories.Base;
+
+namespace Shop.Persistence.Repositories
+{
+    internal sealed class ProductSizeQuantityRepository : BaseRepository<ProductSizeQuantity>, IProductSizeQuantityRepository
+    {
+        public ProductSizeQuantityRepository(ShopDbContext context)
+            : base(context)
+        {
+        }
+
+        public async Task<ProductSizeQuantity?> GetByProductidAndSizeIdAsync(int productid, int sizeId, CancellationToken cancellationToken)
+        {
+            return await _context.ProductSizeQuantities
+                .Where(x => x.ProductId == productid && x.SizeId == sizeId)
+                .FirstOrDefaultAsync(cancellationToken);
+        }
+
+        public async Task<bool> UniqueProductBySizeAsync(int productId, int sizeId, CancellationToken cancellationToken)
+        {
+            return await _context.ProductSizeQuantities.AnyAsync(x => x.ProductId == productId && x.SizeId == sizeId, cancellationToken);
+        }
+    }
+}

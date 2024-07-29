@@ -3,7 +3,7 @@ using Shop.Application.Abstractions;
 using Shop.Application.Helpers;
 using Shop.Common;
 using Shop.Domain.Interfaces;
-using ProductEntities = Shop.Domain.Entities.Product;
+using DomainEntities = Shop.Domain.Entities;
 
 namespace Shop.Application.Brand.Create
 {
@@ -31,7 +31,7 @@ namespace Shop.Application.Brand.Create
                 return ValidationErrorHelper.CreateValidationErrorResult<int>(validationResult);
             }
 
-            var brand = new ProductEntities.Brand(request.Name);
+            var brand = new DomainEntities.Brand(request.Name);
 
             _brandRepository.Add(brand);
 

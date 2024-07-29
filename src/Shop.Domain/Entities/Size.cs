@@ -1,6 +1,7 @@
 ﻿using Shop.Domain.Entities.Base;
+using Shop.Domain.Entities.Product;
 
-namespace Shop.Domain.Entities.Product
+namespace Shop.Domain.Entities
 {
     public class Size : BaseEntity
     {
@@ -15,14 +16,14 @@ namespace Shop.Domain.Entities.Product
 
         public Size(string name, int categoryId)
         {
-            base.Create();
+            Create();
             Name = name;
             CategoryId = categoryId;
         }
 
         public void Update(string name, int categoryId)
         {
-            base.Update();
+            Update();
             Name = name;
             CategoryId = categoryId;
         }

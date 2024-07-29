@@ -1,6 +1,5 @@
 using Shop.Domain.Entities.Base;
 using Shop.Domain.Entities.Enums;
-using Shop.Domain.Entities.Product;
 
 namespace Shop.Domain.Entities.Order;
 

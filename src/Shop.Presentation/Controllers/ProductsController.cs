@@ -1,5 +1,7 @@
-﻿using MediatR;
+﻿using Mapster;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Shop.Application.Category.Update;
 using Shop.Application.Product.Create;
 using Shop.Application.Product.Delete;
 using Shop.Application.Product.Get;
@@ -73,8 +75,9 @@ namespace Shop.Presentation.Controllers
         [SwaggerOperation(
             Summary = "Update a product", 
             Description = "Updates an existing product.")]
-        public async Task<IActionResult> UpdateProduct(int id, [FromBody] UpdateProductCommand command)
+        public async Task<IActionResult> UpdateProduct(int id, [FromBody] UpdateProductRequest request)
         {
+            var command = request.Adapt<UpdateProductCommand>() with { Id = id };
             var result = await _mediator.Send(command, CancellationToken);
 
             if (!result.IsSuccess)

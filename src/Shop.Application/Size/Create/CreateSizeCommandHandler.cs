@@ -3,7 +3,7 @@ using Shop.Application.Abstractions;
 using Shop.Application.Helpers;
 using Shop.Common;
 using Shop.Domain.Interfaces;
-using ProductEntities = Shop.Domain.Entities.Product;
+using DomainEntities = Shop.Domain.Entities;
 
 namespace Shop.Application.Size.Create
 {
@@ -31,7 +31,7 @@ namespace Shop.Application.Size.Create
                 return ValidationErrorHelper.CreateValidationErrorResult<int>(validationResult);
             }
 
-            var size = new ProductEntities.Size(request.Name, request.CategoryId);
+            var size = new DomainEntities.Size(request.Name, request.CategoryId);
 
             _sizeRepository.Add(size);
 

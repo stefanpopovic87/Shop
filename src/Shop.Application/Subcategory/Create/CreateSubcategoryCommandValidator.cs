@@ -24,7 +24,7 @@ namespace Shop.Application.Subcategory.Create
                 .WithMessage(SubcategoryErrorMessages.NameTooLong.Description);
 
             RuleFor(x => x.CategoryId)
-                .MustAsync(async (categoryId, cancellationToken) => await categoryRepository.ExistsAsync(categoryId, cancellationToken))
+                .MustAsync(async (categoryId, cancellationToken) => await _categoryRepository.ExistsAsync(categoryId, cancellationToken))
                 .WithErrorCode(SubcategoryErrorMessages.CategoryNotExist.Code)
                 .WithMessage(SubcategoryErrorMessages.CategoryNotExist.Description);
 

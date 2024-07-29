@@ -24,7 +24,7 @@ namespace Shop.Application.Size.List
 
             if (!categoryExist)
             {
-                return Result<List<CodeBookDto>>.Failure(SizeErrorMessages.CategoryNotExist);
+                return Result<List<CodeBookDto>>.Failure(SizeErrorMessages.CategoryNotExists);
 
             }
             var sizes = await _sizeRepository.GetAllByCategoryIdAsync(request.categoryId, cancellationToken);

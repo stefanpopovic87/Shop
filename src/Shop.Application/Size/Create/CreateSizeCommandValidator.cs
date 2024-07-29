@@ -26,8 +26,8 @@ namespace Shop.Application.Size.Create
 
             RuleFor(x => x.CategoryId)
                .MustAsync(async (categoryId, cancellationToken) => await categoryRepository.ExistsAsync(categoryId, cancellationToken))
-               .WithErrorCode(SizeErrorMessages.CategoryNotExist.Code)
-               .WithMessage(SizeErrorMessages.CategoryNotExist.Description);
+               .WithErrorCode(SizeErrorMessages.CategoryNotExists.Code)
+               .WithMessage(SizeErrorMessages.CategoryNotExists.Description);
 
             RuleFor(x => x)
                 .MustAsync(async (command, cancellationToken) => !await _sizeRepository.UniqueNameInCategoryAsync(command.Name, command.CategoryId, cancellationToken))

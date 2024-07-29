@@ -26,7 +26,6 @@ namespace Shop.Persistence.Configurations
                    .WithMany(s => s.SizeQuantities)
                    .HasForeignKey(pq => pq.SizeId)
                    .OnDelete(DeleteBehavior.NoAction);
-
         }
     }
 }

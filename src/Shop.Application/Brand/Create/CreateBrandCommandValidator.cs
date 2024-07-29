@@ -9,6 +9,7 @@ namespace Shop.Application.Brand.Create
 
         public CreateBrandCommandValidator(IBrandRepository brandRepository)
         {
+            _brandRepository = brandRepository;
 
             RuleFor(x => x.Name)
                 .NotEmpty()
@@ -21,7 +22,7 @@ namespace Shop.Application.Brand.Create
                 .WithMessage(BrandErrorMessages.NameTooLong.Description);
 
             RuleFor(x => x.Name)
-                .MustAsync(async (name, cancellationToken) => !await brandRepository.UniqueNameAsync(name, cancellationToken))
+                .MustAsync(async (name, cancellationToken) => !await _brandRepository.UniqueNameAsync(name, cancellationToken))
                 .WithErrorCode(BrandErrorMessages.NameNotUnique.Code)
                 .WithMessage(BrandErrorMessages.NameNotUnique.Description);
         }

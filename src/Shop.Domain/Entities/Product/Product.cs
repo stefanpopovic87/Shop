@@ -48,4 +48,9 @@ public class Product : BaseEntity
         SubcategoryId = subcategoryId;
         GenderId = genderId;
     }
+
+    public void AddSizeQuantity(int sizeId, int quantity)
+    {
+        SizeQuantities.Add(new ProductSizeQuantity(sizeId, quantity));
+    }
 }

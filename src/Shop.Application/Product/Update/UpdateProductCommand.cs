@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using Shop.Application.Abstractions;
+using Shop.Application.Dtos;
 using Shop.Common;
 
 namespace Shop.Application.Product.Update
@@ -7,9 +8,10 @@ namespace Shop.Application.Product.Update
         int Id,
         string Name,
         string Description,
-        string Code,
         decimal Price,
+        string Code,
         int BrandId,
-        int SubcategoryId, 
-        int GenderId) : IRequest<Result<string>>;
+        int SubcategoryId,
+        int GenderId,
+        List<SizeQuantityDto> ProductSizeQuantities) : ICommand<Result<string>>;
 }

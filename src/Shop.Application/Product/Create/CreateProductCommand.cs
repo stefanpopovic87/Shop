@@ -1,14 +1,16 @@
-﻿using MediatR;
+﻿using Shop.Application.Abstractions;
+using Shop.Application.Dtos;
 using Shop.Common;
 
 namespace Shop.Application.Product.Create
 {
     public record CreateProductCommand(
-        string Name, 
-        string Description, 
-        string Code, 
+        string Name,
+        string Description,
         decimal Price,
+        string Code,
         int BrandId,
-        int SubcategoryId, 
-        int GenderId) : IRequest<Result<int>>;
+        int SubcategoryId,
+        int GenderId,
+        List<SizeQuantityDto> ProductSizeQuantities) : ICommand<Result<int>>;
 }

@@ -3,7 +3,7 @@ using Shop.Application.Abstractions;
 using Shop.Application.Helpers;
 using Shop.Common;
 using Shop.Domain.Interfaces;
-using ProductEntities = Shop.Domain.Entities.Product;
+using DomainEntities = Shop.Domain.Entities;
 
 namespace Shop.Application.Category.Create
 {
@@ -31,7 +31,7 @@ namespace Shop.Application.Category.Create
                 return ValidationErrorHelper.CreateValidationErrorResult<int>(validationResult);
             }
 
-            var category = new ProductEntities.Category(request.Name);
+            var category = new DomainEntities.Category(request.Name);
 
             _categoryRepository.Add(category);
 

@@ -11,12 +11,12 @@ public class OrderItem : BaseEntity
     public int ProductId { get; private set; }
     public Product.Product Product { get; private set; }
     public int SizeId { get; private set; }
-    public Product.Size Size { get; private set; }
+    public Size Size { get; private set; }
     public decimal Price { get; private set; }
 
     private OrderItem() { }
 
-    public OrderItem(Product.Product product, Product.Size size, int quantity, decimal price)
+    public OrderItem(Product.Product product, Size size, int quantity, decimal price)
     {
         Product = product;
         ProductId = product.Id; 

@@ -23,26 +23,9 @@ namespace Shop.Application.Order.Get
             {
                 return Result<OrderDto>.Failure(OrderErrorMessages.NotFound);
 
-            }
+            }            
 
-            var orderDto = new OrderDto(
-                order.Id,
-                order.ShippingAddressId,
-                order.Items.Select(item => new OrderItemDto(
-                    item.Id,
-                    item.Quantity,
-                    new ProductDto(
-                        item.Product.Id, 
-                        item.Product.Name, 
-                        item.Product.Description, 
-                        item.Product.Price),
-                    new SizeDto(
-                        item.Size.Id, 
-                        item.Size.Name)
-                )).ToList()
-            );
-
-            return Result<OrderDto>.Success(orderDto);
+            return Result<OrderDto>.Success(null); // TODO: Create logic for get order
         }
     }
 }

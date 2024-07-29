@@ -1,10 +1,10 @@
 ﻿using FluentValidation;
 using Shop.Application.Abstractions;
-using Shop.Application.Category;
 using Shop.Application.Helpers;
 using Shop.Common;
 using Shop.Domain.Interfaces;
-using ProductEntities = Shop.Domain.Entities.Product;
+using DomainEntities = Shop.Domain.Entities;
+
 
 namespace Shop.Application.Subcategory.Create
 {
@@ -35,7 +35,7 @@ namespace Shop.Application.Subcategory.Create
                 return ValidationErrorHelper.CreateValidationErrorResult<int>(validationResult);
             }
 
-            var subcategory = new ProductEntities.Subcategory(request.Name, request.CategoryId);
+            var subcategory = new DomainEntities.Subcategory(request.Name, request.CategoryId);
 
             _subcategoryRepository.Add(subcategory);
 

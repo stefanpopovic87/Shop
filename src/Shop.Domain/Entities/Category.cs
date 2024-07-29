@@ -1,6 +1,6 @@
 ﻿using Shop.Domain.Entities.Base;
 
-namespace Shop.Domain.Entities.Product
+namespace Shop.Domain.Entities
 {
     public class Category : BaseEntity
     {
@@ -13,13 +13,13 @@ namespace Shop.Domain.Entities.Product
 
         public Category(string name)
         {
-            base.Create();
+            Create();
             Name = name;
         }
 
         public void Update(string name)
         {
-            base.Update();
+            Update();
             Name = name;
         }
     }
