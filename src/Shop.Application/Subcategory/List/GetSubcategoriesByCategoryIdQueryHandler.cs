@@ -1,7 +1,7 @@
 ﻿using Shop.Application.Abstractions;
 using Shop.Application.Dtos.Base;
 using Shop.Common;
-using Shop.Domain.Interfaces;
+using Shop.Application.Interfaces;
 
 namespace Shop.Application.Subcategory.List
 {

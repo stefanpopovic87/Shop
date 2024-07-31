@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Shop.Application.Dtos;
 using Shop.Common;
-using Shop.Domain.Interfaces;
+using Shop.Application.Interfaces;
 
 namespace Shop.Application.Product.Get
 {

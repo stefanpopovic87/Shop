@@ -3,7 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Shop.Domain.Interfaces;
+using Shop.Application.Interfaces;
 using Shop.Persistence.Database;
 using Shop.Persistence.Repositories;
 

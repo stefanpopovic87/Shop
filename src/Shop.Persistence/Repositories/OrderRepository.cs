@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Shop.Domain.Entities.Order;
-using Shop.Domain.Interfaces;
+using Shop.Application.Interfaces;
 using Shop.Persistence.Database;
 using Shop.Persistence.Repositories.Base;
 

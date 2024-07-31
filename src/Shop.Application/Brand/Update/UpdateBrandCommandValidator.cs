@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 using Shop.Application.Brand.Update;
-using Shop.Domain.Interfaces;
+using Shop.Application.Interfaces;
 
 namespace Shop.Application.Brand.Create
 {

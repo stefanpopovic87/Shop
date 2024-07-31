@@ -1,12 +1,11 @@
 ﻿using Shop.Application.Abstractions;
-using Shop.Application.Dtos;
 using Shop.Application.Dtos.Base;
 using Shop.Common;
-using Shop.Domain.Interfaces;
+using Shop.Application.Interfaces;
 
 namespace Shop.Application.ProductSizeQuantity.Get
 {
-    internal sealed class GetProductSizeQuantityByIdQueryHandler : IQueryHandler<GetProductSizeQuantityByIdQuery, Result<ProductSizeQuantityDto>>
+    internal sealed class GetProductSizeQuantityByIdQueryHandler : IQueryHandler<GetProductSizeQuantityByIdQuery, Result<GetProductSizeQuantityByIdResponse>>
     {
         private readonly IProductSizeQuantityRepository _productSizeQuantityRepository;
 
@@ -15,7 +14,7 @@ namespace Shop.Application.ProductSizeQuantity.Get
             _productSizeQuantityRepository = productSizeQuantityRepository;
         }
 
-        public async Task<Result<ProductSizeQuantityDto>> Handle(GetProductSizeQuantityByIdQuery request, CancellationToken cancellationToken)
+        public async Task<Result<GetProductSizeQuantityByIdResponse>> Handle(GetProductSizeQuantityByIdQuery request, CancellationToken cancellationToken)
         {
             var productSizeQuantity = await _productSizeQuantityRepository.GetByProductidAndSizeIdAsync(
                 request.ProductId, 
@@ -24,16 +23,16 @@ namespace Shop.Application.ProductSizeQuantity.Get
 
             if (productSizeQuantity is null)
             {
-                return Result<ProductSizeQuantityDto>.Failure(ProductSizeQuantityErrorMessages.NotFound);
+                return Result<GetProductSizeQuantityByIdResponse>.Failure(ProductSizeQuantityErrorMessages.NotFound);
             }
 
-            var productSizeQuantityDto = new ProductSizeQuantityDto(
+            var productSizeQuantityDto = new GetProductSizeQuantityByIdResponse(
                 productSizeQuantity.ProductId, 
                 productSizeQuantity.SizeId,
                 productSizeQuantity.QuantityInStock
             );
 
-            return Result<ProductSizeQuantityDto>.Success(productSizeQuantityDto);
+            return Result<GetProductSizeQuantityByIdResponse>.Success(productSizeQuantityDto);
         }
     }
 }

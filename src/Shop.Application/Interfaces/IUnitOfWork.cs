@@ -1,4 +1,4 @@
-﻿namespace Shop.Domain.Interfaces
+﻿namespace Shop.Application.Interfaces
 {
     public interface IUnitOfWork
     {

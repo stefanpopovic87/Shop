@@ -2,7 +2,7 @@
 using Shop.Common;
 using Shop.Domain.Entities.Enums;
 using Shop.Domain.ErrorMessages;
-using Shop.Domain.Interfaces;
+using Shop.Application.Interfaces;
 
 namespace Shop.Application.Order.Create
 {

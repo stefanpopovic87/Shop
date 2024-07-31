@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using Shop.Domain.Interfaces;
+using Shop.Application.Interfaces;
 
 namespace Shop.Application.Size.Update
 {

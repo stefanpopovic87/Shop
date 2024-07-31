@@ -1,6 +1,6 @@
 ﻿using Shop.Application.Abstractions;
 using Shop.Common;
-using Shop.Domain.Interfaces;
+using Shop.Application.Interfaces;
 
 namespace Shop.Application.Brand.Delete
 {

@@ -2,7 +2,7 @@
 using Shop.Application.Abstractions;
 using Shop.Application.Helpers;
 using Shop.Common;
-using Shop.Domain.Interfaces;
+using Shop.Application.Interfaces;
 using DomainEntities = Shop.Domain.Entities;
 
 namespace Shop.Application.Brand.Create

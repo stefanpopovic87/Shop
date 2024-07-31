@@ -1,4 +1,4 @@
-﻿namespace Shop.Domain.Interfaces.Base
+﻿namespace Shop.Application.Interfaces.Base
 {
     public interface IBaseRepository<T>
     {
