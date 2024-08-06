@@ -11,20 +11,27 @@ namespace Shop.Persistence.Configurations
         {
             builder.HasKey(p => p.Id);
 
-            builder.Property(p => p.Name)
-                .IsRequired()
-                .HasMaxLength(200);
+            builder.OwnsOne(p => p.Details, pd =>
+            {
+                pd.Property(d => d.Name)
+                    .IsRequired()
+                    .HasMaxLength(200)
+                    .HasColumnName("Name");
 
-            builder.Property(p => p.Description)
-                .HasMaxLength(1000);
+                pd.Property(d => d.Description)
+                    .HasMaxLength(1000)
+                    .HasColumnName("Description");
 
-            builder.Property(p => p.Price)
-                   .IsRequired()
-                   .HasColumnType("decimal(18,2)");
+                pd.Property(d => d.Price)
+                    .IsRequired()
+                    .HasColumnType("decimal(18,2)")
+                    .HasColumnName("Price");
 
-            builder.Property(p => p.Code)
-                   .IsRequired()
-                   .HasMaxLength(50);
+                pd.Property(d => d.Code)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .HasColumnName("Code");
+            });
 
             builder.HasOne(p => p.Brand)
                    .WithMany(b => b.Products)

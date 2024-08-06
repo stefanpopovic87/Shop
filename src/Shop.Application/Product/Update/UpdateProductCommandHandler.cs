@@ -3,6 +3,8 @@ using Shop.Application.Abstractions;
 using Shop.Application.Helpers;
 using Shop.Common;
 using Shop.Application.Interfaces;
+using Shop.Domain.Entities.Product;
+using Shop.Application.Builders;
 
 namespace Shop.Application.Product.Update
 {
@@ -37,7 +39,8 @@ namespace Shop.Application.Product.Update
                 return Result<string>.Failure(ProductErrorMessages.NotFound);
             }
 
-            product.Update(request.Name, request.Description, request.Price, request.Code, request.BrandId, request.SubcategoryId, request.GenderId);
+            var productDetails = new ProductDetails(request.Name, request.Description, request.Price, request.Code);
+            product.Update(productDetails, request.BrandId, request.SubcategoryId, request.GenderId);
 
             _productRepository.Update(product);
 

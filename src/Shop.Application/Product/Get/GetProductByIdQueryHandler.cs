@@ -25,10 +25,10 @@ namespace Shop.Application.Product.Get
 
             var productDto = new ProductDto(
                product.Id,
-               product.Name,
-               product.Description,
-               product.Price,
-               product.Code,
+               product.Details.Name,
+               product.Details.Description,
+               product.Details.Price,
+               product.Details.Code,
                product.BrandId,
                product.SubcategoryId,
                product.GenderId,

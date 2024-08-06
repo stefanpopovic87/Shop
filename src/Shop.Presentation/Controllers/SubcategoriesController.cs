@@ -10,7 +10,6 @@ using Shop.Application.Subcategory.Update;
 using Shop.Application.Subcategory.Delete;
 using Microsoft.AspNetCore.Http;
 using Shop.Common;
-using Shop.Application.Size.List;
 
 namespace Shop.Presentation.Controllers
 {

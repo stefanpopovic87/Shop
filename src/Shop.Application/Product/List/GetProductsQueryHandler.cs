@@ -26,10 +26,10 @@ namespace Shop.Application.Product.List
             var productsDto = products.Select(x => new ProductDto
                (
                   x.Id,
-                  x.Name,
-                  x.Description,
-                  x.Price,
-                  x.Code,
+                  x.Details.Name,
+                  x.Details.Description,
+                  x.Details.Price,
+                  x.Details.Code,
                   x.BrandId,
                   x.SubcategoryId,
                   x.GenderId,

@@ -3,7 +3,7 @@ using Shop.Application.Abstractions;
 using Shop.Application.Helpers;
 using Shop.Common;
 using Shop.Application.Interfaces;
-using ProductEntities = Shop.Domain.Entities.Product;
+using Shop.Application.Builders;
 
 namespace Shop.Application.Product.Create
 {
@@ -31,20 +31,17 @@ namespace Shop.Application.Product.Create
                 return ValidationErrorHelper.CreateValidationErrorResult<int>(validationResult);
             }
 
-            var product = new ProductEntities.Product(
-                request.Name,
-                request.Description,
-                request.Price,
-                request.Code,
-                request.BrandId,
-                request.SubcategoryId,
-                request.GenderId
-            );
-
-            foreach (var sizeQuantity in request.ProductSizeQuantities)
-            {
-                product.AddSizeQuantity(sizeQuantity.SizeId, sizeQuantity.Quantity);
-            }
+            var product = ProductBuilder.StartBuildingProduct()
+               .WithDetails(p => p
+                   .Named(request.Name)
+                   .Described(request.Description)
+                   .PriceOf(request.Price)
+                   .WithCode(request.Code))
+               .AssignedBrand(request.BrandId)
+               .BelongingToSubcategory(request.SubcategoryId)
+               .ForGender(request.GenderId)
+               .WithSizeAndQuantities(request.ProductSizeQuantities.Select(q => (q.SizeId, q.Quantity)))
+               .Build();
 
             _productRepository.Add(product);
 

@@ -30,7 +30,7 @@ public class Order : BaseEntity
     {
         if (Items.All(item => item.ProductId != product.Id || item.SizeId != size.Id))
         {
-            Items.Add(new OrderItem(product, size, quantity, product.Price));
+            Items.Add(new OrderItem(product, size, quantity, product.Details.Price));
             return;
         }
 
