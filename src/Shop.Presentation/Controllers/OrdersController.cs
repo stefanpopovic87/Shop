@@ -38,7 +38,7 @@ namespace Shop.Presentation.Controllers
             var result = await _mediator.Send(command, CancellationToken);
             if (!result.IsSuccess)
             {
-                return BadRequest(new { Message = result.Error });
+                return BadRequest(new { Message = result });
             }
 
             return CreatedAtAction(nameof(GetOrders), new { id = result.Value }, result.Value);
