@@ -3,7 +3,7 @@ import { Grid } from '@mui/material';
 import { useAppDispatch, useAppSelector } from '../../app/store/configureStore';
 import { fetchProducts } from './productSlice';
 import ProductCard from './ProductCard';
-import './ProductList.scss';
+import ProductCardSkeleton from './ProductCardSkeleton';
 
 export default function ProductList() {
     const dispatch = useAppDispatch();
@@ -20,13 +20,7 @@ export default function ProductList() {
             {products.map(product => (
                 <Grid item xs={4} key={product.id}>
                     {!productsLoaded ? (
-                        <div className="skeleton-card">
-                            <div className="skeleton-image"></div>
-                            <div className="skeleton-content">
-                                <div className="skeleton-title"></div>
-                                <div className="skeleton-subtitle"></div>
-                            </div>
-                        </div>
+                        <ProductCardSkeleton />
                     ) : (
                         <ProductCard product={product} />
                     )}
