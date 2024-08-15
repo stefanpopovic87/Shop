@@ -1,4 +1,4 @@
-﻿using Shop.Domain.Entities.Order;
+﻿using Shop.Domain.Entities.Orders;
 using Shop.Application.Interfaces;
 using Shop.Persistence.Database;
 using Shop.Persistence.Repositories.Base;

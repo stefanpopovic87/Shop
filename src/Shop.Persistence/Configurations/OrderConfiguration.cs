@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Shop.Domain.Entities.Order;
+using Shop.Domain.Entities.Orders;
 using Shop.Persistence.Configurations.Base;
 
 namespace Shop.Persistence.Configurations

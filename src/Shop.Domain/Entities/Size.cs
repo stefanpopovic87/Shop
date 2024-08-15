@@ -1,5 +1,5 @@
 ﻿using Shop.Domain.Entities.Base;
-using Shop.Domain.Entities.Product;
+using Shop.Domain.Entities.Products;
 
 namespace Shop.Domain.Entities
 {
@@ -10,7 +10,7 @@ namespace Shop.Domain.Entities
         public int CategoryId { get; private set; }
         public Category Category { get; private set; }
 
-        public ICollection<ProductSizeQuantity> SizeQuantities { get; private set; } = new List<ProductSizeQuantity>();
+        public ICollection<ProductSizeQuantity> SizeQuantities { get; private set; } = [];
 
 
 

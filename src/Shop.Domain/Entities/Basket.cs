@@ -10,7 +10,7 @@ public class Basket : BaseEntity
     public string PaymentIntentId { get; set; }
     public string ClientSecret { get; set; }
 
-    public void AddItem(Product.Product product, int quantity)
+    public void AddItem(Products.Product product, int quantity)
     {
         if (Items.All(item => item.ProductId != product.Id))
         {

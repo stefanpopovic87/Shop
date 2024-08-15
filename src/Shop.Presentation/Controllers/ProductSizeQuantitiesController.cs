@@ -1,14 +1,14 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Shop.Application.ProductSizeQuantity.Create;
-using Shop.Application.ProductSizeQuantity.Update;
-using Shop.Application.ProductSizeQuantity.Delete;
+using Shop.Application.ProductSizeQuantites.Create;
+using Shop.Application.ProductSizeQuantites.Update;
+using Shop.Application.ProductSizeQuantites.Delete;
 using Shop.Presentation.Controllers.Base;
 using Swashbuckle.AspNetCore.Annotations;
 using Mapster;
 using Microsoft.AspNetCore.Http;
 using Shop.Common;
-using Shop.Application.ProductSizeQuantity.Get;
+using Shop.Application.ProductSizeQuantites.Get;
 
 namespace Shop.Presentation.Controllers
 {

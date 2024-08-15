@@ -1,8 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Shop.Application.Order.Create;
-using Shop.Application.Order.Delete;
-using Shop.Application.Order.Get;
+using Shop.Application.Orders.Create;
+using Shop.Application.Orders.Delete;
+using Shop.Application.Orders.Get;
 using Shop.Presentation.Controllers.Base;
 using Swashbuckle.AspNetCore.Annotations;
 

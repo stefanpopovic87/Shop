@@ -1,5 +1,5 @@
 ﻿using Shop.Domain.Entities.Base;
-using ProductEntities = Shop.Domain.Entities.Product;
+using Shop.Domain.Entities.Products;
 
 namespace Shop.Domain.Entities
 {
@@ -8,7 +8,7 @@ namespace Shop.Domain.Entities
         public int Id { get; private set; }
         public string Name { get; private set; } = string.Empty;
 
-        public ICollection<ProductEntities.Product> Products { get; private set; } = new List<ProductEntities.Product>();
+        public ICollection<Product> Products { get; private set; } = [];
 
         public Gender(string name)
         {

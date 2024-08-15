@@ -1,4 +1,4 @@
-﻿using ProductEntities = Shop.Domain.Entities.Product;
+﻿using Shop.Domain.Entities.Products;
 
 namespace Shop.Application.Builders
 {
@@ -39,9 +39,9 @@ namespace Shop.Application.Builders
             return this;
         }
 
-        public ProductEntities.ProductDetails Build()
+        public ProductDetails Build()
         {
-            return new ProductEntities.ProductDetails(_name, _description, _price, _code);
+            return new ProductDetails(_name, _description, _price, _code);
         }
 
     }

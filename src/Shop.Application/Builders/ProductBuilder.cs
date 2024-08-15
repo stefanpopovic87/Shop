@@ -1,4 +1,4 @@
-﻿using ProductEntities = Shop.Domain.Entities.Product;
+﻿using Shop.Domain.Entities.Products;
 
 namespace Shop.Application.Builders
 {
@@ -49,9 +49,9 @@ namespace Shop.Application.Builders
             return this;
         }
 
-        public ProductEntities.Product Build()
+        public Product Build()
         {
-            var product = new ProductEntities.Product(
+            var product = new Product(
                 _detailBuilder.Build(),
                 _brandId,
                 _subcategoryId,

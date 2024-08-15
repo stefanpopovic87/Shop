@@ -1,6 +1,4 @@
-﻿using ProductEntities = Shop.Domain.Entities.Product;
-
-namespace Shop.Application.Builders
+﻿namespace Shop.Application.Builders
 {
     internal class ProductSizeBuilder
     {

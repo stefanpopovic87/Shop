@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Shop.Domain.Entities;
-using Shop.Domain.Entities.Order;
-using Shop.Domain.Entities.Product;
+using Shop.Domain.Entities.Orders;
+using Shop.Domain.Entities.Products;
 using Shop.Application.Interfaces;
 using Shop.Persistence.Configurations;
 

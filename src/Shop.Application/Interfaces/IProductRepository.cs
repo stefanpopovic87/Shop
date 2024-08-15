@@ -1,11 +1,11 @@
 ﻿using Shop.Application.Interfaces.Base;
-using ProductEntities = Shop.Domain.Entities.Product;
+using Shop.Domain.Entities.Products;
 
 namespace Shop.Application.Interfaces
 {
-    public interface IProductRepository : IBaseRepository<ProductEntities.Product>
+    public interface IProductRepository : IBaseRepository<Product>
     {
-        Task<ProductEntities.Product?> GetByIdIncludeSizeQuantitiesAsync(int id, CancellationToken cancellationToken);
-        Task<List<ProductEntities.Product>> GetAllIdIncludeSizeQuantitiesAsync(CancellationToken cancellationToken);
+        Task<Product?> GetByIdIncludeSizeQuantitiesAsync(int id, CancellationToken cancellationToken);
+        Task<List<Product>> GetAllIdIncludeSizeQuantitiesAsync(CancellationToken cancellationToken);
     }
 }

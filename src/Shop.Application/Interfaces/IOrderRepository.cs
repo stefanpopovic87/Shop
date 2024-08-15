@@ -1,10 +1,10 @@
 ﻿using Shop.Application.Interfaces.Base;
-using OrderEntities = Shop.Domain.Entities.Order;
+using Shop.Domain.Entities.Orders;
 
 namespace Shop.Application.Interfaces
 {
-    public interface IOrderRepository : IBaseRepository<OrderEntities.Order>
+    public interface IOrderRepository : IBaseRepository<Order>
     {
-        Task<OrderEntities.Order?> GetAsync(CancellationToken cancellationToken);
+        Task<Order?> GetAsync(CancellationToken cancellationToken);
     }
 }

@@ -1,13 +1,13 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Shop.Application.Category.Create;
-using Shop.Application.Category.Get;
-using Shop.Application.Category.List;
+using Shop.Application.Categories.Create;
+using Shop.Application.Categories.Get;
+using Shop.Application.Categories.List;
 using Shop.Presentation.Controllers.Base;
 using Swashbuckle.AspNetCore.Annotations;
 using Mapster;
-using Shop.Application.Category.Update;
-using Shop.Application.Category.Delete;
+using Shop.Application.Categories.Update;
+using Shop.Application.Categories.Delete;
 using Microsoft.AspNetCore.Http;
 using Shop.Common;
 

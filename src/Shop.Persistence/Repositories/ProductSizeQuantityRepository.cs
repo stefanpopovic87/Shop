@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Shop.Domain.Entities.Product;
+using Shop.Domain.Entities.Products;
 using Shop.Application.Interfaces;
 using Shop.Persistence.Database;
 using Shop.Persistence.Repositories.Base;

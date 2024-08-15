@@ -1,13 +1,13 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Shop.Application.Brand.Create;
-using Shop.Application.Brand.Get;
-using Shop.Application.Brand.List;
+using Shop.Application.Brands.Create;
+using Shop.Application.Brands.Get;
+using Shop.Application.Brands.List;
 using Shop.Presentation.Controllers.Base;
 using Swashbuckle.AspNetCore.Annotations;
 using Mapster;
-using Shop.Application.Brand.Update;
-using Shop.Application.Brand.Delete;
+using Shop.Application.Brands.Update;
+using Shop.Application.Brands.Delete;
 using Microsoft.AspNetCore.Http;
 using Shop.Common;
 

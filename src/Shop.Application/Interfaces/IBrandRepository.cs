@@ -1,9 +1,9 @@
 ﻿using Shop.Application.Interfaces.Base;
-using DomainEntities = Shop.Domain.Entities;
+using Shop.Domain.Entities;
 
 namespace Shop.Application.Interfaces
 {
-    public interface IBrandRepository : IBaseRepository<DomainEntities.Brand>
+    public interface IBrandRepository : IBaseRepository<Brand>
     {
     }
 }

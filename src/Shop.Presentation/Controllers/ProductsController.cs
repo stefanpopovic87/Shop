@@ -1,12 +1,12 @@
 ﻿using Mapster;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Shop.Application.Category.Update;
-using Shop.Application.Product.Create;
-using Shop.Application.Product.Delete;
-using Shop.Application.Product.Get;
-using Shop.Application.Product.List;
-using Shop.Application.Product.Update;
+using Shop.Application.Categories.Update;
+using Shop.Application.Products.Create;
+using Shop.Application.Products.Delete;
+using Shop.Application.Products.Get;
+using Shop.Application.Products.List;
+using Shop.Application.Products.Update;
 using Shop.Presentation.Controllers.Base;
 using Swashbuckle.AspNetCore.Annotations;
 
