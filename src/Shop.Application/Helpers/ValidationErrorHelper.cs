@@ -12,9 +12,9 @@ namespace Shop.Application.Helpers
                 throw new InvalidOperationException("Validation result is valid, no errors to process.");
             }
 
-            var firstError = validationResult.Errors.First();
-            var error = new Error(firstError.ErrorCode, firstError.ErrorMessage, ErrorTypeEnum.Validation);
-            return Result<T>.Failure(error);
+            var validationErrors = validationResult.Errors;
+            List<Error> errros = validationErrors.Select(x => new Error(x.ErrorCode, x.ErrorMessage, ErrorTypeEnum.Validation)).ToList();
+            return Result<T>.Failure(errros);
         }
     }
 }

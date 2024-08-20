@@ -17,7 +17,7 @@ namespace Shop.Persistence.Repositories
         {
             return await _context.ProductSizeQuantities
                 .Where(x => x.ProductId == productid && x.SizeId == sizeId)
-                .FirstOrDefaultAsync(cancellationToken);
+                .SingleOrDefaultAsync(cancellationToken);
         }
 
         public async Task<bool> UniqueProductBySizeAsync(int productId, int sizeId, CancellationToken cancellationToken)

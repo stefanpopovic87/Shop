@@ -26,7 +26,7 @@ namespace Shop.Persistence
             services.AddDbContext<ShopDbContext>(options =>
             {
                 var connectionString = configuration.GetConnectionString("ShopConnection");
-                options.UseSqlServer(connectionString, sqlOptions => sqlOptions.MigrationsAssembly(typeof(ShopDbContext).Assembly.FullName));
+                options.UseNpgsql(connectionString, npgsqlOptions => npgsqlOptions.MigrationsAssembly(typeof(ShopDbContext).Assembly.FullName));
 
                 if (environment.IsDevelopment())
                 {
@@ -41,7 +41,6 @@ namespace Shop.Persistence
                sp.GetRequiredService<ShopDbContext>());
 
             return services;
-
         }
 
 

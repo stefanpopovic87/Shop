@@ -25,7 +25,7 @@ namespace Shop.Persistence.Repositories.Base
 
         public virtual async Task<T?> GetByIdAsync(int id, CancellationToken cancellationToken)
         {
-            return await _context.Set<T>().FindAsync(new object[] { id }, cancellationToken);
+            return await _context.Set<T>().FindAsync([id], cancellationToken);
         }
 
         public virtual async Task<List<T>> GetAllAsync(CancellationToken cancellationToken)
@@ -40,7 +40,7 @@ namespace Shop.Persistence.Repositories.Base
 
         public async Task<bool> UniqueNameAsync(string name, CancellationToken cancellationToken)
         {
-            return await _context.Set<T>().AnyAsync(e => EF.Property<string>(e, "Name") == name, cancellationToken);
+            return await _context.Set<T>().AnyAsync(e => EF.Property<string>(e, "Name").ToLower() == name.ToLower(), cancellationToken);
         }
     }
 }

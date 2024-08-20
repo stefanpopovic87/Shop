@@ -34,7 +34,7 @@ namespace Shop.Application.Behaviors
             }
             else
             {
-                using(LogContext.PushProperty("Error", result.Error, true))
+                using(LogContext.PushProperty("Errors", result.Errors, true))
                 {
                     _logger.LogError("Completed request {RequestName} with error", requestName);
                 }

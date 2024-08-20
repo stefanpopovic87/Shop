@@ -4,23 +4,25 @@
     {
         public bool IsSuccess { get; private set; }
         public T? Value { get; private set; }
-        public Error? Error { get; private set; }
+        public List<Error>? Errors { get; private set; }
 
-        public Result(bool isSuccess, T? value, Error? error)
+        public Result(bool isSuccess, T? value, List<Error>? errors)
         {
-            if (isSuccess && error is not null ||
-                !isSuccess && error is null)
+            if (isSuccess && errors is not null && errors.Any() ||
+                !isSuccess && (errors is null || !errors.Any()))
             {
-                throw new ArgumentException("Invalid error", nameof(error));
+                throw new ArgumentException("Invalid errors", nameof(errors));
             }
 
             IsSuccess = isSuccess;
             Value = isSuccess ? value : default;
-            Error = isSuccess ? null : error;
+            Errors = isSuccess ? null : errors;
         }
 
-        public static Result<T> Success(T value) => new(true, value, default);
+        public static Result<T> Success(T value) => new(true, value, null);
 
-        public static Result<T> Failure(Error error) => new(false, default, error);
+        public static Result<T> Failure(List<Error> errors) => new(false, default, errors);
+
+        public static Result<T> Failure(Error error) => new(false, default, [error]);
     }
 }

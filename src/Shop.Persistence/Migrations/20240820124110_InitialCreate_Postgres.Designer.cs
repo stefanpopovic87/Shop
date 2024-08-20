@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Shop.Persistence.Database;
@@ -11,9 +12,11 @@ using Shop.Persistence.Database;
 namespace Shop.Persistence.Migrations
 {
     [DbContext(typeof(ShopDbContext))]
-    partial class ShopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240820124110_InitialCreate_Postgres")]
+    partial class InitialCreate_Postgres
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,13 +48,13 @@ namespace Shop.Persistence.Migrations
                     b.Property<int>("CreatedBy")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime>("DateCreated")
+                    b.Property<DateTimeOffset>("DateCreated")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateTime?>("DateDeleted")
+                    b.Property<DateTimeOffset?>("DateDeleted")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateTime?>("DateModified")
+                    b.Property<DateTimeOffset?>("DateModified")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<bool>("Deleted")
@@ -94,13 +97,13 @@ namespace Shop.Persistence.Migrations
                     b.Property<int>("CreatedBy")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime>("DateCreated")
+                    b.Property<DateTimeOffset>("DateCreated")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateTime?>("DateDeleted")
+                    b.Property<DateTimeOffset?>("DateDeleted")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateTime?>("DateModified")
+                    b.Property<DateTimeOffset?>("DateModified")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<bool>("Deleted")
@@ -138,13 +141,13 @@ namespace Shop.Persistence.Migrations
                     b.Property<int>("CreatedBy")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime>("DateCreated")
+                    b.Property<DateTimeOffset>("DateCreated")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateTime?>("DateDeleted")
+                    b.Property<DateTimeOffset?>("DateDeleted")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateTime?>("DateModified")
+                    b.Property<DateTimeOffset?>("DateModified")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<bool>("Deleted")
@@ -182,13 +185,13 @@ namespace Shop.Persistence.Migrations
                     b.Property<int>("CreatedBy")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime>("DateCreated")
+                    b.Property<DateTimeOffset>("DateCreated")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateTime?>("DateDeleted")
+                    b.Property<DateTimeOffset?>("DateDeleted")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateTime?>("DateModified")
+                    b.Property<DateTimeOffset?>("DateModified")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<bool>("Deleted")
@@ -229,13 +232,13 @@ namespace Shop.Persistence.Migrations
                     b.Property<int>("CreatedBy")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime>("DateCreated")
+                    b.Property<DateTimeOffset>("DateCreated")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateTime?>("DateDeleted")
+                    b.Property<DateTimeOffset?>("DateDeleted")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateTime?>("DateModified")
+                    b.Property<DateTimeOffset?>("DateModified")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<bool>("Deleted")
@@ -275,13 +278,13 @@ namespace Shop.Persistence.Migrations
                     b.Property<int>("CreatedBy")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime>("DateCreated")
+                    b.Property<DateTimeOffset>("DateCreated")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateTime?>("DateDeleted")
+                    b.Property<DateTimeOffset?>("DateDeleted")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateTime?>("DateModified")
+                    b.Property<DateTimeOffset?>("DateModified")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<bool>("Deleted")
@@ -332,13 +335,13 @@ namespace Shop.Persistence.Migrations
                     b.Property<int>("CreatedBy")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime>("DateCreated")
+                    b.Property<DateTimeOffset>("DateCreated")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateTime?>("DateDeleted")
+                    b.Property<DateTimeOffset?>("DateDeleted")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateTime?>("DateModified")
+                    b.Property<DateTimeOffset?>("DateModified")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<bool>("Deleted")
@@ -376,13 +379,13 @@ namespace Shop.Persistence.Migrations
                     b.Property<int>("CreatedBy")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime>("DateCreated")
+                    b.Property<DateTimeOffset>("DateCreated")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateTime?>("DateDeleted")
+                    b.Property<DateTimeOffset?>("DateDeleted")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateTime?>("DateModified")
+                    b.Property<DateTimeOffset?>("DateModified")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<bool>("Deleted")
@@ -424,13 +427,13 @@ namespace Shop.Persistence.Migrations
                     b.Property<int>("CreatedBy")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime>("DateCreated")
+                    b.Property<DateTimeOffset>("DateCreated")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateTime?>("DateDeleted")
+                    b.Property<DateTimeOffset?>("DateDeleted")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateTime?>("DateModified")
+                    b.Property<DateTimeOffset?>("DateModified")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<bool>("Deleted")
@@ -471,13 +474,13 @@ namespace Shop.Persistence.Migrations
                     b.Property<int>("CreatedBy")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime>("DateCreated")
+                    b.Property<DateTimeOffset>("DateCreated")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateTime?>("DateDeleted")
+                    b.Property<DateTimeOffset?>("DateDeleted")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateTime?>("DateModified")
+                    b.Property<DateTimeOffset?>("DateModified")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<bool>("Deleted")
@@ -517,13 +520,13 @@ namespace Shop.Persistence.Migrations
                     b.Property<int>("CreatedBy")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime>("DateCreated")
+                    b.Property<DateTimeOffset>("DateCreated")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateTime?>("DateDeleted")
+                    b.Property<DateTimeOffset?>("DateDeleted")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateTime?>("DateModified")
+                    b.Property<DateTimeOffset?>("DateModified")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<bool>("Deleted")
