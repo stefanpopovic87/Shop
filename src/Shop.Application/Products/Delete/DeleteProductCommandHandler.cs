@@ -25,9 +25,7 @@ namespace Shop.Application.Products.Delete
                 return Result<string>.Failure(ProductErrorMessages.NotFound);
             }
 
-            product.Delete();
-
-            _productRepository.Update(product);
+            _productRepository.Delete(product);
 
             await _unitOfWork.SaveChangesAsync(cancellationToken);
 

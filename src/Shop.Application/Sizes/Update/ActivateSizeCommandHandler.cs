@@ -24,12 +24,13 @@ namespace Shop.Application.Sizes.Update
                 return Result<string>.Failure(SizeErrorMessages.NotFound);
             }
 
-            if (!size.Deleted)
-            {
-                return Result<string>.Failure(SizeErrorMessages.AlreadyActive);
-            }
+            //TODO - change logic
+            //if (!size.Deleted)
+            //{
+            //    return Result<string>.Failure(SizeErrorMessages.AlreadyActive);
+            //}
 
-            size.Activate();
+            //size.Activate();
 
             _sizeRepository.Update(size);
 

@@ -24,9 +24,7 @@ namespace Shop.Application.Categories.Delete
                 return Result<string>.Failure(CategoryErrorMessages.NotFound);
             }
 
-            category.Delete();
-
-            _categoryRepository.Update(category);
+            _categoryRepository.Delete(category);
 
             if (await _unitOfWork.SaveChangesAsync(cancellationToken) == 0)
             {

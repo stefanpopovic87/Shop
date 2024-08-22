@@ -1,13 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Shop.Domain.Entities.Orders;
-using Shop.Persistence.Configurations.Base;
 
 namespace Shop.Persistence.Configurations
 {
-    public class OrderItemConfiguration : BaseEntityConfiguration<OrderItem>
+    public class OrderItemConfiguration : IEntityTypeConfiguration<OrderItem>
     {
-        protected override void ConfigureEntity(EntityTypeBuilder<OrderItem> builder)
+        public void Configure(EntityTypeBuilder<OrderItem> builder)
         {
             builder.HasKey(oi => oi.Id);
 
@@ -35,6 +34,6 @@ namespace Shop.Persistence.Configurations
             builder.HasOne(oi => oi.Order)
                    .WithMany(o => o.Items)
                    .HasForeignKey(oi => oi.OrderId);
-        }
+        }        
     }
 }

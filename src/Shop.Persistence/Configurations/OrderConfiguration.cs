@@ -1,12 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Shop.Domain.Entities.Orders;
-using Shop.Persistence.Configurations.Base;
 
 namespace Shop.Persistence.Configurations
 {
-    public class OrderConfiguration : BaseEntityConfiguration<Order>
+    public class OrderConfiguration : IEntityTypeConfiguration<Order>
     {
-        protected override void ConfigureEntity(EntityTypeBuilder<Order> builder)
+        public void Configure(EntityTypeBuilder<Order> builder)
         {
             builder.HasKey(o => o.Id);
 

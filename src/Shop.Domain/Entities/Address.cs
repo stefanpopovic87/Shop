@@ -1,8 +1,6 @@
-using Shop.Domain.Entities.Base;
-
 namespace Shop.Domain.Entities;
 
-public class Address : BaseEntity
+public class Address
 {
     public int Id { get; private set; }
     public string Street { get; private set; } = string.Empty;

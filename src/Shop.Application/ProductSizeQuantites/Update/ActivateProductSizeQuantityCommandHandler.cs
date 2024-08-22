@@ -24,12 +24,13 @@ namespace Shop.Application.ProductSizeQuantites.Update
                 return Result<string>.Failure(ProductSizeQuantityErrorMessages.NotFound);
             }
 
-            if (!productSizeQuantity.Deleted)
-            {
-                return Result<string>.Failure(ProductSizeQuantityErrorMessages.AlreadyActive);
-            }
+            //TODO - change logic
+            //if (!productSizeQuantity.Deleted)
+            //{
+            //    return Result<string>.Failure(ProductSizeQuantityErrorMessages.AlreadyActive);
+            //}
 
-            productSizeQuantity.Activate();
+            //productSizeQuantity.Activate();
 
             _productSizeQuantityRepository.Update(productSizeQuantity);
 

@@ -24,12 +24,13 @@ namespace Shop.Application.Genders.Update
                 return Result<string>.Failure(GenderErrorMessages.NotFound);
             }
 
-            if (!gender.Deleted)
-            {
-                return Result<string>.Failure(GenderErrorMessages.AlreadyActive);
-            }
+            //TODO - change logic
+            //if (!gender.Deleted)
+            //{
+            //    return Result<string>.Failure(GenderErrorMessages.AlreadyActive);
+            //}
 
-            gender.Activate();
+            //gender.Activate();
 
             _genderRepository.Update(gender);
 

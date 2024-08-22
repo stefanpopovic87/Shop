@@ -24,12 +24,13 @@ namespace Shop.Application.Subcategories.Update
                 return Result<string>.Failure(SubcategoryErrorMessages.NotFound);
             }
 
-            if (!subcategory.Deleted)
-            {
-                return Result<string>.Failure(SubcategoryErrorMessages.AlreadyActive);
-            }
+            //TODO - change logic
+            //if (!subcategory.Deleted)
+            //{
+            //    return Result<string>.Failure(SubcategoryErrorMessages.AlreadyActive);
+            //}
 
-            subcategory.Activate();
+            //subcategory.Activate();
 
             _subcategoryRepository.Update(subcategory);
 

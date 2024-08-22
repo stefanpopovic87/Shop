@@ -1,13 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Shop.Domain.Entities.Products;
-using Shop.Persistence.Configurations.Base;
 
 namespace Shop.Persistence.Configurations
 {
-    public class ProductConfiguration : BaseEntityConfiguration<Product>
+    public class ProductConfiguration : IEntityTypeConfiguration<Product>
     {
-        protected override void ConfigureEntity(EntityTypeBuilder<Product> builder)
+        public void Configure(EntityTypeBuilder<Product> builder)
         {
             builder.HasKey(p => p.Id);
 

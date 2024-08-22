@@ -1,8 +1,6 @@
-using Shop.Domain.Entities.Base;
-
 namespace Shop.Domain.Entities.Orders;
 
-public class OrderItem : BaseEntity
+public class OrderItem
 {
     public int Id { get; private set; }
     public int OrderId { get; private set; }

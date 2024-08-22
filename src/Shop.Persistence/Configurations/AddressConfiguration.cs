@@ -1,12 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Shop.Domain.Entities;
-using Shop.Persistence.Configurations.Base;
 
 namespace Shop.Persistence.Configurations
 {
-    public class AddressConfiguration : BaseEntityConfiguration<Address>
+    public class AddressConfiguration : IEntityTypeConfiguration<Address>
     {
-        protected override void ConfigureEntity(EntityTypeBuilder<Address> builder)
+        public void Configure(EntityTypeBuilder<Address> builder)
         {
             builder.HasKey(a => a.Id);
 
@@ -36,6 +36,6 @@ namespace Shop.Persistence.Configurations
             builder.Property(a => a.Zip)
                    .IsRequired()
                    .HasMaxLength(10);
-        }
+        }        
     }
 }

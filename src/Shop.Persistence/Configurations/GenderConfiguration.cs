@@ -1,12 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Shop.Domain.Entities;
-using Shop.Persistence.Configurations.Base;
 
 namespace Shop.Persistence.Configurations
 {
-    public class GenderConfiguration : BaseEntityConfiguration<Gender>
+    public class GenderConfiguration : IEntityTypeConfiguration<Gender>
     {
-        protected override void ConfigureEntity(EntityTypeBuilder<Gender> builder)
+        public void Configure(EntityTypeBuilder<Gender> builder)
         {
             builder.HasKey(g => g.Id);
 
@@ -15,6 +15,6 @@ namespace Shop.Persistence.Configurations
                 .HasMaxLength(50);
 
             builder.HasIndex(g => g.Name).IsUnique();
-        }
+        }        
     }
 }

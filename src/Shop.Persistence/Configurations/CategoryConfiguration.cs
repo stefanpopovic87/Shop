@@ -1,13 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Shop.Domain.Entities;
-using Shop.Persistence.Configurations.Base;
 
 namespace Shop.Persistence.Configurations
 {
-    public class CategoryConfiguration : BaseEntityConfiguration<Category>
+    public class CategoryConfiguration : IEntityTypeConfiguration<Category>
     {
-        protected override void ConfigureEntity(EntityTypeBuilder<Category> builder)
+        public void Configure(EntityTypeBuilder<Category> builder)
         {
             builder.HasKey(c => c.Id);
 
@@ -21,7 +20,6 @@ namespace Shop.Persistence.Configurations
                    .OnDelete(DeleteBehavior.NoAction);
 
             builder.HasIndex(c => c.Name).IsUnique();
-
-        }
+        }        
     }
 }

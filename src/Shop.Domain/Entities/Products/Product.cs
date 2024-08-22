@@ -1,8 +1,6 @@
-using Shop.Domain.Entities.Base;
-
 namespace Shop.Domain.Entities.Products;
 
-public class Product : BaseEntity
+public class Product
 {
     public int Id { get; private set; }
     public ProductDetails Details { get; private set; }
@@ -23,7 +21,6 @@ public class Product : BaseEntity
 
     public Product(ProductDetails details, int brandId, int subcategoryId, int genderId)
     {
-        base.Create();
         Details = details;
         BrandId = brandId;
         SubcategoryId = subcategoryId;
@@ -32,7 +29,6 @@ public class Product : BaseEntity
 
     public void Update(ProductDetails details, int brandId, int subcategoryId, int genderId)
     {
-        base.Update();
         Details = details;
         BrandId = brandId;
         SubcategoryId = subcategoryId;

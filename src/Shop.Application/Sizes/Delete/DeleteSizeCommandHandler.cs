@@ -24,9 +24,7 @@ namespace Shop.Application.Sizes.Delete
                 return Result<string>.Failure(SizeErrorMessages.NotFound);
             }
 
-            size.Delete();
-
-            _sizeRepository.Update(size);
+            _sizeRepository.Delete(size);
 
             if (await _unitOfWork.SaveChangesAsync(cancellationToken) == 0)
             {

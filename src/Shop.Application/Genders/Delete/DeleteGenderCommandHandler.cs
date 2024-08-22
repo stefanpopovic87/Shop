@@ -24,8 +24,6 @@ namespace Shop.Application.Genders.Delete
                 return Result<string>.Failure(GenderErrorMessages.NotFound);
             }
 
-            gender.Delete();
-
             _genderRepository.Update(gender);
 
             if (await _unitOfWork.SaveChangesAsync(cancellationToken) == 0)

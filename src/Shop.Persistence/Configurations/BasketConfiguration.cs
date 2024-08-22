@@ -22,15 +22,6 @@ namespace Shop.Persistence.Configurations
             builder.HasMany(b => b.Items)
                    .WithOne(bi => bi.Basket)
                    .HasForeignKey(bi => bi.BasketId);
-
-            // BaseEntity properties configuration
-            builder.Property(p => p.DateCreated).IsRequired();
-            builder.Property(p => p.DateModified);
-            builder.Property(p => p.DateDeleted);
-            builder.Property(p => p.CreatedBy).IsRequired();
-            builder.Property(p => p.ModifiedBy);
-            builder.Property(p => p.DeletedBy);
-            builder.Property(oi => oi.Deleted).IsRequired().HasDefaultValue(false);
         }
     }
 }

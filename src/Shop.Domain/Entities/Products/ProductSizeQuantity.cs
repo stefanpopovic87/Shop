@@ -1,8 +1,6 @@
-﻿using Shop.Domain.Entities.Base;
-
-namespace Shop.Domain.Entities.Products
+﻿namespace Shop.Domain.Entities.Products
 {
-    public class ProductSizeQuantity : BaseEntity
+    public class ProductSizeQuantity
     {
         public int ProductId { get; private set; }
         public Product Product { get; private set; }
@@ -14,7 +12,6 @@ namespace Shop.Domain.Entities.Products
 
         public ProductSizeQuantity(int productId, int sizeId, int quantityInStock)
         {
-            base.Create();
             ProductId = productId;
             SizeId = sizeId;
             QuantityInStock = quantityInStock;
@@ -22,14 +19,12 @@ namespace Shop.Domain.Entities.Products
 
         public ProductSizeQuantity(int sizeId, int quantityInStock)
         {
-            base.Create();
             SizeId = sizeId;
             QuantityInStock = quantityInStock;
         }
 
         public void Update (int sizeId, int quantityInStock)
         {
-            base.Update();
             SizeId = sizeId;
             QuantityInStock = quantityInStock;
         }

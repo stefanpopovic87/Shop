@@ -1,13 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Shop.Domain.Entities.Products;
-using Shop.Persistence.Configurations.Base;
 
 namespace Shop.Persistence.Configurations
 {
-    public class ProductSizeQuantityConfiguration : BaseEntityConfiguration<ProductSizeQuantity>
+    public class ProductSizeQuantityConfiguration : IEntityTypeConfiguration<ProductSizeQuantity>
     {
-        protected override void ConfigureEntity(EntityTypeBuilder<ProductSizeQuantity> builder)
+        public void Configure(EntityTypeBuilder<ProductSizeQuantity> builder)
         {
             builder.HasKey(pq => new { pq.ProductId, pq.SizeId });
 
@@ -26,6 +25,6 @@ namespace Shop.Persistence.Configurations
                    .WithMany(s => s.SizeQuantities)
                    .HasForeignKey(pq => pq.SizeId)
                    .OnDelete(DeleteBehavior.NoAction);
-        }
+        }         
     }
 }

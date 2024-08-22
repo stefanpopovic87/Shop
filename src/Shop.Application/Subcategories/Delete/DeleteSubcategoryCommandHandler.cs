@@ -25,9 +25,7 @@ namespace Shop.Application.Subcategories.Delete
                 return Result<string>.Failure(SubcategoryErrorMessages.NotFound);
             }
 
-            subcategory.Delete();
-
-            _subcategoryRepository.Update(subcategory);
+            _subcategoryRepository.Delete(subcategory);
 
             if (await _unitOfWork.SaveChangesAsync(cancellationToken) == 0)
             {

@@ -24,12 +24,13 @@ namespace Shop.Application.Brands.Update
                 return Result<string>.Failure(BrandErrorMessages.NotFound);
             }
 
-            if (!brand.Deleted)
-            {
-                return Result<string>.Failure(BrandErrorMessages.AlreadyActive);
-            }
+            //TODO - change logic
+            //if (!brand.Deleted)
+            //{
+            //    return Result<string>.Failure(BrandErrorMessages.AlreadyActive);
+            //}
 
-            brand.Activate();
+            //brand.Activate();
 
             _brandRepository.Update(brand);
 

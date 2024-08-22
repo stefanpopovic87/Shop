@@ -24,9 +24,7 @@ namespace Shop.Application.Brands.Delete
                 return Result<string>.Failure(BrandErrorMessages.NotFound);
             }
 
-            brand.Delete();
-
-            _brandRepository.Update(brand);
+            _brandRepository.Delete(brand);
 
             if (await _unitOfWork.SaveChangesAsync(cancellationToken) == 0)
             {

@@ -27,12 +27,13 @@ namespace Shop.Application.Categories.Update
                     return Result<string>.Failure(CategoryErrorMessages.NotFound);
                 }
 
-                if (!category.Deleted)
-                {
-                    return Result<string>.Failure(CategoryErrorMessages.AlreadyActive);
-                }
+                //TODO - change logic
+                //if (!category.Deleted)
+                //{
+                //    return Result<string>.Failure(CategoryErrorMessages.AlreadyActive);
+                //}
 
-                category.Activate();
+                //category.Activate();
 
                 _categoryRepository.Update(category);
 

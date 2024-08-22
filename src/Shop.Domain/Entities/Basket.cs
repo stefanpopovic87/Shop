@@ -1,8 +1,6 @@
-using Shop.Domain.Entities.Base;
-
 namespace Shop.Domain.Entities;
 
-public class Basket : BaseEntity
+public class Basket 
 {
     public int Id { get; set; }
     public int BuyerId { get; set; }

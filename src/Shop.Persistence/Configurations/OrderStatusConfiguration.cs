@@ -1,13 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Shop.Domain.Entities.Enums;
 using Shop.Domain.Entities.Orders;
-using Shop.Persistence.Configurations.Base;
 
 namespace Shop.Persistence.Configurations
 {
-    public class OrderStatusConfiguration : BaseEntityConfiguration<OrderStatus>
+    public class OrderStatusConfiguration : IEntityTypeConfiguration<OrderStatus>
     {
-        protected override void ConfigureEntity(EntityTypeBuilder<OrderStatus> builder)
+        public void Configure(EntityTypeBuilder<OrderStatus> builder)
         {
             builder.HasKey(os => os.Id);
 
@@ -19,6 +19,6 @@ namespace Shop.Persistence.Configurations
             //    .Select(s => new OrderStatus((int)s, s.ToString()));
 
             //builder.HasData(statuses);
-        }
+        }        
     }
 }

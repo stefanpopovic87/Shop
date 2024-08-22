@@ -1,12 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Shop.Domain.Entities;
-using Shop.Persistence.Configurations.Base;
 
 namespace Shop.Persistence.Configurations
 {
-    public class BrandConfiguration : BaseEntityConfiguration<Brand>
-    {       
-        protected override void ConfigureEntity(EntityTypeBuilder<Brand> builder)
+    public class BrandConfiguration : IEntityTypeConfiguration<Brand>
+    {
+        public void Configure(EntityTypeBuilder<Brand> builder)
         {
             builder.HasKey(p => p.Id);
 
@@ -19,12 +19,6 @@ namespace Shop.Persistence.Configurations
                    .HasForeignKey(p => p.BrandId);
 
             builder.HasIndex(p => p.Name).IsUnique();
-
-
-            //IEnumerable<Brand> brands = Enum.GetValues<BrandEnum>()
-            //    .Select(s => new Brand((int)s, s.ToString()));
-
-            //builder.HasData(brands);
-        }
+        }        
     }
 }

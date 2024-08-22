@@ -1,9 +1,8 @@
-﻿using Shop.Domain.Entities.Base;
-using Shop.Domain.Entities.Products;
+﻿using Shop.Domain.Entities.Products;
 
 namespace Shop.Domain.Entities
 {
-    public class Brand : BaseEntity
+    public class Brand
     {
         #region Properties
         public int Id { get; private set; }
@@ -14,13 +13,11 @@ namespace Shop.Domain.Entities
         #region Methods
         public Brand(string name)
         {
-            Create();
             Name = name;
         }
 
         public void Update(string name)
         {
-            Update();
             Name = name;
         }
         #endregion

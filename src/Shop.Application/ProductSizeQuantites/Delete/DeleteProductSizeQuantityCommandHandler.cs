@@ -27,9 +27,7 @@ namespace Shop.Application.ProductSizeQuantites.Delete
                 return Result<string>.Failure(ProductSizeQuantityErrorMessages.NotFound);
             }
 
-            productSizeQuantity.Delete();
-
-            _productSizeQuantityRepository.Update(productSizeQuantity);
+            _productSizeQuantityRepository.Delete(productSizeQuantity);
 
             if (await _unitOfWork.SaveChangesAsync(cancellationToken) == 0)
             {

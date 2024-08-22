@@ -22,6 +22,10 @@ namespace Shop.Persistence.Repositories.Base
         {
             _context.Set<T>().Update(entity);
         }
+        public void Delete(T entity)
+        {
+            _context.Set<T>().Remove(entity);
+        }
 
         public virtual async Task<T?> GetByIdAsync(int id, CancellationToken cancellationToken)
         {

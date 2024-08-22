@@ -1,13 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
-using Shop.Persistence.Configurations.Base;
 using Shop.Domain.Entities;
 
 namespace Shop.Persistence.Configurations
 {
-    public class SubcategoryConfiguration : BaseEntityConfiguration<Subcategory>
+    public class SubcategoryConfiguration : IEntityTypeConfiguration<Subcategory>
     {
-        protected override void ConfigureEntity(EntityTypeBuilder<Subcategory> builder)
+        public void Configure(EntityTypeBuilder<Subcategory> builder)
         {
             builder.HasKey(sc => sc.Id);
 
@@ -19,6 +18,6 @@ namespace Shop.Persistence.Configurations
                    .WithMany(c => c.Subcategories)
                    .HasForeignKey(sc => sc.CategoryId)
                    .OnDelete(DeleteBehavior.NoAction);
-        }
+        }        
     }
 }

@@ -1,9 +1,8 @@
-using Shop.Domain.Entities.Base;
 using Shop.Domain.Entities.Enums;
 
 namespace Shop.Domain.Entities.Orders;
 
-public class Order : BaseEntity
+public class Order
 {
     public int Id { get; private set; }
     public int BuyerId { get; private set; }
@@ -15,7 +14,6 @@ public class Order : BaseEntity
 
     public Order(int buyerId)
     {
-        base.Create();
         BuyerId = buyerId;
         StatusId = (int)OrderStatusEnum.Pending;
     }
@@ -45,6 +43,5 @@ public class Order : BaseEntity
         if (item == null) return;
 
         item.DecreaseQuantity(quantity);
-        if (item.Quantity == 0) item.Delete();
     }
 }
