@@ -12,12 +12,12 @@ namespace Shop.Application.Subcategories.Create
     {
         private readonly ISubcategoryRepository _subcategoryRepository;
         private readonly ICategoryRepository _categoryRepository;
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IProductUnitOfWork _unitOfWork;
         private readonly IValidator<CreateSubcategoryCommand> _validator;
 
         public CreateSubcategoryCommandHandler(
             ISubcategoryRepository subcategoryRepository,
-            IUnitOfWork unitOfWork,
+            IProductUnitOfWork unitOfWork,
             IValidator<CreateSubcategoryCommand> validator,
             ICategoryRepository categoryRepository)
         {

@@ -9,12 +9,12 @@ namespace Shop.Application.ProductSizeQuantites.Update
     internal sealed class UpdateProductSizeQuantityCommandHandler : ICommandHandler<UpdateProductSizeQuantityCommand, Result<string>>
     {
         private readonly IProductSizeQuantityRepository _productSizeQuantityRepository;
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IProductUnitOfWork _unitOfWork;
         private readonly IValidator<UpdateProductSizeQuantityCommand> _validator;
 
         public UpdateProductSizeQuantityCommandHandler(
             IProductSizeQuantityRepository productSizeQuantityRepository,
-            IUnitOfWork unitOfWork,
+            IProductUnitOfWork unitOfWork,
             IValidator<UpdateProductSizeQuantityCommand> validator)
         {
             _productSizeQuantityRepository = productSizeQuantityRepository;

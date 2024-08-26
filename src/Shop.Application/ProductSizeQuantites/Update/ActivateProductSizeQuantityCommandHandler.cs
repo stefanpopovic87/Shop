@@ -7,9 +7,9 @@ namespace Shop.Application.ProductSizeQuantites.Update
     internal sealed class ActivateProductSizeQuantityCommandHandler : ICommandHandler<ActivateProductSizeQuantityCommand, Result<string>>
     {
         private readonly IProductSizeQuantityRepository _productSizeQuantityRepository;
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IProductUnitOfWork _unitOfWork;
 
-        public ActivateProductSizeQuantityCommandHandler(IProductSizeQuantityRepository productSizeQuantityRepository, IUnitOfWork unitOfWork)
+        public ActivateProductSizeQuantityCommandHandler(IProductSizeQuantityRepository productSizeQuantityRepository, IProductUnitOfWork unitOfWork)
         {
             _productSizeQuantityRepository = productSizeQuantityRepository;
             _unitOfWork = unitOfWork;

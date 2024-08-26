@@ -10,12 +10,12 @@ namespace Shop.Application.Products.Create
     internal sealed class CreateProductCommandHandler : ICommandHandler<CreateProductCommand, Result<int>>
     {
         private readonly IProductRepository _productRepository;
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IProductUnitOfWork _unitOfWork;
         private readonly IValidator<CreateProductCommand> _validator;
 
         public CreateProductCommandHandler(
             IProductRepository productRepository, 
-            IUnitOfWork unitOfWork, 
+            IProductUnitOfWork unitOfWork, 
             IValidator<CreateProductCommand> validator)
         {
             _productRepository = productRepository;

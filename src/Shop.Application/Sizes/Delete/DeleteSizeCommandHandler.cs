@@ -7,9 +7,9 @@ namespace Shop.Application.Sizes.Delete
     internal sealed class DeleteSizeCommandHandler : ICommandHandler<DeleteSizeCommand, Result<string>>
     {
         private readonly ISizeRepository _sizeRepository;
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IProductUnitOfWork _unitOfWork;
 
-        public DeleteSizeCommandHandler(ISizeRepository sizeRepository, IUnitOfWork unitOfWork)
+        public DeleteSizeCommandHandler(ISizeRepository sizeRepository, IProductUnitOfWork unitOfWork)
         {
             _sizeRepository = sizeRepository;
             _unitOfWork = unitOfWork;

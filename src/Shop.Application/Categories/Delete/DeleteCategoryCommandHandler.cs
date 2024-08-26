@@ -7,9 +7,9 @@ namespace Shop.Application.Categories.Delete
     internal sealed class DeleteCategoryCommandHandler : ICommandHandler<DeleteCategoryCommand, Result<string>>
     {
         private readonly ICategoryRepository _categoryRepository;
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IProductUnitOfWork _unitOfWork;
 
-        public DeleteCategoryCommandHandler(ICategoryRepository categoryRepository, IUnitOfWork unitOfWork)
+        public DeleteCategoryCommandHandler(ICategoryRepository categoryRepository, IProductUnitOfWork unitOfWork)
         {
             _categoryRepository = categoryRepository;
             _unitOfWork = unitOfWork;

@@ -11,12 +11,12 @@ namespace Shop.Application.Products.Update
     internal sealed class UpdateProductCommandHandler : ICommandHandler<UpdateProductCommand, Result<string>>
     {
         private readonly IProductRepository _productRepository;
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IProductUnitOfWork _unitOfWork;
         private readonly IValidator<UpdateProductCommand> _validator;
 
         public UpdateProductCommandHandler(
             IProductRepository productRepository, 
-            IUnitOfWork unitOfWork, 
+            IProductUnitOfWork unitOfWork, 
             IValidator<UpdateProductCommand> validator)
         {
             _productRepository = productRepository;

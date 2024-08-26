@@ -8,9 +8,9 @@ namespace Shop.Application.Products.Delete
     internal sealed class DeleteProductCommandHandler : IRequestHandler<DeleteProductCommand, Result<string>>
     {
         private readonly IProductRepository _productRepository;
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IProductUnitOfWork _unitOfWork;
 
-        public DeleteProductCommandHandler(IProductRepository repository, IUnitOfWork unitOfWork)
+        public DeleteProductCommandHandler(IProductRepository repository, IProductUnitOfWork unitOfWork)
         {
             _productRepository = repository;
             _unitOfWork = unitOfWork;

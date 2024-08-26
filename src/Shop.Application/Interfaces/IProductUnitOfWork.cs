@@ -1,6 +1,6 @@
 ﻿namespace Shop.Application.Interfaces
 {
-    public interface IUnitOfWork
+    public interface IProductUnitOfWork
     {
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     }

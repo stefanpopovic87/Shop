@@ -7,9 +7,9 @@ namespace Shop.Application.Subcategories.Update
     internal sealed class ActivateSubcategoryCommandHandler : ICommandHandler<ActivateSubcategoryCommand, Result<string>>
     {
         private readonly ISubcategoryRepository _subcategoryRepository;
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IProductUnitOfWork _unitOfWork;
 
-        public ActivateSubcategoryCommandHandler(ISubcategoryRepository subcategoryRepository, IUnitOfWork unitOfWork)
+        public ActivateSubcategoryCommandHandler(ISubcategoryRepository subcategoryRepository, IProductUnitOfWork unitOfWork)
         {
             _subcategoryRepository = subcategoryRepository;
             _unitOfWork = unitOfWork;

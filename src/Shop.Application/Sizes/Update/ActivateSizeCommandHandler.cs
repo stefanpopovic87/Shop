@@ -7,9 +7,9 @@ namespace Shop.Application.Sizes.Update
     internal sealed class ActivateSizeCommandHandler : ICommandHandler<ActivateSizeCommand, Result<string>>
     {
         private readonly ISizeRepository _sizeRepository;
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IProductUnitOfWork _unitOfWork;
 
-        public ActivateSizeCommandHandler(ISizeRepository sizeRepository, IUnitOfWork unitOfWork)
+        public ActivateSizeCommandHandler(ISizeRepository sizeRepository, IProductUnitOfWork unitOfWork)
         {
             _sizeRepository = sizeRepository;
             _unitOfWork = unitOfWork;

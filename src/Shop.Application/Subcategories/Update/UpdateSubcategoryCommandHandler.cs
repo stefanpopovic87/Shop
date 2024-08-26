@@ -9,12 +9,12 @@ namespace Shop.Application.Subcategories.Update
     internal sealed class UpdateSubcategoryCommandHandler : ICommandHandler<UpdateSubcategoryCommand, Result<string>>
     {
         private readonly ISubcategoryRepository _subcategoryRepository;
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IProductUnitOfWork _unitOfWork;
         private readonly IValidator<UpdateSubcategoryCommand> _validator;
 
         public UpdateSubcategoryCommandHandler(
             ISubcategoryRepository subcategoryRepository,
-            IUnitOfWork unitOfWork,
+            IProductUnitOfWork unitOfWork,
             IValidator<UpdateSubcategoryCommand> validator)
         {
             _subcategoryRepository = subcategoryRepository;

@@ -10,12 +10,12 @@ namespace Shop.Application.Brands.Create
     internal sealed class CreateBrandCommandHandler : ICommandHandler<CreateBrandCommand, Result<int>>
     {
         private readonly IBrandRepository _brandRepository;
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IProductUnitOfWork _unitOfWork;
         private readonly IValidator<CreateBrandCommand> _validator;
 
         public CreateBrandCommandHandler(
             IBrandRepository brandRepository,
-            IUnitOfWork unitOfWork,
+            IProductUnitOfWork unitOfWork,
             IValidator<CreateBrandCommand> validator)
         {
             _brandRepository = brandRepository;

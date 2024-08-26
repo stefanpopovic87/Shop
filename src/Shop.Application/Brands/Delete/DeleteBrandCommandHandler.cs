@@ -7,9 +7,9 @@ namespace Shop.Application.Brands.Delete
     internal sealed class DeleteBrandCommandHandler : ICommandHandler<DeleteBrandCommand, Result<string>>
     {
         private readonly IBrandRepository _brandRepository;
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IProductUnitOfWork _unitOfWork;
 
-        public DeleteBrandCommandHandler(IBrandRepository brandRepository, IUnitOfWork unitOfWork)
+        public DeleteBrandCommandHandler(IBrandRepository brandRepository, IProductUnitOfWork unitOfWork)
         {
             _brandRepository = brandRepository;
             _unitOfWork = unitOfWork;

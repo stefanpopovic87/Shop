@@ -7,9 +7,9 @@ namespace Shop.Application.Genders.Update
     internal sealed class ActivateGenderCommandHandler : ICommandHandler<ActivateGenderCommand, Result<string>>
     {
         private readonly IGenderRepository _genderRepository;
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IProductUnitOfWork _unitOfWork;
 
-        public ActivateGenderCommandHandler(IGenderRepository genderRepository, IUnitOfWork unitOfWork)
+        public ActivateGenderCommandHandler(IGenderRepository genderRepository, IProductUnitOfWork unitOfWork)
         {
             _genderRepository = genderRepository;
             _unitOfWork = unitOfWork;

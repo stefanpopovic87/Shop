@@ -10,12 +10,12 @@ namespace Shop.Application.Categories.Create
     internal sealed class CreateCategoryCommandHandler : ICommandHandler<CreateCategoryCommand, Result<int>>
     {
         private readonly ICategoryRepository _categoryRepository;
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IProductUnitOfWork _unitOfWork;
         private readonly IValidator<CreateCategoryCommand> _validator;
 
         public CreateCategoryCommandHandler(
             ICategoryRepository categoryRepository,
-            IUnitOfWork unitOfWork,
+            IProductUnitOfWork unitOfWork,
             IValidator<CreateCategoryCommand> validator)
         {
             _categoryRepository = categoryRepository;

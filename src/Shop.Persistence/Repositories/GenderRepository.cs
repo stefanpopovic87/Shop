@@ -5,9 +5,9 @@ using Shop.Persistence.Repositories.Base;
 
 namespace Shop.Persistence.Repositories
 {
-    internal sealed class GenderRepository : BaseRepository<Gender>, IGenderRepository
+    internal sealed class GenderRepository : BaseRepository<Gender, ProductDbContext>, IGenderRepository
     {
-        public GenderRepository(ShopDbContext context)
+        public GenderRepository(ProductDbContext context)
             : base(context)
         {
         }

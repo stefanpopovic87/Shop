@@ -7,9 +7,9 @@ namespace Shop.Application.Brands.Update
     internal sealed class ActivateBrandCommandHandler : ICommandHandler<ActivateBrandCommand, Result<string>>
     {
         private readonly IBrandRepository _brandRepository;
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IProductUnitOfWork _unitOfWork;
 
-        public ActivateBrandCommandHandler(IBrandRepository brandRepository, IUnitOfWork unitOfWork)
+        public ActivateBrandCommandHandler(IBrandRepository brandRepository, IProductUnitOfWork unitOfWork)
         {
             _brandRepository = brandRepository;
             _unitOfWork = unitOfWork;

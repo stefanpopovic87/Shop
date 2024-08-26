@@ -10,12 +10,12 @@ namespace Shop.Application.Sizes.Create
     internal sealed class CreateSizeCommandHandler : ICommandHandler<CreateSizeCommand, Result<int>>
     {
         private readonly ISizeRepository _sizeRepository;
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IProductUnitOfWork _unitOfWork;
         private readonly IValidator<CreateSizeCommand> _validator;
 
         public CreateSizeCommandHandler(
             ISizeRepository sizeRepository,
-            IUnitOfWork unitOfWork,
+            IProductUnitOfWork unitOfWork,
             IValidator<CreateSizeCommand> validator)
         {
             _sizeRepository = sizeRepository;

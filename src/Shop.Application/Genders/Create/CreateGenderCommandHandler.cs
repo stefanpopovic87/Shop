@@ -10,12 +10,12 @@ namespace Shop.Application.Genders.Create
     internal sealed class CreateGenderCommandHandler : ICommandHandler<CreateGenderCommand, Result<int>>
     {
         private readonly IGenderRepository _genderRepository;
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IProductUnitOfWork _unitOfWork;
         private readonly IValidator<CreateGenderCommand> _validator;
 
         public CreateGenderCommandHandler(
             IGenderRepository genderRepository,
-            IUnitOfWork unitOfWork,
+            IProductUnitOfWork unitOfWork,
             IValidator<CreateGenderCommand> validator)
         {
             _genderRepository = genderRepository;

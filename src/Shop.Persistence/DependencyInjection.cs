@@ -13,20 +13,22 @@ namespace Shop.Persistence
     {
         public static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration configuration, IHostEnvironment environment)
         {
-            AddContext(services, configuration, environment);
+            AddProductContext(services, configuration, environment);
 
-            AddRepositories(services);
+            AddHistoryContext(services, configuration, environment);
+
+            AddProductRepositories(services);
 
             return services;
 
         }
 
-        private static IServiceCollection AddContext(this IServiceCollection services, IConfiguration configuration, IHostEnvironment environment)
+        private static IServiceCollection AddProductContext(this IServiceCollection services, IConfiguration configuration, IHostEnvironment environment)
         {
-            services.AddDbContext<ShopDbContext>(options =>
+            services.AddDbContext<ProductDbContext>(options =>
             {
-                var connectionString = configuration.GetConnectionString("ShopConnection");
-                options.UseNpgsql(connectionString, npgsqlOptions => npgsqlOptions.MigrationsAssembly(typeof(ShopDbContext).Assembly.FullName));
+                var connectionString = configuration.GetConnectionString("ProductDBConnection");
+                options.UseNpgsql(connectionString, npgsqlOptions => npgsqlOptions.MigrationsAssembly(typeof(ProductDbContext).Assembly.FullName));
 
                 if (environment.IsDevelopment())
                 {
@@ -37,17 +39,40 @@ namespace Shop.Persistence
                 }
             });
 
-            services.AddScoped<IUnitOfWork>(sp =>
-               sp.GetRequiredService<ShopDbContext>());
+            services.AddScoped<IProductUnitOfWork>(sp =>
+               sp.GetRequiredService<ProductDbContext>());
+
+            return services;
+        }
+
+        private static IServiceCollection AddHistoryContext(this IServiceCollection services, IConfiguration configuration, IHostEnvironment environment)
+        {
+            services.AddDbContext<HistoryDbContext>(options =>
+            {
+                var connectionString = configuration.GetConnectionString("HistoryDBConnection");
+                options.UseNpgsql(connectionString, npgsqlOptions => npgsqlOptions.MigrationsAssembly(typeof(HistoryDbContext).Assembly.FullName));
+
+                if (environment.IsDevelopment())
+                {
+                    options
+                        .LogTo(Console.WriteLine, new[] { DbLoggerCategory.Database.Command.Name }, LogLevel.Information)
+                        .EnableSensitiveDataLogging()
+                        .EnableDetailedErrors();
+                }
+            });
+
+            services.AddScoped<IHistoryUnitOfWork>(sp =>
+               sp.GetRequiredService<HistoryDbContext>());
 
             return services;
         }
 
 
-        private static IServiceCollection AddRepositories(this IServiceCollection services)
+
+
+        private static IServiceCollection AddProductRepositories(this IServiceCollection services)
         {
             services.AddScoped<IProductRepository, ProductRepository>();
-            services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<ISizeRepository, SizeRepository>();
             services.AddScoped<IOrderStatusRepository, OrderStatusRepository>();
             services.AddScoped<IBrandRepository, BrandRepository>();

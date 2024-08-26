@@ -1,14 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Shop.Application.Interfaces.Base;
-using Shop.Persistence.Database;
 
 namespace Shop.Persistence.Repositories.Base
 {
-    public abstract class BaseRepository<T> : IBaseRepository<T> where T : class
+    public abstract class BaseRepository<T, TContext> : IBaseRepository<T>
+        where T : class
+        where TContext : DbContext
     {
-        protected readonly ShopDbContext _context;
+        protected readonly TContext _context;
 
-        protected BaseRepository(ShopDbContext context)
+        protected BaseRepository(TContext context)
         {
             _context = context;
         }

@@ -9,12 +9,12 @@ namespace Shop.Application.Categories.Update
     internal sealed class UpdateCategoryCommandHandler : ICommandHandler<UpdateCategoryCommand, Result<string>>
     {
         private readonly ICategoryRepository _categoryRepository;
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IProductUnitOfWork _unitOfWork;
         private readonly IValidator<UpdateCategoryCommand> _validator;
 
         public UpdateCategoryCommandHandler(
             ICategoryRepository categoryRepository,
-            IUnitOfWork unitOfWork,
+            IProductUnitOfWork unitOfWork,
             IValidator<UpdateCategoryCommand> validator)
         {
             _categoryRepository = categoryRepository;

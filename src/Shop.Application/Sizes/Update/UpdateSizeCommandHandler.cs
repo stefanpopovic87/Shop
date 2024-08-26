@@ -9,13 +9,13 @@ namespace Shop.Application.Sizes.Update
     internal sealed class UpdateSizeCommandHandler : ICommandHandler<UpdateSizeCommand, Result<string>>
     {
         private readonly ISizeRepository _sizeRepository;
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IProductUnitOfWork _unitOfWork;
         private readonly IValidator<UpdateSizeCommand> _validator;
 
 
         public UpdateSizeCommandHandler(
             ISizeRepository sizeRepository,
-            IUnitOfWork unitOfWork,
+            IProductUnitOfWork unitOfWork,
             IValidator<UpdateSizeCommand> validator)
         {
             _sizeRepository = sizeRepository;

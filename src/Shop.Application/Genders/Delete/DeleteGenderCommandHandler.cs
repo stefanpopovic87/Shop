@@ -7,9 +7,9 @@ namespace Shop.Application.Genders.Delete
     internal sealed class DeleteGenderCommandHandler : ICommandHandler<DeleteGenderCommand, Result<string>>
     {
         private readonly IGenderRepository _genderRepository;
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IProductUnitOfWork _unitOfWork;
 
-        public DeleteGenderCommandHandler(IGenderRepository genderRepository, IUnitOfWork unitOfWork)
+        public DeleteGenderCommandHandler(IGenderRepository genderRepository, IProductUnitOfWork unitOfWork)
         {
             _genderRepository = genderRepository;
             _unitOfWork = unitOfWork;

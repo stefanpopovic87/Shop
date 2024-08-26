@@ -10,12 +10,12 @@ namespace Shop.Application.ProductSizeQuantites.Create
     internal class CreateProductSizeQuantityCommandHandler : ICommandHandler<CreateProductSizeQuantityCommand, Result<(int ProductId, int SizeId)>>
     {
         private readonly IProductSizeQuantityRepository _productSizeQuantityRepository;
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IProductUnitOfWork _unitOfWork;
         private readonly IValidator<CreateProductSizeQuantityCommand> _validator;
 
         public CreateProductSizeQuantityCommandHandler(
             IProductSizeQuantityRepository productSizeQuantityRepository,
-            IUnitOfWork unitOfWork,
+            IProductUnitOfWork unitOfWork,
             IValidator<CreateProductSizeQuantityCommand> validator,
             IProductRepository productRepository)
         {

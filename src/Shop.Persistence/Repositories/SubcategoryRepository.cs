@@ -6,9 +6,9 @@ using Shop.Persistence.Repositories.Base;
 
 namespace Shop.Persistence.Repositories
 {
-    internal sealed class SubcategoryRepository : BaseRepository<Subcategory>, ISubcategoryRepository
+    internal sealed class SubcategoryRepository : BaseRepository<Subcategory, ProductDbContext>, ISubcategoryRepository
     {
-        public SubcategoryRepository(ShopDbContext context)
+        public SubcategoryRepository(ProductDbContext context)
             : base(context)
         {
         }

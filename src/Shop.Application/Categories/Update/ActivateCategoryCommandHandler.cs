@@ -10,9 +10,9 @@ namespace Shop.Application.Categories.Update
         internal sealed class ActivateCategoryCommandHandler : ICommandHandler<ActivateCategoryCommand, Result<string>>
         {
             private readonly ICategoryRepository _categoryRepository;
-            private readonly IUnitOfWork _unitOfWork;
+            private readonly IProductUnitOfWork _unitOfWork;
 
-            public ActivateCategoryCommandHandler(ICategoryRepository categoryRepository, IUnitOfWork unitOfWork)
+            public ActivateCategoryCommandHandler(ICategoryRepository categoryRepository, IProductUnitOfWork unitOfWork)
             {
                 _categoryRepository = categoryRepository;
                 _unitOfWork = unitOfWork;

@@ -6,9 +6,9 @@ using Shop.Persistence.Repositories.Base;
 
 namespace Shop.Persistence.Repositories
 {
-    internal sealed class SizeRepository : BaseRepository<Size>, ISizeRepository
+    internal sealed class SizeRepository : BaseRepository<Size, ProductDbContext>, ISizeRepository
     {
-        public SizeRepository(ShopDbContext context)
+        public SizeRepository(ProductDbContext context)
             : base(context) 
         {
 

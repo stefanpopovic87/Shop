@@ -9,13 +9,13 @@ namespace Shop.Application.Brands.Update
     internal sealed class UpdateBrandCommandHandler : ICommandHandler<UpdateBrandCommand, Result<string>>
     {
         private readonly IBrandRepository _brandRepository;
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IProductUnitOfWork _unitOfWork;
         private readonly IValidator<UpdateBrandCommand> _validator;
 
 
         public UpdateBrandCommandHandler(
             IBrandRepository brandRepository, 
-            IUnitOfWork unitOfWork, 
+            IProductUnitOfWork unitOfWork, 
             IValidator<UpdateBrandCommand> validator)
         {
             _brandRepository = brandRepository;

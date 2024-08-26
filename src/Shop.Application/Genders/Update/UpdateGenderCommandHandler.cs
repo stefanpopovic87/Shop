@@ -9,12 +9,12 @@ namespace Shop.Application.Genders.Update
     internal sealed class UpdateGenderCommandHandler : ICommandHandler<UpdateGenderCommand, Result<string>>
     {
         private readonly IGenderRepository _genderRepository;
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IProductUnitOfWork _unitOfWork;
         private readonly IValidator<UpdateGenderCommand> _validator;
 
         public UpdateGenderCommandHandler(
             IGenderRepository genderRepository,
-            IUnitOfWork unitOfWork,
+            IProductUnitOfWork unitOfWork,
             IValidator<UpdateGenderCommand> validator)
         {
             _genderRepository = genderRepository;
