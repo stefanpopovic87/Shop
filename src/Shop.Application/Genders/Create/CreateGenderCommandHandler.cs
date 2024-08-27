@@ -30,7 +30,7 @@ namespace Shop.Application.Genders.Create
             {
                 return ValidationErrorHelper.CreateValidationErrorResult<int>(validationResult);
             }
-            var gender = new Gender(request.Name);
+            var gender = Gender.Create(request.Name);
 
             _genderRepository.Add(gender);
 

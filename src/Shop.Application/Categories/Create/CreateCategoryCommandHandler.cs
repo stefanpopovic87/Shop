@@ -31,7 +31,7 @@ namespace Shop.Application.Categories.Create
                 return ValidationErrorHelper.CreateValidationErrorResult<int>(validationResult);
             }
 
-            var category = new Category(request.Name);
+            var category = Category.Create(request.Name);
 
             _categoryRepository.Add(category);
 

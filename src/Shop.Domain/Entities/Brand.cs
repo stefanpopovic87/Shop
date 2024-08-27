@@ -11,12 +11,18 @@ namespace Shop.Domain.Entities
         #endregion
 
         #region Methods
-        public Brand(string name)
+
+        public static Brand Create(string name)
+        {
+            return new Brand(name);
+        }
+
+        public void Update(string name)
         {
             Name = name;
         }
 
-        public void Update(string name)
+        private Brand(string name)
         {
             Name = name;
         }

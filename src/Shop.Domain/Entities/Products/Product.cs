@@ -14,17 +14,11 @@ public class Product
     public int GenderId { get; private set; }
     public Gender Gender { get; private set; }
 
-    public ICollection<ProductSizeQuantity> SizeQuantities { get; private set; } = new List<ProductSizeQuantity>();
+    public ICollection<ProductSizeQuantity> SizeQuantities { get; private set; } = [];
 
-    private Product() { }
-
-
-    public Product(ProductDetails details, int brandId, int subcategoryId, int genderId)
+    public static Product Create(ProductDetails details, int brandId, int subcategoryId, int genderId)
     {
-        Details = details;
-        BrandId = brandId;
-        SubcategoryId = subcategoryId;
-        GenderId = genderId;
+        return new Product(details, brandId, subcategoryId, genderId);
     }
 
     public void Update(ProductDetails details, int brandId, int subcategoryId, int genderId)
@@ -39,4 +33,14 @@ public class Product
     {
         SizeQuantities.Add(new ProductSizeQuantity(sizeId, quantity));
     }
+
+    private Product(ProductDetails details, int brandId, int subcategoryId, int genderId)
+    {
+        Details = details;
+        BrandId = brandId;
+        SubcategoryId = subcategoryId;
+        GenderId = genderId;
+    }
+
+    private Product() { }
 }

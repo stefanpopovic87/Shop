@@ -16,8 +16,7 @@ namespace Shop.Application.ProductSizeQuantites.Create
         public CreateProductSizeQuantityCommandHandler(
             IProductSizeQuantityRepository productSizeQuantityRepository,
             IProductUnitOfWork unitOfWork,
-            IValidator<CreateProductSizeQuantityCommand> validator,
-            IProductRepository productRepository)
+            IValidator<CreateProductSizeQuantityCommand> validator)
         {
             _productSizeQuantityRepository = productSizeQuantityRepository;
             _unitOfWork = unitOfWork;
@@ -32,7 +31,7 @@ namespace Shop.Application.ProductSizeQuantites.Create
                 return ValidationErrorHelper.CreateValidationErrorResult<(int ProductId, int SizeId)>(validationResult);
             }
 
-            var productSizeQuantity = new ProductSizeQuantity(request.ProductId, request.SizeId, request.QuantityInStock);
+            var productSizeQuantity = ProductSizeQuantity.Create(request.ProductId, request.SizeId, request.QuantityInStock);
 
             _productSizeQuantityRepository.Add(productSizeQuantity);
 

@@ -31,7 +31,7 @@ namespace Shop.Application.Brands.Create
                 return ValidationErrorHelper.CreateValidationErrorResult<int>(validationResult);
             }
 
-            var brand = new Brand(request.Name);
+            var brand = Brand.Create(request.Name);
 
             _brandRepository.Add(brand);
 

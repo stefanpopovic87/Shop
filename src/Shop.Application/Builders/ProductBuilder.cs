@@ -8,7 +8,7 @@ namespace Shop.Application.Builders
         private int _subcategoryId;
         private int _genderId;
         private readonly ProductDetailBuilder _detailBuilder = ProductDetailBuilder.StartBuilding();
-        private readonly List<(int SizeId, int Quantity)> _sizeQuantities = new();
+        private readonly List<(int SizeId, int Quantity)> _sizeQuantities = [];
 
         private ProductBuilder()
         {
@@ -51,7 +51,7 @@ namespace Shop.Application.Builders
 
         public Product Build()
         {
-            var product = new Product(
+            var product = Product.Create(
                 _detailBuilder.Build(),
                 _brandId,
                 _subcategoryId,

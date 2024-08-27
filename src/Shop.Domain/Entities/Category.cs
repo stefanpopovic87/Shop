@@ -5,16 +5,20 @@
         public int Id { get; private set; }
         public string Name { get; private set; } = string.Empty;
 
-        public ICollection<Subcategory> Subcategories { get; private set; } = new List<Subcategory>();
-        public ICollection<Size> Sizes { get; private set; } = new List<Size>();
+        public ICollection<Subcategory> Subcategories { get; private set; } = [];
+        public ICollection<Size> Sizes { get; private set; } = [];
 
+        public static Category Create(string name) 
+        { 
+            return new Category(name);
+        }
 
-        public Category(string name)
+        public void Update(string name)
         {
             Name = name;
         }
 
-        public void Update(string name)
+        private Category(string name)
         {
             Name = name;
         }

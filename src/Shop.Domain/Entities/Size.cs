@@ -11,15 +11,18 @@ namespace Shop.Domain.Entities
 
         public ICollection<ProductSizeQuantity> SizeQuantities { get; private set; } = [];
 
+        public static Size Create(string name, int categoryId)
+        {
+            return new Size(name, categoryId);
+        }
 
-
-        public Size(string name, int categoryId)
+        public void Update(string name, int categoryId)
         {
             Name = name;
             CategoryId = categoryId;
         }
 
-        public void Update(string name, int categoryId)
+        private Size(string name, int categoryId)
         {
             Name = name;
             CategoryId = categoryId;

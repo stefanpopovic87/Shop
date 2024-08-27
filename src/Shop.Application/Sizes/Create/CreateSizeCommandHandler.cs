@@ -31,7 +31,7 @@ namespace Shop.Application.Sizes.Create
                 return ValidationErrorHelper.CreateValidationErrorResult<int>(validationResult);
             }
 
-            var size = new Size(request.Name, request.CategoryId);
+            var size = Size.Create(request.Name, request.CategoryId);
 
             _sizeRepository.Add(size);
 

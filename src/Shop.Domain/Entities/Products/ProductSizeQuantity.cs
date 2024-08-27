@@ -10,11 +10,9 @@
 
         public int QuantityInStock { get; private set; }
 
-        public ProductSizeQuantity(int productId, int sizeId, int quantityInStock)
+        public static ProductSizeQuantity Create(int productId, int sizeId, int quantityInStock)
         {
-            ProductId = productId;
-            SizeId = sizeId;
-            QuantityInStock = quantityInStock;
+            return new ProductSizeQuantity(productId, sizeId, quantityInStock);
         }
 
         public ProductSizeQuantity(int sizeId, int quantityInStock)
@@ -42,6 +40,13 @@
         public void DecreaseQuantity(int quantity)
         {
             QuantityInStock -= quantity;
+        }
+
+        private ProductSizeQuantity(int productId, int sizeId, int quantityInStock)
+        {
+            ProductId = productId;
+            SizeId = sizeId;
+            QuantityInStock = quantityInStock;
         }
     }
 }

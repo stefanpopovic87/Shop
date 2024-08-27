@@ -9,12 +9,17 @@ namespace Shop.Domain.Entities
 
         public ICollection<Product> Products { get; private set; } = [];
 
-        public Gender(string name)
+        public static Gender Create(string name)
+        {
+            return new Gender(name);
+        }
+
+        public void Update(string name)
         {
             Name = name;
         }
 
-        public void Update(string name)
+        private Gender(string name)
         {
             Name = name;
         }

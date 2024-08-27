@@ -4,7 +4,7 @@ public class Basket
 {
     public int Id { get; set; }
     public int BuyerId { get; set; }
-    public List<BasketItem> Items { get; set; } = new List<BasketItem>();
+    public List<BasketItem> Items { get; set; } = [];
     public string PaymentIntentId { get; set; }
     public string ClientSecret { get; set; }
 

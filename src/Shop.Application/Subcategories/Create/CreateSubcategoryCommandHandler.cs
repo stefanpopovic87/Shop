@@ -11,20 +11,17 @@ namespace Shop.Application.Subcategories.Create
     internal sealed class CreateSubcategoryCommandHandler : ICommandHandler<CreateSubcategoryCommand, Result<int>>
     {
         private readonly ISubcategoryRepository _subcategoryRepository;
-        private readonly ICategoryRepository _categoryRepository;
         private readonly IProductUnitOfWork _unitOfWork;
         private readonly IValidator<CreateSubcategoryCommand> _validator;
 
         public CreateSubcategoryCommandHandler(
             ISubcategoryRepository subcategoryRepository,
             IProductUnitOfWork unitOfWork,
-            IValidator<CreateSubcategoryCommand> validator,
-            ICategoryRepository categoryRepository)
+            IValidator<CreateSubcategoryCommand> validator)
         {
             _subcategoryRepository = subcategoryRepository;
             _unitOfWork = unitOfWork;
-            _validator = validator;
-            _categoryRepository = categoryRepository;
+            _validator = validator;        
         }
 
         public async Task<Result<int>> Handle(CreateSubcategoryCommand request, CancellationToken cancellationToken)
@@ -35,7 +32,7 @@ namespace Shop.Application.Subcategories.Create
                 return ValidationErrorHelper.CreateValidationErrorResult<int>(validationResult);
             }
 
-            var subcategory = new Subcategory(request.Name, request.CategoryId);
+            var subcategory = Subcategory.Create(request.Name, request.CategoryId);
 
             _subcategoryRepository.Add(subcategory);
 

@@ -12,13 +12,18 @@ namespace Shop.Domain.Entities
 
         public ICollection<Product> Products { get; private set; } = [];
 
-        public Subcategory(string name, int categoryId)
+        public static Subcategory Create(string name, int categoryId)
+        {
+            return new Subcategory(name, categoryId);
+        }
+
+        public void Update(string name, int categoryId)
         {
             Name = name;
             CategoryId = categoryId;
         }
 
-        public void Update(string name, int categoryId)
+        private Subcategory(string name, int categoryId)
         {
             Name = name;
             CategoryId = categoryId;
