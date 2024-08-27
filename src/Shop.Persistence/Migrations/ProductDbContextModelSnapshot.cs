@@ -39,7 +39,7 @@ namespace Shop.Persistence.Migrations
                     b.HasIndex("Name")
                         .IsUnique();
 
-                    b.ToTable("Brands");
+                    b.ToTable("Brands", (string)null);
                 });
 
             modelBuilder.Entity("Shop.Domain.Entities.Category", b =>
@@ -60,7 +60,7 @@ namespace Shop.Persistence.Migrations
                     b.HasIndex("Name")
                         .IsUnique();
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("Shop.Domain.Entities.Gender", b =>
@@ -81,7 +81,7 @@ namespace Shop.Persistence.Migrations
                     b.HasIndex("Name")
                         .IsUnique();
 
-                    b.ToTable("Genders");
+                    b.ToTable("Genders", (string)null);
                 });
 
             modelBuilder.Entity("Shop.Domain.Entities.Products.Product", b =>
@@ -109,7 +109,7 @@ namespace Shop.Persistence.Migrations
 
                     b.HasIndex("SubcategoryId");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("Shop.Domain.Entities.Products.ProductSizeQuantity", b =>
@@ -130,7 +130,7 @@ namespace Shop.Persistence.Migrations
                     b.HasIndex("ProductId", "SizeId")
                         .IsUnique();
 
-                    b.ToTable("ProductSizeQuantities");
+                    b.ToTable("ProductSizeQuantities", (string)null);
                 });
 
             modelBuilder.Entity("Shop.Domain.Entities.Size", b =>
@@ -153,7 +153,7 @@ namespace Shop.Persistence.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Sizes");
+                    b.ToTable("Sizes", (string)null);
                 });
 
             modelBuilder.Entity("Shop.Domain.Entities.Subcategory", b =>
@@ -176,7 +176,7 @@ namespace Shop.Persistence.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Subcategories");
+                    b.ToTable("Subcategories", (string)null);
                 });
 
             modelBuilder.Entity("Shop.Domain.Entities.Products.Product", b =>
@@ -199,7 +199,7 @@ namespace Shop.Persistence.Migrations
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.OwnsOne("Shop.Domain.Entities.Products.ProductDetails", "Details", b1 =>
+                    b.OwnsOne("Shop.Domain.Entities.Products.Product.Details#Shop.Domain.Entities.Products.ProductDetails", "Details", b1 =>
                         {
                             b1.Property<int>("ProductId")
                                 .HasColumnType("integer");
@@ -228,7 +228,7 @@ namespace Shop.Persistence.Migrations
 
                             b1.HasKey("ProductId");
 
-                            b1.ToTable("Products");
+                            b1.ToTable("Products", (string)null);
 
                             b1.WithOwner()
                                 .HasForeignKey("ProductId");
