@@ -33,7 +33,7 @@ public class Order
         }
 
         var existingItem = Items.FirstOrDefault(item => item.ProductId == product.Id && item.SizeId == size.Id);
-        if (existingItem != null) existingItem.IncreaseQuantity(quantity);
+        existingItem?.IncreaseQuantity(quantity);
     }
 
     public void RemoveItem(int productId, int sizeId, int quantity = 1)

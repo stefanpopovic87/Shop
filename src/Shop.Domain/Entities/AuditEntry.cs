@@ -15,6 +15,6 @@ namespace Shop.Domain.Entities
         public int PrimaryKey { get; set; }
 
         [NotMapped]
-        public object Entity { get; set; }
+        public object? Entity { get; set; }
     }
 }

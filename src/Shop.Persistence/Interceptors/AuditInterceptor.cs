@@ -31,11 +31,11 @@ namespace Shop.Persistence.Interceptors
 
                 var auditEntry = new AuditEntry
                 {
-                    UserId = 1, // TODO - change to current user
+                    UserId = 1, //TODO - change to current user
                     Type = entry.State.ToString(),
-                    TableName = entry.Metadata.GetTableName(),
+                    TableName = entry?.Metadata?.GetTableName(),
                     DateTime = DateTime.UtcNow,
-                    Entity = entry.Entity
+                    Entity = entry?.Entity
                 };
 
                 if (entry.State == EntityState.Deleted)

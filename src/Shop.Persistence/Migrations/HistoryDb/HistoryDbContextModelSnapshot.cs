@@ -61,7 +61,7 @@ namespace Shop.Persistence.Migrations.HistoryDb
 
                     b.HasKey("Id");
 
-                    b.ToTable("AuditEntries");
+                    b.ToTable("AuditEntries", (string)null);
                 });
 #pragma warning restore 612, 618
         }
