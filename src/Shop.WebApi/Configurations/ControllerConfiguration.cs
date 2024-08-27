@@ -5,8 +5,11 @@ namespace Shop.WebApi.Configurations
 {
     public static class ControllerConfiguration
     {
-        public static void AddControllerConfiguration(this IServiceCollection services, System.Reflection.Assembly presentationAssembly)
+        public static void AddControllerConfiguration(this IServiceCollection services)
         {
+            System.Reflection.Assembly presentationAssembly = typeof(Presentation.AssemblyReference).Assembly;
+
+
             services.AddControllers(options =>
             {
                 options.Filters.Add(new ProducesAttribute("application/json"));

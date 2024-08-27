@@ -14,30 +14,16 @@ internal class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
-        System.Reflection.Assembly presentationAssembly = typeof(Shop.Presentation.AssemblyReference).Assembly;
+        builder.Services.AddControllerConfiguration();
 
-        builder.Services.AddControllerConfiguration(presentationAssembly);
-
-        var allowedOrigin = builder.Configuration.GetSection("AllowedOrigins:Client").Value
-            ?? throw new ArgumentNullException("AllowedOrigins:Client", "The CORS allowed origin is not configured.");
-
-        builder.Services.AddCors(options =>
-        {
-            options.AddPolicy("AllowClient", builder =>
-            {
-                builder.WithOrigins(allowedOrigin)
-                       .AllowAnyHeader()
-                       .AllowAnyMethod();
-            });
-        });
+        builder.Services.AddCorsConfiguration(builder.Configuration);
 
         builder.Services.AddEndpointsApiExplorer();
 
         builder.Services.AddSwaggerConfiguration();
 
-        SerilogConfiguration.ConfigureLogger();
-
-        builder.Host.UseSerilog();
+        builder.Host.UseSerilog((context, configuration) =>
+            configuration.ReadFrom.Configuration(context.Configuration));
 
         builder.Services.AddHealthChecks();
 
