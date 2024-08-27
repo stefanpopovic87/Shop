@@ -6,6 +6,7 @@ using Shop.Presentation;
 using Shop.Presentation.Middleware;
 using Shop.Configurations;
 using Shop.WebApi.Configurations;
+using Serilog.Events;
 
 internal class Program
 {
@@ -34,11 +35,9 @@ internal class Program
 
         builder.Services.AddSwaggerConfiguration();
 
+        SerilogConfiguration.ConfigureLogger();
 
-        builder.Host.UseSerilog((context, configuration) =>
-            configuration.ReadFrom.Configuration(context.Configuration)
-                .WriteTo.Console()
-                .WriteTo.File("logs/shoplog.txt", rollingInterval: RollingInterval.Day));
+        builder.Host.UseSerilog();
 
         builder.Services.AddHealthChecks();
 
@@ -73,9 +72,7 @@ internal class Program
 
         app.UseMiddleware<ExceptionHandlingMiddleware>();
 
-        app.MapControllers();
-
-        app.UseSerilogRequestLogging();
+        app.MapControllers();              
 
         app.Run();
     }

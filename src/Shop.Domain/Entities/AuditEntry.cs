@@ -1,4 +1,6 @@
-﻿namespace Shop.Domain.Entities
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Shop.Domain.Entities
 {
     public class AuditEntry
     {
@@ -11,5 +13,8 @@
         public string NewValues { get; set; } = string.Empty;
         public string AffectedColumns { get; set; } = string.Empty;
         public int PrimaryKey { get; set; }
+
+        [NotMapped]
+        public object Entity { get; set; }
     }
 }
