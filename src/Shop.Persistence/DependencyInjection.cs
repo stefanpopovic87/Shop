@@ -15,9 +15,6 @@ namespace Shop.Persistence
 {
     public static class DependencyInjection
     {
-        private const string _productDBConnection = "ProductDBConnection";
-        private const string _historyDBConnection = "HistoryDBConnection";
-
         public static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration configuration, IHostEnvironment environment)
         {
             AddProductContext(services, configuration, environment);
@@ -35,7 +32,7 @@ namespace Shop.Persistence
 
             services.AddDbContext<ProductDbContext>((serviceProvider, options) =>
             {
-                var connectionString = configuration.GetConnectionString(_productDBConnection);
+                var connectionString = configuration["ConnectionStrings:Shop:ProductDb"];
                 options.UseNpgsql(connectionString, npgsqlOptions => npgsqlOptions.MigrationsAssembly(typeof(ProductDbContext).Assembly.FullName));
                 var auditEntries = serviceProvider.GetRequiredKeyedService<List<AuditEntry>>("Audit");
                 var historyContext = serviceProvider.GetRequiredService<HistoryDbContext>();
@@ -56,7 +53,7 @@ namespace Shop.Persistence
         {
             services.AddDbContext<HistoryDbContext>(options =>
             {
-                var connectionString = configuration.GetConnectionString(_historyDBConnection);
+                var connectionString = configuration["ConnectionStrings:Shop:HistoryDb"];
                 options.UseNpgsql(connectionString, npgsqlOptions => npgsqlOptions.MigrationsAssembly(typeof(HistoryDbContext).Assembly.FullName));
 
                 ConfigureLogging(options, environment);
