@@ -27,5 +27,9 @@
     <ProjectReference Include="..\Shop.Persistence\Shop.Persistence.csproj" />
     <ProjectReference Include="..\Shop.Presentation\Shop.Presentation.csproj" />
   </ItemGroup>
+
+  <PropertyGroup>
+    <IsTransformWebConfigDisabled>true</IsTransformWebConfigDisabled>
+  </PropertyGroup>
   
 </Project>
