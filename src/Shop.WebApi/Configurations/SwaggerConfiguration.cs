@@ -12,8 +12,8 @@ namespace Shop.Configurations
             {
                 c.SwaggerDoc("v1", new OpenApiInfo 
                 { 
-                    Title = "SHOP API",
-                    Description = "Web Shop app for products",
+                    Title = "SHOP API - DEVELOPMENT ENV",
+                    Description = "Web Shop app for products, orders and payments",
                     Version = "v1" 
                 });
 
