@@ -27,11 +27,5 @@
     <ProjectReference Include="..\Shop.Persistence\Shop.Persistence.csproj" />
     <ProjectReference Include="..\Shop.Presentation\Shop.Presentation.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <None Update="web.config">
-      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
-    </None>
-  </ItemGroup>
-
+  
 </Project>
