@@ -13,7 +13,7 @@ namespace Shop.WebApi.Configurations
                 .MinimumLevel.Override("System", LogEventLevel.Warning)
                 .Enrich.FromLogContext()
                 .WriteTo.Console()
-                .WriteTo.File("logs/shoplog.txt", rollingInterval: RollingInterval.Day)
+                //.WriteTo.File("logs/shoplog.txt", rollingInterval: RollingInterval.Day)
                 .CreateLogger();
         }
     }
