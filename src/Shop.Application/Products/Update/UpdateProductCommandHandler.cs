@@ -5,6 +5,7 @@ using Shop.Common;
 using Shop.Application.Interfaces;
 using Shop.Domain.Entities.Products;
 using Shop.Application.Builders;
+using Shop.Application.Interfaces.UnitOfWork;
 
 namespace Shop.Application.Products.Update
 {

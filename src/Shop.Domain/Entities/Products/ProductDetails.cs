@@ -14,6 +14,8 @@
             Price = price;
             Code = code;
         }
+
+        public ProductDetails(){}
     }
 
 }

@@ -13,6 +13,8 @@ namespace Shop.Domain.Entities
         public string NewValues { get; set; } = string.Empty;
         public string AffectedColumns { get; set; } = string.Empty;
         public int PrimaryKey { get; set; }
+        public string DatabaseName { get; set; } = string.Empty;
+
 
         [NotMapped]
         public object? Entity { get; set; }

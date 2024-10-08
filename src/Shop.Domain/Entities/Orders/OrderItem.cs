@@ -7,19 +7,15 @@ public class OrderItem
     public Order Order { get; private set; }
     public int Quantity { get; private set; }
     public int ProductId { get; private set; }
-    public Products.Product Product { get; private set; }
     public int SizeId { get; private set; }
-    public Size Size { get; private set; }
     public decimal Price { get; private set; }
 
     private OrderItem() { }
 
-    public OrderItem(Products.Product product, Size size, int quantity, decimal price)
+    public OrderItem(int productId, int sizeId, int quantity, decimal price)
     {
-        Product = product;
-        ProductId = product.Id; 
-        Size = size;
-        SizeId = size.Id;
+        ProductId = productId; 
+        SizeId = sizeId;
         Quantity = quantity;
         Price = price;
     }

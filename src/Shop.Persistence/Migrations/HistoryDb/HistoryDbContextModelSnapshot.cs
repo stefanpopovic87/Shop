@@ -17,7 +17,7 @@ namespace Shop.Persistence.Migrations.HistoryDb
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.7")
+                .HasAnnotation("ProductVersion", "8.0.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -31,6 +31,10 @@ namespace Shop.Persistence.Migrations.HistoryDb
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("AffectedColumns")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("DatabaseName")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -61,7 +65,7 @@ namespace Shop.Persistence.Migrations.HistoryDb
 
                     b.HasKey("Id");
 
-                    b.ToTable("AuditEntries", (string)null);
+                    b.ToTable("AuditEntries");
                 });
 #pragma warning restore 612, 618
         }

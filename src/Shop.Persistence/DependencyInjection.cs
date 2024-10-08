@@ -5,6 +5,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Serilog;
 using Shop.Application.Interfaces;
+using Shop.Application.Interfaces.UnitOfWork;
 using Shop.Domain.Entities;
 using Shop.Persistence.Database;
 using Shop.Persistence.Interceptors;
@@ -17,13 +18,15 @@ namespace Shop.Persistence
     {
         private const string _productDBConnection = "ProductDBConnection";
         private const string _historyDBConnection = "HistoryDBConnection";
+        private const string _orderDBConnection = "OrderDBConnection";
         public static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration configuration, IHostEnvironment environment)
         {
             AddProductContext(services, configuration, environment);
-
+            AddOrderContext(services, configuration, environment);
             AddHistoryContext(services, configuration, environment);
 
             AddProductRepositories(services);
+            AddOrderRepositories(services);
 
             return services;
         }
@@ -51,6 +54,31 @@ namespace Shop.Persistence
             return services;
         }
 
+        private static IServiceCollection AddOrderContext(this IServiceCollection services, IConfiguration configuration, IHostEnvironment environment)
+        {
+            services.AddKeyedScoped<List<AuditEntry>>("Audit", (_, _) => []);
+
+            services.AddDbContext<OrderDbContext>((serviceProvider, options) =>
+            {
+                var connectionString = configuration.GetConnectionString(_orderDBConnection);
+                options.UseNpgsql(connectionString, npgsqlOptions => npgsqlOptions.MigrationsAssembly(typeof(OrderDbContext).Assembly.FullName));
+                var auditEntries = serviceProvider.GetRequiredKeyedService<List<AuditEntry>>("Audit");
+                var historyContext = serviceProvider.GetRequiredService<HistoryDbContext>();
+
+                options.AddInterceptors(new AuditInterceptor(auditEntries, historyContext));
+
+                ConfigureLogging(options, environment);
+
+            });
+
+            services.AddScoped<IOrderUnitOfWork>(sp =>
+               sp.GetRequiredService<OrderDbContext>());
+
+            return services;
+        }
+
+
+
         private static IServiceCollection AddHistoryContext(this IServiceCollection services, IConfiguration configuration, IHostEnvironment environment)
         {
             services.AddDbContext<HistoryDbContext>(options =>
@@ -72,13 +100,17 @@ namespace Shop.Persistence
         {
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<ISizeRepository, SizeRepository>();
-            services.AddScoped<IOrderStatusRepository, OrderStatusRepository>();
             services.AddScoped<IBrandRepository, BrandRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IGenderRepository, GenderRepository>();
             services.AddScoped<ISubcategoryRepository, SubcategoryRepository>();
             services.AddScoped<IProductSizeQuantityRepository, ProductSizeQuantityRepository>();
+            return services;
+        }
 
+        private static IServiceCollection AddOrderRepositories(this IServiceCollection services)
+        {
+            services.AddScoped<IOrderStatusRepository, OrderStatusRepository>();
             return services;
         }
 

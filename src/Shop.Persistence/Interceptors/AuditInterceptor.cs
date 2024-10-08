@@ -21,8 +21,11 @@ namespace Shop.Persistence.Interceptors
         {
             if (eventData.Context is null)
             {
-                return base.SavingChangesAsync(eventData, result, cancellationToken);
+                return ValueTask.FromResult(result);
             }
+
+            var databaseName = GetDatabaseName(eventData.Context);
+
 
             foreach (var entry in eventData.Context.ChangeTracker.Entries())
             {
@@ -35,19 +38,30 @@ namespace Shop.Persistence.Interceptors
                     Type = entry.State.ToString(),
                     TableName = entry?.Metadata?.GetTableName(),
                     DateTime = DateTime.UtcNow,
-                    Entity = entry?.Entity
+                    Entity = entry?.Entity,
+                    DatabaseName = databaseName
+
                 };
 
-                if (entry.State == EntityState.Deleted)
+                switch (entry.State)
                 {
-                    auditEntry.OldValues = JsonConvert.SerializeObject(entry.Properties.ToDictionary(p => p.Metadata.Name, p => p.OriginalValue));
-                    auditEntry.PrimaryKey = (int)entry.Properties.FirstOrDefault(p => p.Metadata.IsPrimaryKey())?.OriginalValue!;
-                }
-                else if (entry.State == EntityState.Modified)
-                {
-                    auditEntry.OldValues = JsonConvert.SerializeObject(entry.Properties.ToDictionary(p => p.Metadata.Name, p => p.OriginalValue));
-                    auditEntry.AffectedColumns = string.Join(",", entry.Properties.Where(p => p.IsModified).Select(p => p.Metadata.Name));
-                    auditEntry.PrimaryKey = (int)entry.Properties.FirstOrDefault(p => p.Metadata.IsPrimaryKey())?.OriginalValue!;
+                    case EntityState.Deleted:
+                        auditEntry.OldValues = JsonConvert.SerializeObject(entry.Properties.ToDictionary(p => p.Metadata.Name, p => p.OriginalValue));
+                        auditEntry.PrimaryKey = (int)entry.Properties.FirstOrDefault(p => p.Metadata.IsPrimaryKey())?.OriginalValue!;
+                        break;
+                    case EntityState.Modified:
+                        auditEntry.OldValues = JsonConvert.SerializeObject(entry.Properties.ToDictionary(p => p.Metadata.Name, p => p.OriginalValue));
+                        auditEntry.AffectedColumns = string.Join(",", entry.Properties.Where(p => p.IsModified).Select(p => p.Metadata.Name));
+                        auditEntry.PrimaryKey = entry.Properties.FirstOrDefault(p => p.Metadata.IsPrimaryKey())?.OriginalValue as int? ?? 0; 
+                        break;
+                    case EntityState.Detached:
+                        break;
+                    case EntityState.Unchanged:
+                        break;
+                    case EntityState.Added:
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
                 }
 
                 _auditEntries.Add(auditEntry);
@@ -92,6 +106,17 @@ namespace Shop.Persistence.Interceptors
             }
 
             return await base.SavedChangesAsync(eventData, result, cancellationToken);
+        }
+
+        private string GetDatabaseName(DbContext context)
+        {
+            return context.GetType().Name switch
+            {
+                nameof(ProductDbContext) => "ProductDb",
+                nameof(OrderDbContext) => "OrderDb",
+                nameof(HistoryDbContext) => "HistoryDb",
+                _ => "UnknownDb"
+            };
         }
     }
 }

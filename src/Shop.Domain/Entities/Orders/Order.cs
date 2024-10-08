@@ -24,15 +24,15 @@ public class Order
         StatusId = status.Id;
     }
 
-    public void AddItem(Products.Product product, Size size, int quantity = 1)
+    public void AddItem(int productId, decimal price, int sizeId, int quantity = 1)
     {
-        if (Items.All(item => item.ProductId != product.Id || item.SizeId != size.Id))
+        if (Items.All(item => item.ProductId != productId || item.SizeId != sizeId))
         {
-            Items.Add(new OrderItem(product, size, quantity, product.Details.Price));
+            Items.Add(new OrderItem(productId, sizeId, quantity, price));
             return;
         }
 
-        var existingItem = Items.FirstOrDefault(item => item.ProductId == product.Id && item.SizeId == size.Id);
+        var existingItem = Items.FirstOrDefault(item => item.ProductId == productId && item.SizeId == sizeId);
         existingItem?.IncreaseQuantity(quantity);
     }
 

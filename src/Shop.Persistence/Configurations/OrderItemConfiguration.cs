@@ -23,14 +23,6 @@ namespace Shop.Persistence.Configurations
                    .IsRequired()
                    .HasColumnType("decimal(18,2)");
 
-            builder.HasOne(e => e.Product)
-                 .WithMany()
-                 .HasForeignKey(e => e.ProductId);
-
-            builder.HasOne(e => e.Size)
-                  .WithMany()
-                  .HasForeignKey(e => e.SizeId);
-
             builder.HasOne(oi => oi.Order)
                    .WithMany(o => o.Items)
                    .HasForeignKey(oi => oi.OrderId);

@@ -5,10 +5,10 @@ using Shop.Persistence.Repositories.Base;
 
 namespace Shop.Persistence.Repositories
 {
-    internal sealed class OrderStatusRepository : BaseRepository<OrderStatus, ProductDbContext>, IOrderStatusRepository
+    internal sealed class OrderStatusRepository : BaseRepository<OrderStatus, OrderDbContext>, IOrderStatusRepository
     {
 
-        public OrderStatusRepository(ProductDbContext context)
+        public OrderStatusRepository(OrderDbContext context)
             : base(context) 
         {
         }        

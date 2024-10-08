@@ -5,9 +5,18 @@
         public int Id { get; private set; }
         public string Name { get; private set; } = string.Empty;
 
-        public OrderStatus(int id, string name)
+        public static OrderStatus Create(string name)
         {
-            Id = id;
+            return new OrderStatus(name);
+        }
+
+        public void Update(string name)
+        {
+            Name = name;
+        }
+
+        private OrderStatus(string name)
+        {
             Name = name;
         }
     }

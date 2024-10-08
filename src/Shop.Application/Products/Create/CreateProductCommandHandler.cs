@@ -4,6 +4,7 @@ using Shop.Application.Helpers;
 using Shop.Common;
 using Shop.Application.Interfaces;
 using Shop.Application.Builders;
+using Shop.Application.Interfaces.UnitOfWork;
 
 namespace Shop.Application.Products.Create
 {

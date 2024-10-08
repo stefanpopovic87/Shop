@@ -3,6 +3,7 @@ using Shop.Application.Abstractions;
 using Shop.Application.Helpers;
 using Shop.Common;
 using Shop.Application.Interfaces;
+using Shop.Application.Interfaces.UnitOfWork;
 
 namespace Shop.Application.Sizes.Update
 {

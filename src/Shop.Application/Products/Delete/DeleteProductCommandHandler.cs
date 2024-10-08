@@ -2,6 +2,7 @@
 using Shop.Common;
 using Shop.Domain.ErrorMessages;
 using Shop.Application.Interfaces;
+using Shop.Application.Interfaces.UnitOfWork;
 
 namespace Shop.Application.Products.Delete
 {

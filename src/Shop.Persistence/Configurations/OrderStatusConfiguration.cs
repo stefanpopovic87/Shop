@@ -15,10 +15,7 @@ namespace Shop.Persistence.Configurations
                .IsRequired()
                .HasMaxLength(100);
 
-            //IEnumerable<OrderStatus> statuses = Enum.GetValues<OrderStatusEnum>()
-            //    .Select(s => new OrderStatus((int)s, s.ToString()));
-
-            //builder.HasData(statuses);
+            builder.HasIndex(p => p.Name).IsUnique();
         }        
     }
 }

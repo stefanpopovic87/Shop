@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Shop.Application.Interfaces;
+using Shop.Application.Interfaces.UnitOfWork;
 using Shop.Domain.Entities;
 using Shop.Persistence.Configurations;
 

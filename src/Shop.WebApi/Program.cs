@@ -5,6 +5,7 @@ using Shop.Persistence;
 using Shop.Presentation;
 using Shop.Configurations;
 using Shop.WebApi.Configurations;
+using Shop.Presentation.Middleware;
 
 internal class Program
 {
@@ -33,7 +34,7 @@ internal class Program
             .AddPresentation()
             .AddInfrastructure();
 
-        //builder.Services.AddTransient<ExceptionHandlingMiddleware>();
+        builder.Services.AddTransient<ExceptionHandlingMiddleware>();
 
         var app = builder.Build();
 
@@ -49,11 +50,11 @@ internal class Program
 
         app.UseSerilogRequestLogging();
 
-        //app.UseHttpsRedirection();
+        app.UseHttpsRedirection();
 
         //app.UseAuthorization();
 
-        //app.UseMiddleware<ExceptionHandlingMiddleware>();
+        app.UseMiddleware<ExceptionHandlingMiddleware>();
 
         app.MapControllers();              
 
